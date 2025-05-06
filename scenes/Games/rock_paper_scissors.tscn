@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbf0hmtootka"]
+
+[ext_resource type="Script" uid="uid://cq5yndqqm7eus" path="res://scripts/Generics/minigame.gd" id="1_e6avb"]
+
+[node name="RockPaperScissors" type="Node2D"]
+script = ExtResource("1_e6avb")
+
+[node name="Camera2D" type="Camera2D" parent="."]

@@ -1,0 +1,327 @@
+[gd_scene load_steps=4 format=3 uid="uid://1c8om7gpic31"]
+
+[ext_resource type="Script" uid="uid://bh8ha7c2g46k4" path="res://scripts/UI/main_menu_tabs.gd" id="1_5jstl"]
+[ext_resource type="Script" uid="uid://csksmfp54k53b" path="res://scripts/UI/main.gd" id="1_qwnig"]
+[ext_resource type="FontFile" uid="uid://u14gsqgyp28w" path="res://assets/UI/PressStart2P-Regular.ttf" id="2_yonvy"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MainMenuTabs" type="TabContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+current_tab = 0
+tabs_visible = false
+script = ExtResource("1_5jstl")
+
+[node name="Main" type="Control" parent="MarginContainer/CenterContainer/MainMenuTabs"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+script = ExtResource("1_qwnig")
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/MainMenuTabs/Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 10.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.1
+theme_override_fonts/font = ExtResource("2_yonvy")
+theme_override_font_sizes/font_size = 32
+text = "JoshBox"
+horizontal_alignment = 1
+
+[node name="Versus" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "Versus
+"
+
+[node name="GameSelection" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "Game Selection"
+
+[node name="Tournament" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "Tournament"
+
+[node name="Settings" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "Settings
+"
+
+[node name="Exit" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "Exit
+"
+
+[node name="GameSelection" type="Control" parent="MarginContainer/CenterContainer/MainMenuTabs"]
+visible = false
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Pong" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "Pong"
+
+[node name="Button2" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button3" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button4" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button5" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button6" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button7" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button8" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button9" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button10" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button11" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button12" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button13" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button14" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button15" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button16" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button17" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button18" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button19" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button20" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button21" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button22" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button23" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button24" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Button25" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "?
+"
+
+[node name="Back" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "Back"
+
+[node name="Tournament" type="Control" parent="MarginContainer/CenterContainer/MainMenuTabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="TODO" type="Control" parent="MarginContainer/CenterContainer/MainMenuTabs/Tournament"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Settings" type="Control" parent="MarginContainer/CenterContainer/MainMenuTabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="TODO" type="Control" parent="MarginContainer/CenterContainer/MainMenuTabs/Settings"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer/Versus" to="MarginContainer/CenterContainer/MainMenuTabs/Main" method="_on_versus_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer/GameSelection" to="MarginContainer/CenterContainer/MainMenuTabs" method="_on_game_selection_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer/Exit" to="MarginContainer/CenterContainer/MainMenuTabs/Main" method="_on_exit_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/Back" to="MarginContainer/CenterContainer/MainMenuTabs" method="_on_back_pressed"]

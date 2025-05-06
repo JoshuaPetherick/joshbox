@@ -15,6 +15,11 @@ run/main_scene="uid://m3ras8dookfr"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalSignals="*res://scripts/Global/GlobalSignals.gd"
+GlobalDeviceManager="*res://scripts/Global/GlobalDeviceManager.gd"
+
 [display]
 
 window/size/viewport_width=1920
