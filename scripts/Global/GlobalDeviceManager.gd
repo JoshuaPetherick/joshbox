@@ -32,8 +32,12 @@ func listen_for_device(player: int):
 
 #region Getters
 
+## Get player id from device
+func get_player_from_device(device: int):
+	return _player_dict.find_key(device)
+
 ## Get the device id assigned to the player. 
-func get_device_for_player(player: int):
+func get_device_from_player(player: int):
 	if (_player_dict.has(player)):
 		return _player_dict[player]
 	return -1 

@@ -1,21 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbf0hmtootka"]
+[gd_scene load_steps=8 format=3 uid="uid://cbf0hmtootka"]
 
-[ext_resource type="Script" uid="uid://cq5yndqqm7eus" path="res://scripts/Generics/minigame.gd" id="1_e6avb"]
+[ext_resource type="Script" uid="uid://c75qr5ia2ndgk" path="res://scripts/Games/RockPaperScissors/main.gd" id="1_0uxnx"]
 [ext_resource type="Texture2D" uid="uid://ca7kmwf3vjups" path="res://assets/UI/playstation-series_sheet_double.png" id="2_j5o4f"]
 [ext_resource type="FontFile" uid="uid://u14gsqgyp28w" path="res://assets/Fonts/PressStart2P-Regular.ttf" id="2_nbkgs"]
 [ext_resource type="Texture2D" uid="uid://5pmtl7koa7ty" path="res://assets/Visuals/backgroundEmpty.png" id="3_nbkgs"]
+[ext_resource type="Texture2D" uid="uid://cfsugrmlyg2v6" path="res://assets/Visuals/RockPaperSissors.png" id="5_0uxnx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0uxnx"]
 atlas = ExtResource("2_j5o4f")
 region = Rect2(400, 1168, 96, 96)
 
-[node name="RockPaperScissors" type="Node2D"]
-script = ExtResource("1_e6avb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_nagne"]
+atlas = ExtResource("5_0uxnx")
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0uxnx")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayer"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 40.0
@@ -67,6 +71,7 @@ text = "Scissors"
 [node name="RHSUI" type="VBoxContainer" parent="UILayer/VBoxContainer/BottomRow"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 10
 
 [node name="Paper" type="Label" parent="UILayer/VBoxContainer/BottomRow/RHSUI"]
 layout_mode = 2
@@ -95,12 +100,23 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_nbkgs")
 text = "Scissors"
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Background" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("3_nbkgs")
 
 [node name="LHand" type="Sprite2D" parent="."]
+position = Vector2(-400, 0)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_nagne")
+hframes = 3
+frame = 2
 
 [node name="RHand" type="Sprite2D" parent="."]
+position = Vector2(400, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("5_0uxnx")
+flip_h = true
+hframes = 3
+frame = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
