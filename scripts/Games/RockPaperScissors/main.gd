@@ -11,9 +11,9 @@ var player2Action = Actions.NONE
 var player1Score = 0
 var player2Score = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@onready var lhand: Sprite2D = %LHand
+@onready var rhand: Sprite2D = %RHand
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 func _input(event: InputEvent) -> void:
 	# Checks
@@ -52,6 +52,13 @@ func _input(event: InputEvent) -> void:
 	# Start Round
 	start_round()
 
+#region Events
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	finish_round()
+
+#endregion
+
 #region Game Operations
 
 func start_round():
@@ -59,7 +66,7 @@ func start_round():
 	hasRoundStarted = true
 	
 	# Play Animation
-	# TODO
+	animation_player.play("Start")
 	pass
 	
 func finish_round():
@@ -92,5 +99,22 @@ func finish_round():
 		player1Action = Actions.NONE
 		player2Action = Actions.NONE
 		hasRoundStarted = false
+
+func set_player_sprites():
+	lhand.frame = get_sprite_frame(player1Action)
+	rhand.frame = get_sprite_frame(player2Action)
 	
+#endregion
+
+#region Functions
+
+func get_sprite_frame(action: Actions):
+	match action:
+		Actions.PAPER:
+			return 0
+		Actions.SCISSORS:
+			return 1
+		_:
+			return 2
+
 #endregion
