@@ -11,9 +11,17 @@ func _input(event: InputEvent) -> void:
 	# Checks
 	if (!_is_listening):
 		return;
-		
+	
+	if (Input.is_joy_known(event.device) != true):
+		return;
+	
 	# Assign Device to Player
 	_player_dict[_player_index] = event.device
+	
+	var test = Input.get_joy_info(event.device)
+	
+	# Emit Signal
+	GlobalSignals.device_connected.emit(_player_index)
 	
 	# Stop Listening
 	_player_index = 0

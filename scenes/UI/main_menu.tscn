@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://1c8om7gpic31"]
+[gd_scene load_steps=7 format=3 uid="uid://1c8om7gpic31"]
 
 [ext_resource type="Script" uid="uid://bh8ha7c2g46k4" path="res://scripts/UI/main_menu_tabs.gd" id="1_5jstl"]
-[ext_resource type="Script" uid="uid://csksmfp54k53b" path="res://scripts/UI/main.gd" id="1_qwnig"]
+[ext_resource type="Script" uid="uid://csksmfp54k53b" path="res://scripts/UI/main_menu.gd" id="1_qwnig"]
 [ext_resource type="FontFile" uid="uid://u14gsqgyp28w" path="res://assets/Fonts/PressStart2P-Regular.ttf" id="2_yonvy"]
+[ext_resource type="Script" uid="uid://c2jrltn5lx5ma" path="res://scripts/UI/setup.gd" id="4_e2p27"]
+[ext_resource type="Texture2D" uid="uid://ca7kmwf3vjups" path="res://assets/UI/playstation-series_sheet_double.png" id="4_tfcbk"]
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2p27"]
+atlas = ExtResource("4_tfcbk")
+region = Rect2(512, 1408, 128, 128)
+
+[node name="HomeMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,13 +39,13 @@ current_tab = 0
 tabs_visible = false
 script = ExtResource("1_5jstl")
 
-[node name="Main" type="Control" parent="MarginContainer/CenterContainer/MainMenuTabs"]
-custom_minimum_size = Vector2(250, 250)
+[node name="MainMenu" type="Control" parent="MarginContainer/CenterContainer/MainMenuTabs"]
+custom_minimum_size = Vector2(275, 275)
 layout_mode = 2
 script = ExtResource("1_qwnig")
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/MainMenuTabs/Main"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/MainMenuTabs/MainMenu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -52,7 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 5
 
-[node name="Title" type="Label" parent="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer"]
+[node name="Title" type="Label" parent="MarginContainer/CenterContainer/MainMenuTabs/MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 2
 size_flags_stretch_ratio = 1.1
@@ -61,33 +67,39 @@ theme_override_font_sizes/font_size = 32
 text = "JoshBox"
 horizontal_alignment = 1
 
-[node name="Versus" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer"]
+[node name="Versus" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_yonvy")
 text = "Versus
 "
 
-[node name="GameSelection" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer"]
+[node name="GameSelection" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_yonvy")
 text = "Game Selection"
 
-[node name="Tournament" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer"]
+[node name="Tournament" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_yonvy")
 text = "Tournament"
 
-[node name="Settings" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer"]
+[node name="Setup" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_yonvy")
+text = "Setup"
+
+[node name="Settings" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_yonvy")
 text = "Settings
 "
 
-[node name="Exit" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer"]
+[node name="Exit" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_yonvy")
@@ -310,10 +322,104 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Setup" type="Control" parent="MarginContainer/CenterContainer/MainMenuTabs" node_paths=PackedStringArray("device_info_p1", "device_icon_p1", "device_info_p2", "device_icon_p2")]
+visible = false
+layout_mode = 2
+script = ExtResource("4_e2p27")
+device_info_p1 = NodePath("Panel/VBoxContainer/Device Screens/LHS Setup/DeviceInfo")
+device_icon_p1 = NodePath("Panel/VBoxContainer/Device Screens/LHS Setup/DeviceIcon")
+device_info_p2 = NodePath("Panel/VBoxContainer/Device Screens/RHS Setup/DeviceInfo")
+device_icon_p2 = NodePath("Panel/VBoxContainer/Device Screens/RHS Setup/DeviceIcon")
+metadata/_tab_index = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup"]
+custom_minimum_size = Vector2(500, 350)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Device Screens" type="HBoxContainer" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LHS Setup" type="VBoxContainer" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer/Device Screens"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="Header" type="Label" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer/Device Screens/LHS Setup"]
+layout_mode = 2
+text = "Player 1"
+horizontal_alignment = 1
+
+[node name="DeviceIcon" type="TextureRect" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer/Device Screens/LHS Setup"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+texture = SubResource("AtlasTexture_e2p27")
+stretch_mode = 3
+
+[node name="DeviceInfo" type="Label" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer/Device Screens/LHS Setup"]
+layout_mode = 2
+text = "-"
+horizontal_alignment = 1
+
+[node name="ConnectPlayer1" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer/Device Screens/LHS Setup"]
+layout_mode = 2
+text = "Connect"
+
+[node name="RHS Setup" type="VBoxContainer" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer/Device Screens"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="Header" type="Label" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer/Device Screens/RHS Setup"]
+layout_mode = 2
+text = "Player 2"
+horizontal_alignment = 1
+
+[node name="DeviceIcon" type="TextureRect" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer/Device Screens/RHS Setup"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+texture = SubResource("AtlasTexture_e2p27")
+stretch_mode = 3
+
+[node name="DeviceInfo" type="Label" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer/Device Screens/RHS Setup"]
+layout_mode = 2
+text = "-"
+horizontal_alignment = 1
+
+[node name="ConnectPlayer2" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer/Device Screens/RHS Setup"]
+layout_mode = 2
+text = "Connect"
+
+[node name="Back" type="Button" parent="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
 [node name="Settings" type="Control" parent="MarginContainer/CenterContainer/MainMenuTabs"]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 3
+metadata/_tab_index = 4
 
 [node name="TODO" type="Control" parent="MarginContainer/CenterContainer/MainMenuTabs/Settings"]
 layout_mode = 3
@@ -321,7 +427,11 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer/Versus" to="MarginContainer/CenterContainer/MainMenuTabs/Main" method="_on_versus_pressed"]
-[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer/GameSelection" to="MarginContainer/CenterContainer/MainMenuTabs" method="_on_game_selection_pressed"]
-[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/Main/VBoxContainer/Exit" to="MarginContainer/CenterContainer/MainMenuTabs/Main" method="_on_exit_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/MainMenu/VBoxContainer/Versus" to="MarginContainer/CenterContainer/MainMenuTabs/MainMenu" method="_on_versus_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/MainMenu/VBoxContainer/GameSelection" to="MarginContainer/CenterContainer/MainMenuTabs" method="_on_game_selection_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/MainMenu/VBoxContainer/Setup" to="MarginContainer/CenterContainer/MainMenuTabs" method="_on_setup_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/MainMenu/VBoxContainer/Exit" to="MarginContainer/CenterContainer/MainMenuTabs/MainMenu" method="_on_exit_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/GameSelection/VBoxContainer/Back" to="MarginContainer/CenterContainer/MainMenuTabs" method="_on_back_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer/Device Screens/LHS Setup/ConnectPlayer1" to="MarginContainer/CenterContainer/MainMenuTabs/Setup" method="_on_connect_player_1_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer/Device Screens/RHS Setup/ConnectPlayer2" to="MarginContainer/CenterContainer/MainMenuTabs/Setup" method="_on_connect_player_2_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/MainMenuTabs/Setup/Panel/VBoxContainer/Back" to="MarginContainer/CenterContainer/MainMenuTabs" method="_on_back_pressed"]
