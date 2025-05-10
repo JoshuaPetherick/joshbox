@@ -1,0 +1,304 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbf0hmtootka"]
+
+[ext_resource type="Script" uid="uid://c75qr5ia2ndgk" path="res://scripts/Games/RockPaperScissors/main.gd" id="1_0uxnx"]
+[ext_resource type="Texture2D" uid="uid://ca7kmwf3vjups" path="res://assets/UI/playstation-series_sheet_double.png" id="2_j5o4f"]
+[ext_resource type="FontFile" uid="uid://u14gsqgyp28w" path="res://assets/Fonts/PressStart2P-Regular.ttf" id="2_nbkgs"]
+[ext_resource type="Texture2D" uid="uid://5pmtl7koa7ty" path="res://assets/Visuals/backgroundEmpty.png" id="3_nbkgs"]
+[ext_resource type="Texture2D" uid="uid://cfsugrmlyg2v6" path="res://assets/Visuals/RockPaperSissors.png" id="5_0uxnx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uxnx"]
+atlas = ExtResource("2_j5o4f")
+region = Rect2(400, 1168, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nagne"]
+atlas = ExtResource("5_0uxnx")
+
+[sub_resource type="Animation" id="Animation_0uxnx"]
+resource_name = "Start"
+length = 2.5
+step = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LHand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RHand:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-400, 0), Vector2(-600, -200), Vector2(-400, 0), Vector2(-600, -200), Vector2(-400, 0), Vector2(-600, -200), Vector2(-400, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LHand:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.785398, 0.0, -0.785398, 0.0, -0.785398, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RHand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0333333, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(400, 0), Vector2(600, -200), Vector2(400, 0), Vector2(600, -200), Vector2(400, 0), Vector2(600, -200), Vector2(400, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RHand:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0333333, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 0.0, 0.785398, 0.0, 0.785398, 0.0]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"set_player_sprites"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nagne"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LHand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RHand:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-400, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LHand:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RHand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(400, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RHand:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nagne"]
+_data = {
+&"RESET": SubResource("Animation_nagne"),
+&"Start": SubResource("Animation_0uxnx")
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0uxnx")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buffer" type="Control" parent="UILayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BottomRow" type="HBoxContainer" parent="UILayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LHSUI" type="VBoxContainer" parent="UILayer/VBoxContainer/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Paper" type="Label" parent="UILayer/VBoxContainer/BottomRow/LHSUI"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nbkgs")
+text = "Paper"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/VBoxContainer/BottomRow/LHSUI"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Rock" type="Label" parent="UILayer/VBoxContainer/BottomRow/LHSUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_nbkgs")
+text = "Rock"
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/VBoxContainer/BottomRow/LHSUI/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0uxnx")
+
+[node name="Scissors" type="Label" parent="UILayer/VBoxContainer/BottomRow/LHSUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_nbkgs")
+text = "Scissors"
+
+[node name="RHSUI" type="VBoxContainer" parent="UILayer/VBoxContainer/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Paper" type="Label" parent="UILayer/VBoxContainer/BottomRow/RHSUI"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nbkgs")
+text = "Paper"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/VBoxContainer/BottomRow/RHSUI"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Rock" type="Label" parent="UILayer/VBoxContainer/BottomRow/RHSUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_nbkgs")
+text = "Rock"
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/VBoxContainer/BottomRow/RHSUI/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0uxnx")
+
+[node name="Scissors" type="Label" parent="UILayer/VBoxContainer/BottomRow/RHSUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_nbkgs")
+text = "Scissors"
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("3_nbkgs")
+
+[node name="LHand" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-400, 0)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_nagne")
+hframes = 3
+frame = 2
+
+[node name="RHand" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(400, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("5_0uxnx")
+flip_h = true
+hframes = 3
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_nagne")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://m3ras8dookfr"]
+
+[ext_resource type="PackedScene" uid="uid://1c8om7gpic31" path="res://scenes/UI/main_menu.tscn" id="1_0wu41"]
+[ext_resource type="Script" uid="uid://by3cuuekhmoen" path="res://scripts/app.gd" id="1_1670a"]
+
+[node name="App" type="Node" node_paths=PackedStringArray("current")]
+script = ExtResource("1_1670a")
+current = NodePath("Current")
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+
+[node name="Current" type="Node" parent="."]
+
+[node name="MainMenu" parent="Current" instance=ExtResource("1_0wu41")]
