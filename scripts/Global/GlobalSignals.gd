@@ -4,6 +4,7 @@ extends Node
 signal app_loaded
 
 # Game Signals
+signal game_load
 signal game_started
 signal game_finished(winner: int)
 

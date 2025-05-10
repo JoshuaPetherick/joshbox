@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalSignals="*res://scripts/Global/GlobalSignals.gd"
+GameProperties="*res://scripts/Global/GameProperties.gd"
 GlobalDeviceManager="*res://scripts/Global/GlobalDeviceManager.gd"
 
 [display]
