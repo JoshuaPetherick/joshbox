@@ -6,6 +6,7 @@ extends Control
 @export var device_icon_p2: TextureRect
 
 func _ready() -> void:
+	update_ui()
 	GlobalSignals.device_connected.connect(_on_device_connected)
 
 func _exit_tree() -> void:
@@ -14,20 +15,29 @@ func _exit_tree() -> void:
 #region Events
 
 func _on_device_connected(player: int):
-	# Setup
-	var device = GlobalDeviceManager.get_device_from_player(player)
-	
-	# Update UI
-	match player:
-		1:
-			device_info_p1.text = Input.get_joy_name(device)
-		2:
-			device_info_p2.text = Input.get_joy_name(device)
+	update_ui()
 
 func _on_connect_player_1_pressed() -> void:
 	GlobalDeviceManager.listen_for_device(1)
 
 func _on_connect_player_2_pressed() -> void:
 	GlobalDeviceManager.listen_for_device(2)
+
+#endregion
+
+#region Operations
+
+func update_ui():
+	# Iterate 
+	for i in range(1, 3):
+		# Setup
+		var device = GlobalDeviceManager.get_device_from_player(i)
+		
+		# Update UI
+		match i:
+			1:
+				device_info_p1.text = GlobalDeviceManager.get_device_name(device)
+			2:
+				device_info_p2.text = GlobalDeviceManager.get_device_name(device)
 
 #endregion

@@ -19,9 +19,9 @@ func _input(event: InputEvent) -> void:
 	# Checks
 	if (hasRoundStarted == true):
 		return
-		
+	
 	# Setup
-	var player = GlobalDeviceManager.get_player_from_device(event.device)
+	var player = GlobalDeviceManager.get_player_from_event(event)
 	if (player == null):
 		return
 	
