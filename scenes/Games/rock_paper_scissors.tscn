@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://cbf0hmtootka"]
 
 [ext_resource type="Script" uid="uid://c75qr5ia2ndgk" path="res://scripts/Games/RockPaperScissors/main.gd" id="1_0uxnx"]
-[ext_resource type="Texture2D" uid="uid://ca7kmwf3vjups" path="res://assets/UI/playstation-series_sheet_double.png" id="2_j5o4f"]
-[ext_resource type="FontFile" uid="uid://u14gsqgyp28w" path="res://assets/Fonts/PressStart2P-Regular.ttf" id="2_nbkgs"]
+[ext_resource type="Texture2D" uid="uid://ca7kmwf3vjups" path="res://assets/UI/Icons/Playstation.png" id="2_j5o4f"]
+[ext_resource type="FontFile" uid="uid://u14gsqgyp28w" path="res://assets/Fonts/Default_Game.ttf" id="2_nbkgs"]
 [ext_resource type="Texture2D" uid="uid://5pmtl7koa7ty" path="res://assets/Visuals/backgroundEmpty.png" id="3_nbkgs"]
 [ext_resource type="Texture2D" uid="uid://cfsugrmlyg2v6" path="res://assets/Visuals/RockPaperSissors.png" id="5_0uxnx"]
 
