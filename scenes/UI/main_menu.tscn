@@ -1,14 +1,18 @@
-[gd_scene load_steps=24 format=4 uid="uid://1c8om7gpic31"]
+[gd_scene load_steps=28 format=4 uid="uid://1c8om7gpic31"]
 
 [ext_resource type="Theme" uid="uid://dpyvc17ddbao7" path="res://assets/UI/Default_Theme.tres" id="1_5d4ag"]
 [ext_resource type="Script" uid="uid://bh8ha7c2g46k4" path="res://scripts/UI/main_menu_tabs.gd" id="1_5jstl"]
 [ext_resource type="Script" uid="uid://csksmfp54k53b" path="res://scripts/UI/main_menu.gd" id="1_qwnig"]
+[ext_resource type="Script" uid="uid://g021p3lqp3og" path="res://scripts/UI/home_menu.gd" id="2_mf7fl"]
 [ext_resource type="Texture2D" uid="uid://bpft3eemk68q6" path="res://assets/UI/Backgrounds/ForestBackground.png" id="2_um6dh"]
+[ext_resource type="Texture2D" uid="uid://c5vc3ucxrtw8o" path="res://assets/UI/Backgrounds/AutumnBackground.png" id="3_d6l81"]
 [ext_resource type="Script" uid="uid://c2jrltn5lx5ma" path="res://scripts/UI/setup.gd" id="4_e2p27"]
+[ext_resource type="Texture2D" uid="uid://dbbkn0tqqgf5" path="res://assets/UI/Backgrounds/DesertBackground.png" id="4_i7p8e"]
 [ext_resource type="Script" uid="uid://b50mc27j11o7u" path="res://scripts/UI/game_button.gd" id="4_ngj32"]
 [ext_resource type="Texture2D" uid="uid://ca7kmwf3vjups" path="res://assets/UI/Icons/Playstation.png" id="4_tfcbk"]
 [ext_resource type="Texture2D" uid="uid://dn3irlukwj5e2" path="res://assets/UI/Frames/Default.png" id="4_um6dh"]
 [ext_resource type="PackedScene" uid="uid://cbf0hmtootka" path="res://scenes/Games/rock_paper_scissors.tscn" id="5_bm8t2"]
+[ext_resource type="Texture2D" uid="uid://c77cvossrle0u" path="res://assets/UI/Backgrounds/GrassBackground.png" id="6_sfthw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mf7fl"]
 atlas = ExtResource("4_um6dh")
@@ -732,7 +736,7 @@ texture_margin_bottom = 38.0
 atlas = ExtResource("4_tfcbk")
 region = Rect2(512, 1408, 128, 128)
 
-[node name="HomeMenu" type="Control"]
+[node name="HomeMenu" type="Control" node_paths=PackedStringArray("background_node")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -740,6 +744,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_5d4ag")
+script = ExtResource("2_mf7fl")
+background_node = NodePath("Background")
+background_images = [ExtResource("3_d6l81"), ExtResource("4_i7p8e"), ExtResource("2_um6dh"), ExtResource("6_sfthw")]
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -748,7 +755,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_um6dh")
 stretch_mode = 6
 
 [node name="Window" type="MarginContainer" parent="."]
@@ -765,11 +771,12 @@ theme_override_constants/margin_bottom = 10
 
 [node name="WindowTabs" type="TabContainer" parent="Window"]
 layout_mode = 2
-current_tab = 0
+current_tab = 3
 tabs_visible = false
 script = ExtResource("1_5jstl")
 
 [node name="MainMenu" type="Control" parent="Window/WindowTabs"]
+visible = false
 custom_minimum_size = Vector2(275, 275)
 layout_mode = 2
 script = ExtResource("1_qwnig")
@@ -904,8 +911,6 @@ theme_override_constants/separation = 2
 [node name="RockPaperScissors" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
-theme_override_font_sizes/font_size = 16
 text = "Rock, Paper, Scissors"
 script = ExtResource("4_ngj32")
 game_scene = ExtResource("5_bm8t2")
@@ -913,7 +918,6 @@ game_scene = ExtResource("5_bm8t2")
 [node name="Game2" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -921,7 +925,6 @@ script = ExtResource("4_ngj32")
 [node name="Game3" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -929,7 +932,6 @@ script = ExtResource("4_ngj32")
 [node name="Game4" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -937,7 +939,6 @@ script = ExtResource("4_ngj32")
 [node name="Game5" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -945,7 +946,6 @@ script = ExtResource("4_ngj32")
 [node name="Game6" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -953,7 +953,6 @@ script = ExtResource("4_ngj32")
 [node name="Game7" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -961,7 +960,6 @@ script = ExtResource("4_ngj32")
 [node name="Game8" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -969,7 +967,6 @@ script = ExtResource("4_ngj32")
 [node name="Game9" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -977,7 +974,6 @@ script = ExtResource("4_ngj32")
 [node name="Game10" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -985,7 +981,6 @@ script = ExtResource("4_ngj32")
 [node name="Game11" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -993,7 +988,6 @@ script = ExtResource("4_ngj32")
 [node name="Game12" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1001,7 +995,6 @@ script = ExtResource("4_ngj32")
 [node name="Game13" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1009,7 +1002,6 @@ script = ExtResource("4_ngj32")
 [node name="Game14" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1017,7 +1009,6 @@ script = ExtResource("4_ngj32")
 [node name="Game15" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1025,7 +1016,6 @@ script = ExtResource("4_ngj32")
 [node name="Game16" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1033,7 +1023,6 @@ script = ExtResource("4_ngj32")
 [node name="Game17" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1041,7 +1030,6 @@ script = ExtResource("4_ngj32")
 [node name="Game18" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1049,7 +1037,6 @@ script = ExtResource("4_ngj32")
 [node name="Game19" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1057,7 +1044,6 @@ script = ExtResource("4_ngj32")
 [node name="Game20" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1065,7 +1051,6 @@ script = ExtResource("4_ngj32")
 [node name="Game21" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1073,7 +1058,6 @@ script = ExtResource("4_ngj32")
 [node name="Game22" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1081,7 +1065,6 @@ script = ExtResource("4_ngj32")
 [node name="Game23" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1089,7 +1072,6 @@ script = ExtResource("4_ngj32")
 [node name="Game24" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1097,7 +1079,6 @@ script = ExtResource("4_ngj32")
 [node name="Game25" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("FontFile_mf7fl")
 text = "?
 "
 script = ExtResource("4_ngj32")
@@ -1118,7 +1099,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Setup" type="Control" parent="Window/WindowTabs" node_paths=PackedStringArray("device_info_p1", "device_icon_p1", "device_info_p2", "device_icon_p2")]
-visible = false
 layout_mode = 2
 script = ExtResource("4_e2p27")
 device_info_p1 = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/PanelContainer/VBoxContainer/DeviceInfo")
