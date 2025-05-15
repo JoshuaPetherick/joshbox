@@ -1,14 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbf0hmtootka"]
+[gd_scene load_steps=13 format=3 uid="uid://cbf0hmtootka"]
 
 [ext_resource type="Script" uid="uid://c75qr5ia2ndgk" path="res://scripts/Games/RockPaperScissors/main.gd" id="1_0uxnx"]
-[ext_resource type="Texture2D" uid="uid://ca7kmwf3vjups" path="res://assets/UI/Icons/Playstation.png" id="2_j5o4f"]
-[ext_resource type="FontFile" uid="uid://u14gsqgyp28w" path="res://assets/Fonts/Default_Game.ttf" id="2_nbkgs"]
-[ext_resource type="Texture2D" uid="uid://5pmtl7koa7ty" path="res://assets/Visuals/backgroundEmpty.png" id="3_nbkgs"]
+[ext_resource type="Texture2D" uid="uid://jd8jr43ohomy" path="res://assets/Visuals/GameIcons.png" id="2_0uxnx"]
+[ext_resource type="FontFile" uid="uid://dol81bbdnq80f" path="res://assets/Fonts/Default_Game.ttf" id="2_nbkgs"]
+[ext_resource type="Texture2D" uid="uid://5pmtl7koa7ty" path="res://assets/Visuals/BlueBackground.png" id="3_nbkgs"]
 [ext_resource type="Texture2D" uid="uid://cfsugrmlyg2v6" path="res://assets/Visuals/RockPaperSissors.png" id="5_0uxnx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0uxnx"]
-atlas = ExtResource("2_j5o4f")
-region = Rect2(400, 1168, 96, 96)
+atlas = ExtResource("2_0uxnx")
+region = Rect2(1664, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4r11"]
+atlas = ExtResource("2_0uxnx")
+region = Rect2(2560, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eumd7"]
+atlas = ExtResource("2_0uxnx")
+region = Rect2(1664, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nagne"]
 atlas = ExtResource("5_0uxnx")
@@ -86,6 +94,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UILayer/UI/Buffer/Countdown:text")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
 }
 
 [sub_resource type="Animation" id="Animation_0uxnx"]
@@ -178,6 +198,18 @@ tracks/6/keys = {
 "method": &"set_player_sprites"
 }]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UILayer/UI/Buffer/Countdown:text")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.666667, 1.33333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["", "Rock", "Paper", "Scissors!"]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nagne"]
 _data = {
@@ -185,12 +217,24 @@ _data = {
 &"Start": SubResource("Animation_0uxnx")
 }
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("point_1_icon_P1", "point_2_icon_P1", "point_1_icon_P2", "point_2_icon_P2", "action_1_icon_P1", "action_2_icon_P1", "action_3_icon_P1", "action_1_icon_P2", "action_2_icon_P2", "action_3_icon_P2")]
 script = ExtResource("1_0uxnx")
+no_point_icon = SubResource("AtlasTexture_0uxnx")
+point_icon = SubResource("AtlasTexture_x4r11")
+point_1_icon_P1 = NodePath("UILayer/UI/TopRow/LPoints/Point1")
+point_2_icon_P1 = NodePath("UILayer/UI/TopRow/LPoints/Point2")
+point_1_icon_P2 = NodePath("UILayer/UI/TopRow/RPoints/Point1")
+point_2_icon_P2 = NodePath("UILayer/UI/TopRow/RPoints/Point2")
+action_1_icon_P1 = NodePath("UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Rock/Action1Icon")
+action_2_icon_P1 = NodePath("UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Paper/Action2Icon")
+action_3_icon_P1 = NodePath("UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Scissors/Action3Icon")
+action_1_icon_P2 = NodePath("UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Rock/Action1Icon")
+action_2_icon_P2 = NodePath("UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Paper/Action2Icon")
+action_3_icon_P2 = NodePath("UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Scissors/Action3Icon")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayer"]
+[node name="UI" type="VBoxContainer" parent="UILayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -201,76 +245,180 @@ offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Buffer" type="Control" parent="UILayer/VBoxContainer"]
+[node name="TopRow" type="HBoxContainer" parent="UILayer/UI"]
+layout_mode = 2
+theme_override_constants/separation = 150
+
+[node name="LPoints" type="HBoxContainer" parent="UILayer/UI/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 50
+alignment = 2
+
+[node name="Point1" type="TextureRect" parent="UILayer/UI/TopRow/LPoints"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_eumd7")
+
+[node name="Point2" type="TextureRect" parent="UILayer/UI/TopRow/LPoints"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_eumd7")
+
+[node name="RPoints" type="HBoxContainer" parent="UILayer/UI/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 50
+
+[node name="Point2" type="TextureRect" parent="UILayer/UI/TopRow/RPoints"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_eumd7")
+
+[node name="Point1" type="TextureRect" parent="UILayer/UI/TopRow/RPoints"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_eumd7")
+
+[node name="Buffer" type="Control" parent="UILayer/UI"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="BottomRow" type="HBoxContainer" parent="UILayer/VBoxContainer"]
+[node name="Countdown" type="Label" parent="UILayer/UI/Buffer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_nbkgs")
+theme_override_font_sizes/font_size = 128
+horizontal_alignment = 1
+
+[node name="BottomRow" type="HBoxContainer" parent="UILayer/UI"]
 layout_mode = 2
 
-[node name="LHSUI" type="VBoxContainer" parent="UILayer/VBoxContainer/BottomRow"]
+[node name="LHSContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Paper" type="Label" parent="UILayer/VBoxContainer/BottomRow/LHSUI"]
+[node name="LBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Rock" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Rock"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_nbkgs")
+theme_override_font_sizes/font_size = 48
+text = "Rock"
+horizontal_alignment = 1
+
+[node name="Action1Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Rock"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="Paper" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Paper"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_nbkgs")
+theme_override_font_sizes/font_size = 48
 text = "Paper"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/VBoxContainer/BottomRow/LHSUI"]
+[node name="Action2Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Paper"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-theme_override_constants/separation = 10
 
-[node name="Rock" type="Label" parent="UILayer/VBoxContainer/BottomRow/LHSUI/HBoxContainer"]
+[node name="Scissors" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Scissors"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_nbkgs")
-text = "Rock"
-horizontal_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="UILayer/VBoxContainer/BottomRow/LHSUI/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_0uxnx")
-
-[node name="Scissors" type="Label" parent="UILayer/VBoxContainer/BottomRow/LHSUI/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_nbkgs")
+theme_override_font_sizes/font_size = 48
 text = "Scissors"
+horizontal_alignment = 1
 
-[node name="RHSUI" type="VBoxContainer" parent="UILayer/VBoxContainer/BottomRow"]
+[node name="Action3Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Scissors"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RHSContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Paper" type="Label" parent="UILayer/VBoxContainer/BottomRow/RHSUI"]
+[node name="LBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Rock" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Rock"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_nbkgs")
+theme_override_font_sizes/font_size = 48
+text = "Rock"
+horizontal_alignment = 1
+
+[node name="Action1Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Rock"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="Paper" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Paper"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_nbkgs")
+theme_override_font_sizes/font_size = 48
 text = "Paper"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/VBoxContainer/BottomRow/RHSUI"]
+[node name="Action2Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Paper"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-theme_override_constants/separation = 10
 
-[node name="Rock" type="Label" parent="UILayer/VBoxContainer/BottomRow/RHSUI/HBoxContainer"]
+[node name="Scissors" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Scissors"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_nbkgs")
-text = "Rock"
-horizontal_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="UILayer/VBoxContainer/BottomRow/RHSUI/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_0uxnx")
-
-[node name="Scissors" type="Label" parent="UILayer/VBoxContainer/BottomRow/RHSUI/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_nbkgs")
+theme_override_font_sizes/font_size = 48
 text = "Scissors"
+horizontal_alignment = 1
+
+[node name="Action3Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Scissors"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Background" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)

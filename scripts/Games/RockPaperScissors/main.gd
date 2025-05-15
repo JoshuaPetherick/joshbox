@@ -11,9 +11,46 @@ var player2Action = Actions.NONE
 var player1Score = 0
 var player2Score = 0
 
+@export var no_point_icon: Texture
+@export var point_icon: Texture
+
+@export var point_1_icon_P1: TextureRect
+@export var point_2_icon_P1: TextureRect
+
+@export var point_1_icon_P2: TextureRect
+@export var point_2_icon_P2: TextureRect
+
+@export var action_1_icon_P1: TextureRect
+@export var action_2_icon_P1: TextureRect
+@export var action_3_icon_P1: TextureRect
+
+@export var action_1_icon_P2: TextureRect
+@export var action_2_icon_P2: TextureRect
+@export var action_3_icon_P2: TextureRect
+
 @onready var lhand: Sprite2D = %LHand
 @onready var rhand: Sprite2D = %RHand
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
+
+func _ready() -> void:
+	# Setup
+	var device_p1 = GlobalDeviceManager.get_device_from_player(1)
+	var device_p2 = GlobalDeviceManager.get_device_from_player(2)
+	
+	# Load Textures
+	point_1_icon_P1.texture = no_point_icon
+	point_1_icon_P2.texture = no_point_icon
+	
+	point_2_icon_P1.texture = no_point_icon
+	point_2_icon_P2.texture = no_point_icon
+	
+	action_1_icon_P1.texture = GlobalDeviceManager.get_action_icon(device_p1, "player_action_1")
+	action_2_icon_P1.texture = GlobalDeviceManager.get_action_icon(device_p1, "player_action_2")
+	action_3_icon_P1.texture = GlobalDeviceManager.get_action_icon(device_p1, "player_action_3")
+	
+	action_1_icon_P2.texture = GlobalDeviceManager.get_action_icon(device_p2, "player_action_1")
+	action_2_icon_P2.texture = GlobalDeviceManager.get_action_icon(device_p2, "player_action_2")
+	action_3_icon_P2.texture = GlobalDeviceManager.get_action_icon(device_p2, "player_action_3")
 
 func _input(event: InputEvent) -> void:
 	# Checks
@@ -86,13 +123,30 @@ func finish_round():
 		elif (player2Action == Actions.SCISSORS && player1Action == Actions.PAPER):
 			player2Score += 1
 	
+	# Set Point Icons
+	match player1Score:
+		1:
+			point_1_icon_P1.texture = point_icon
+		2:
+			point_1_icon_P1.texture = point_icon
+			point_2_icon_P1.texture = point_icon
+	
+	match player2Score:
+		1:
+			point_1_icon_P2.texture = point_icon
+		2:
+			point_1_icon_P2.texture = point_icon
+			point_2_icon_P2.texture = point_icon
+	
 	# Player 1 Wins
 	if (player1Score >= max_score):
 		GlobalSignals.game_finished.emit(1)
+		print("Player 1 Wins!")
 		
 	# Player 2 Wins!
 	elif (player2Score >= max_score):
 		GlobalSignals.game_finished.emit(2)
+		print("Player 2 Wins!")
 		
 	# Restart Round
 	else:
