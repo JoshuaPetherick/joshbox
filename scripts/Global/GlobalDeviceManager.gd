@@ -5,6 +5,8 @@ var _player_dict = { }
 var _player_index: int
 var _is_listening: bool = false
 
+@onready var icon_mapping: IconMapping = load("res://resources/icon_mapping.tres")
+
 #region Events
 
 func _ready() -> void:
@@ -101,5 +103,37 @@ func get_device_name(device: int):
 	if (device == -2):
 		return "Mouse + Keyboard"
 	return "%s %s" % [Input.get_joy_name(device), (device + 1)]
+
+func get_controller_icon(device: int):
+	# Setup
+	var device_name = get_device_name(device)
+	var controller_type = icon_mapping.get_controller_type(device_name)
+	
+	# Result
+	return icon_mapping.controller_icon[controller_type]
+
+func get_action_icon(device: int, action: String):
+	# Setup
+	var device_name = get_device_name(device)
+	var controller_type = icon_mapping.get_controller_type(device_name)
+	
+	# Result
+	match action:
+		"player_action_1":
+			return icon_mapping.input_action_1_icon[controller_type]
+		"player_action_2":
+			return icon_mapping.input_action_2_icon[controller_type]
+		"player_action_3":
+			return icon_mapping.input_action_3_icon[controller_type]
+		"player_action_4":
+			return icon_mapping.input_action_4_icon[controller_type]
+		"player_action_5":
+			return icon_mapping.input_action_5_icon[controller_type]
+		"player_action_6":
+			return icon_mapping.input_action_6_icon[controller_type]
+		"player_action_7":
+			return icon_mapping.input_action_7_icon[controller_type]
+		"player_action_8":
+			return icon_mapping.input_action_8_icon[controller_type]
 
 #endregion

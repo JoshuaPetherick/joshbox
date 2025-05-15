@@ -37,7 +37,9 @@ func update_ui():
 		match i:
 			1:
 				device_info_p1.text = GlobalDeviceManager.get_device_name(device)
+				device_icon_p1.texture = GlobalDeviceManager.get_controller_icon(device)
 			2:
 				device_info_p2.text = GlobalDeviceManager.get_device_name(device)
+				device_icon_p2.texture = GlobalDeviceManager.get_controller_icon(device)
 
 #endregion
