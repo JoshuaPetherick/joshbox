@@ -51,6 +51,9 @@ func _ready() -> void:
 	action_1_icon_P2.texture = GlobalDeviceManager.get_action_icon(device_p2, "player_action_1")
 	action_2_icon_P2.texture = GlobalDeviceManager.get_action_icon(device_p2, "player_action_2")
 	action_3_icon_P2.texture = GlobalDeviceManager.get_action_icon(device_p2, "player_action_3")
+	
+	# Game Started
+	GlobalSignals.game_started.emit()
 
 func _input(event: InputEvent) -> void:
 	# Checks

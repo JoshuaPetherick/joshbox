@@ -4,7 +4,7 @@ extends Button
 
 func _pressed() -> void:
 	# Set Game Scene
-	GameProperties.game_scene = game_scene
+	GlobalGameProperties.game_scene = game_scene
 	
 	# Fire Signal
 	GlobalSignals.game_load.emit()
