@@ -5,6 +5,7 @@
 
 [node name="App" type="Node" node_paths=PackedStringArray("current")]
 script = ExtResource("1_1670a")
+menuScene = ExtResource("1_0wu41")
 current = NodePath("Current")
 
 [node name="Overlay" type="CanvasLayer" parent="."]
