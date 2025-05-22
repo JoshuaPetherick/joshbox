@@ -1,0 +1,832 @@
+[gd_scene load_steps=37 format=3 uid="uid://cmgjxmkmvt4i8"]
+
+[ext_resource type="PackedScene" uid="uid://damq7sc16f061" path="res://assets/Visuals/3D Platformer/World Assets/block-grass-large-tall.glb" id="1_u60kq"]
+[ext_resource type="PackedScene" uid="uid://67i3u0cudlbm" path="res://assets/Visuals/3D Platformer/World Assets/fence-corner-curved.glb" id="2_dd8pr"]
+[ext_resource type="PackedScene" uid="uid://dpfpg0itu7jtt" path="res://assets/Visuals/3D Platformer/World Assets/platform-ramp.glb" id="2_yt001"]
+[ext_resource type="PackedScene" uid="uid://c8hrhb55n3eqv" path="res://assets/Visuals/3D Platformer/World Assets/platform.glb" id="3_dd8pr"]
+[ext_resource type="PackedScene" uid="uid://dl0tlc1o460b1" path="res://assets/Visuals/3D Platformer/World Assets/fence-straight.glb" id="3_f7s62"]
+[ext_resource type="PackedScene" uid="uid://dn8pjpqeki5m8" path="res://assets/Visuals/3D Platformer/World Assets/arrow.glb" id="4_cvwdr"]
+[ext_resource type="PackedScene" uid="uid://nvkagnp36vk5" path="res://assets/Visuals/3D Platformer/Characters/character-male.glb" id="4_f7s62"]
+[ext_resource type="PackedScene" uid="uid://b4p4kx34wdh5q" path="res://assets/Visuals/3D Platformer/Characters/character-female.glb" id="5_1jlvg"]
+[ext_resource type="PackedScene" uid="uid://d2uh8hocf3esd" path="res://assets/Visuals/3D Platformer/World Assets/block-grass-corner.glb" id="6_ilfep"]
+[ext_resource type="PackedScene" uid="uid://dqte7iyv52265" path="res://assets/Visuals/3D Platformer/World Assets/block-grass-overhang-hexagon.glb" id="7_oyn1f"]
+[ext_resource type="PackedScene" uid="uid://1e1r4jlnnvi4" path="res://assets/Visuals/3D Platformer/World Assets/block-grass-overhang-edge.glb" id="8_cvwdr"]
+[ext_resource type="PackedScene" uid="uid://2ks5ag50jvsp" path="res://assets/Visuals/3D Platformer/World Assets/block-moving-large.glb" id="9_oyn1f"]
+[ext_resource type="PackedScene" uid="uid://bf7rl10y5rmpm" path="res://assets/Visuals/3D Platformer/World Assets/tree-pine.glb" id="10_vkaw8"]
+[ext_resource type="PackedScene" uid="uid://bka43qeem7o0x" path="res://assets/Visuals/3D Platformer/World Assets/block-moving-blue.glb" id="11_fu04p"]
+[ext_resource type="PackedScene" uid="uid://n1bofl18ujcd" path="res://assets/Visuals/3D Platformer/World Assets/flowers-tall.glb" id="11_si5ec"]
+[ext_resource type="PackedScene" uid="uid://ceeidw3seo58b" path="res://assets/Visuals/3D Platformer/World Assets/block-grass-overhang-large-slope-steep.glb" id="12_2kokf"]
+[ext_resource type="PackedScene" uid="uid://0vskr2q7yl5h" path="res://assets/Visuals/3D Platformer/World Assets/fence-broken.glb" id="13_5vk7s"]
+[ext_resource type="PackedScene" uid="uid://cwtjy85dvif4m" path="res://assets/Visuals/3D Platformer/World Assets/flag.glb" id="13_b7g15"]
+[ext_resource type="PackedScene" uid="uid://de30dte6hxt8s" path="res://assets/Visuals/3D Platformer/World Assets/arrows.glb" id="15_5vk7s"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cvwdr"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_fu04p"]
+sky_material = SubResource("ProceduralSkyMaterial_cvwdr")
+
+[sub_resource type="Environment" id="Environment_2kokf"]
+background_mode = 2
+sky = SubResource("Sky_fu04p")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2kokf"]
+points = PackedVector3Array(0.829618, 0.0192245, 0.957159, -0.797097, 1.8687, -1.02044, -0.958157, 1.90216, 0.926339, 0.991869, 2, 0.735884, -0.738243, 0.0133192, -0.99505, 0.929211, 0.0151226, -0.897093, -0.99502, 0.0133489, 0.738221, 0.89585, 2, -0.927923, -0.991869, 2, -0.735884, 0.767587, 1.90326, 1.02345, -0.738243, 0.0133192, 0.99505, -0.99505, 0.0133192, -0.738243, 0.99502, 0.0133489, 0.738221, 1.02345, 1.90326, -0.767589, 0.767588, 1.90326, -1.02345, -0.735884, 2, 0.991869, -1.02345, 1.90326, 0.767587, 0.738221, 0.0133489, -0.99502, 0.99505, 0.0133192, -0.738243, 1.02044, 1.8687, 0.797094, -1.02044, 1.8687, -0.797094, -0.767429, 1.90331, 1.02351, 0.738221, 0.0133489, 0.99502, -0.929154, 0.0149693, -0.897232, -0.735884, 2, -0.991869, 0.958157, 1.90216, 0.926339, -0.897093, 0.0151226, 0.929211, 0.735884, 2, 0.991869, -0.991869, 2, 0.735884, 0.92634, 1.90216, -0.958159, -0.926184, 1.9022, -0.958204, 0.929208, 0.0151263, 0.89709)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vkaw8"]
+points = PackedVector3Array(0.496583, 0.35, 0.486583, -0.497857, 0.086447, -0.507857, 0.460702, -0.00785714, 0.340542, -0.187738, 0.1, 0.187738, -0.340542, 0.400714, -0.460702, -0.319939, 0.344155, 0.0539704, -0.340542, -0.00785714, -0.460702, 0.334988, -0.00785714, 0.450604, 0.12529, 0.346743, 0.415872, 0.460702, 0.400714, 0.340542, -0.450604, -0.00785714, -0.334988, -0.450604, 0.400714, -0.334988, 0.334988, 0.400714, 0.450604, 0.507857, 0.086447, 0.497857, -0.415872, 0.346743, -0.125289, -0.2, 0.342926, 0.2, -0.0499818, 0.1, 0.297961, -0.297961, 0.1, 0.0499818, -0.486583, 0.35, -0.496583, 0.276009, 0.346955, 0.461648, -0.461617, 0.346945, -0.275991, -0.053955, 0.344117, 0.319854, -0.434852, 0.353522, -0.507857, 0.507857, 0.353522, 0.434852, -0.38065, 0.1, -0.115223, 0.115223, 0.1, 0.38065, 0.507857, 0.086447, 0.434852, -0.434852, 0.086447, -0.507857, -0.43308, 0, -0.443175, 0.443175, 0, 0.43308, -0.439904, 0.395917, -0.45, 0.45, 0.395917, 0.439904)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_n1o1s"]
+points = PackedVector3Array(-0.414315, 0.0127166, 0.45, 0.414315, 0.384109, 0.45, 0.507937, 0.357102, 0.500794, 0.414275, 0.0127348, 0.35, -0.414275, 0.384091, 0.35, -0.507937, 0.357102, 0.500794, 0.507937, 0.087342, 0.500794, 0.414275, 0.384091, 0.35, -0.414275, 0.0127348, 0.35, -0.507937, 0.087342, 0.500794, 0.414315, 0.0127166, 0.45, 0.507937, 0.087342, 0.437277, -0.507937, 0.087342, 0.437277, -0.414315, 0.384109, 0.45, 0.507937, 0.357102, 0.437277, -0.507937, 0.357102, 0.437277)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fu04p"]
+size = Vector3(0.46, 0.6, 0.25)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ilfep"]
+points = PackedVector3Array(0.25766, 0.366534, -0.508148, 0.502117, 0.203742, 0.534748, 0.339146, 0.203742, 0.534748, 0.502117, 0.578481, -0.442814, -0.508148, 0.513249, -0.279887, -0.394028, -0.0081476, 0.469414, 0.387998, -0.0081476, 0.469414, -0.394028, 0.366592, -0.508148, -0.508148, 0.171126, 0.518414, -0.508148, 0.480633, -0.508148, 0.502117, 0.48069, -0.508148, -0.508148, 0.268974, 0.371617, 0.387998, 0.317668, -0.393915, -0.198522, 0.562116, -0.491814, 0.502117, 0.105951, 0.485747, -0.508148, 0.106008, 0.485747, -0.394028, 0.317668, -0.393915, -0.508148, 0.545865, -0.459147, 0.502117, 0.219992, 0.502081, -0.508148, 0.480633, -0.18209, 0.387998, 0.00816038, 0.420515, -0.051867, 0.187434, 0.534748, 0.4858, 0.562173, -0.393915, 0.25766, 0.578481, -0.475481, -0.394028, 0.00816038, 0.420515, 0.387998, 0.366534, -0.508148, -0.508148, 0.30136, 0.290153, 0.273977, 0.578481, -0.459147, 0.484422, 0.568206, -0.474119, -0.394028, 0.350284, -0.475481, -0.508148, 0.106008, 0.502081, 0.502117, 0.431824, -0.0517278)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_b7g15"]
+points = PackedVector3Array(-0.507936, 0.119027, -0.507937, 0.489216, 0.194596, 0.48924, 0.15859, 0.198393, 0.507937, -0.351629, 0, 0.468956, 0.351696, 1.38778e-17, -0.468956, 0.489216, 0.194596, -0.48924, -0.489246, 0.194597, 0.336285, 0.351696, 1.38778e-17, 0.468956, -0.351629, 0, -0.468956, -0.489246, 0.194597, -0.336285, -0.507936, 0.119027, 0.507937, 0.507912, 0.119027, -0.507937, 0.507912, 0.119027, 0.507937, 0.15859, 0.198393, -0.507937, -0.507936, 0.166646, -0.507937, -0.507936, 0.166646, 0.507937, -0.269785, 0.182519, 0.507937, -0.269785, 0.182519, -0.507937)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fu04p"]
+points = PackedVector3Array(-0.1609, 0.0113693, 0.45054, -0.242458, 0.881866, -0.517324, 0.516973, 0.897811, -0.323057, -0.339009, 0.994387, 0.46816, -0.403815, 0.0094599, -0.387723, 0.422754, 0.00623937, -0.406455, -0.516473, 0.881241, 0.290491, -0.406455, 0.00623937, 0.422754, -0.405035, 0.996219, -0.388895, 0.429738, 0.987543, -0.111399, 0.4255, 0.021434, -0.1103, -0.125623, 0.871267, 0.471383, 0.27523, 0.995907, -0.469504, -0.470402, 0.00733915, -0.227069, -0.164628, 0, -0.477483, 0.290406, 0.881263, -0.516502, -0.517324, 0.881866, -0.242458, -0.354949, 0.881188, 0.5164, -0.468006, 0.00985926, 0.27425, 0.471566, 0.871411, -0.125771, 0.274332, 0.00989473, -0.467972, -0.43672, 0.882142, -0.43672, 0.481221, 0.862978, -0.433079, 0.471263, 0.00653997, -0.324967, -0.469527, 0.995931, 0.275142, -0.144571, 0.992149, 0.449923, -0.433079, 0.862978, 0.481221, -0.110167, 0.0215846, 0.425367, -0.324967, 0.00653997, 0.471263, 0.468181, 0.994409, -0.338923, -0.163254, 1, -0.473498, 0.45054, 0.0113693, -0.1609)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_oyn1f"]
+points = PackedVector3Array(0.547222, 0.881945, 0.310037, 0.508436, 0.97891, 0.290727, 0.0237349, 0.88101, -0.618624, 0.492668, 0.00598248, -0.292934, -0.0339253, 0.0136269, 0.557718, -0.498845, 0.997785, 0.290388, -0.49796, 0.0111784, -0.289878, 0.490597, 1, -0.291691, 0.0237348, 0.881009, 0.618622, 0.492667, 0.00598375, 0.292933, -0.49796, 0.0111787, 0.289877, 0.0238389, 0.00842379, -0.563635, -0.498846, 0.997786, -0.290389, -0.533915, 0.859581, 0.32679, 0.547222, 0.881945, -0.310037, -0.533994, 0.859634, -0.326839, 0.0238402, 0.999706, 0.563675, 0.0238425, 0.999765, -0.563742, -0.0339307, 0.802106, -0.615517, 0.0238357, 0.00850587, 0.563542, -0.0339284, 0.802088, 0.61548, 0.0623987, 0.706952, -0.59909, 0.0623907, 0.706924, 0.599008, -0.0339315, 0.0135481, -0.557808, -0.539219, 0.901954, 0.310547, 0.490597, 1, 0.291691, -0.0338405, 0.878235, -0.61407, -0.0338402, 0.878232, 0.614064, -0.539219, 0.901954, -0.310547, 0.526319, 0.880893, -0.32855, 0.526258, 0.880849, 0.328511, -0.0340513, 0.996078, -0.559549)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cvwdr"]
+points = PackedVector3Array(0.289731, 0.103788, 0.112645, -0.265406, 0.887866, -0.530812, -0.448081, 0.904712, 0.448081, 0.496556, 0.986512, 0.248174, -0.497572, 0.00879994, -0.232159, 0.396457, 0.0108432, -0.42947, 0.399487, 0.989192, -0.432752, -0.034221, 0.5926, 0.549689, -0.49655, 0.986506, -0.248275, 0.480924, 0.5926, 0.446595, -0.232159, 0.00879994, -0.497572, -0.410201, 0.0140427, -0.0163464, 0.497608, 0.00876444, -0.232072, 0.248174, 0.986512, 0.496556, -0.480924, 0.5926, 0.446595, 0.265316, 0.887887, -0.53084, 0.53084, 0.887887, -0.265316, -0.448081, 0.904712, -0.448081, -0.49653, 0.986486, 0.248265, -0.22689, 0.0199051, 0.0647967, -0.530811, 0.887866, 0.265405, 0.232143, 0.00883305, -0.497538, 0.530839, 0.887887, 0.265316, -0.530812, 0.887866, -0.265406, 0.410127, 0.0141301, -0.0162406, -0.396386, 0.0108039, -0.429504, -0.248275, 0.986506, -0.49655, -0.248277, 0.98651, 0.496554, 0.46309, 0.886761, -0.430035, 0.24212, 0.393315, 0.387514, -0.446595, 0.5926, 0.480924, 0.326284, 0.661151, 0.532471)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n1o1s"]
+radius = 0.3
+height = 1.75
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cvwdr"]
+size = Vector3(1.05, 0.5, 1.05)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_si5ec"]
+points = PackedVector3Array(-0.991369, -0.166638, 0.696228, 0.899383, 0.0123335, -0.866429, 0.89219, 1.18807, -0.724672, -1.0245, 0.560104, 0.365671, -0.899386, 0.012464, -0.866432, -0.958447, 1.15492, -0.691715, 0.991369, -0.166774, 0.696228, -0.82614, 0.229952, 0.927519, 0.991369, 0.791346, -0.989314, -0.991369, 0.791482, -0.989314, 0.82614, 0.229952, 0.927519, -0.561734, -0.19979, 0.795296, 0.734537, 0.0152364, -0.925607, -0.729287, 1.06479, -0.91933, 1.0245, 1.05588, -0.493381, 0.993829, 0.0132785, -0.704397, -0.993759, 0.013444, -0.704542, 0.561734, -0.19979, 0.795296, -0.734559, 0.015222, -0.925634, -1.0245, 1.05588, -0.493381, 0.700323, 1.00336, -0.954797, 1.0245, 0.362013, 0.696228, -1.0245, 0.362148, 0.696228, -0.731763, 1.16234, -0.826915, -0.76467, 0.0481227, 0.892676, 0.763991, 1.09878, -0.89074, 0.561734, -0.19979, 0.762339, 0.764823, 0.04815, 0.892619, -1.0215, 0.0792794, 0.638614, 1.0215, 0.0792794, 0.638614, -0.89219, 1.18821, -0.724869, 0.991369, 0.328997, 0.762142)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2kokf"]
+size = Vector3(1000, 1, 1000)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fu04p"]
+radius = 0.225
+height = 0.7
+
+[node name="3D Platformer" type="Node3D"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_2kokf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Island_1" type="Node3D" parent="World"]
+
+[node name="Island_Base_1" parent="World/Island_1" instance=ExtResource("1_u60kq")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_1/Island_Base_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_1/Island_Base_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_2kokf")
+
+[node name="Fence_Corner_1" parent="World/Island_1" instance=ExtResource("2_dd8pr")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -2.25, 6, 2.25)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_1/Fence_Corner_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_1/Fence_Corner_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_vkaw8")
+
+[node name="Fence_Corner_2" parent="World/Island_1" instance=ExtResource("2_dd8pr")]
+transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, -2.25, 6, -2.25)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_1/Fence_Corner_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_1/Fence_Corner_2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_vkaw8")
+
+[node name="Fence_Corner_3" parent="World/Island_1" instance=ExtResource("2_dd8pr")]
+transform = Transform3D(-1.5, 0, 2.26494e-07, 0, 1.5, 0, -2.26494e-07, 0, -1.5, 2.25, 6, -2.25)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_1/Fence_Corner_3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_1/Fence_Corner_3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_vkaw8")
+
+[node name="Fence_Corner_4" parent="World/Island_1" instance=ExtResource("2_dd8pr")]
+transform = Transform3D(1.13247e-07, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-07, 2.25, 6, 2.25)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_1/Fence_Corner_4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_1/Fence_Corner_4/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_vkaw8")
+
+[node name="Fence_1" parent="World/Island_1" instance=ExtResource("3_f7s62")]
+transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 0.75, 6, -2.25)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_1/Fence_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_1/Fence_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n1o1s")
+
+[node name="Fence_2" parent="World/Island_1" instance=ExtResource("3_f7s62")]
+transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, -0.75, 6, -2.25)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_1/Fence_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_1/Fence_2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n1o1s")
+
+[node name="Fence_3" parent="World/Island_1" instance=ExtResource("3_f7s62")]
+transform = Transform3D(1.13247e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.13247e-07, -2.25, 6, -0.75)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_1/Fence_3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_1/Fence_3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n1o1s")
+
+[node name="Fence_4" parent="World/Island_1" instance=ExtResource("3_f7s62")]
+transform = Transform3D(1.13247e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.13247e-07, -2.25, 6, 0.75)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_1/Fence_4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_1/Fence_4/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n1o1s")
+
+[node name="Fence_5" parent="World/Island_1" instance=ExtResource("3_f7s62")]
+transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 2.25, 6, 0.75)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_1/Fence_5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_1/Fence_5/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n1o1s")
+
+[node name="Fence_6" parent="World/Island_1" instance=ExtResource("3_f7s62")]
+transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 2.25, 6, -0.75)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_1/Fence_6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_1/Fence_6/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n1o1s")
+
+[node name="Arrow_1" parent="World/Island_1" instance=ExtResource("4_cvwdr")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1.45, 6, 2.85)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_1/Arrow_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_1/Arrow_1/StaticBody3D"]
+shape = SubResource("BoxShape3D_fu04p")
+
+[node name="Bridge_1" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9, 4)
+
+[node name="Bridge_Ramp_1" parent="World/Bridge_1" instance=ExtResource("2_yt001")]
+transform = Transform3D(3, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Bridge_1/Bridge_Ramp_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Bridge_1/Bridge_Ramp_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_ilfep")
+
+[node name="Bridge_Base_1" parent="World/Bridge_1" instance=ExtResource("3_dd8pr")]
+transform = Transform3D(3, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Bridge_1/Bridge_Base_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Bridge_1/Bridge_Base_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_b7g15")
+
+[node name="Bridge_Base_2" parent="World/Bridge_1" instance=ExtResource("3_dd8pr")]
+transform = Transform3D(3, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 4)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Bridge_1/Bridge_Base_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Bridge_1/Bridge_Base_2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_b7g15")
+
+[node name="Bridge_Ramp_2" parent="World/Bridge_1" instance=ExtResource("2_yt001")]
+transform = Transform3D(-3, 0, -1.74846e-07, 0, 2, 0, 2.62268e-07, 0, -2, 0, 0, 6)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Bridge_1/Bridge_Ramp_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Bridge_1/Bridge_Ramp_2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_ilfep")
+
+[node name="Island_2" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
+
+[node name="Island_Base_1" parent="World/Island_2" instance=ExtResource("1_u60kq")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_2/Island_Base_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_2/Island_Base_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_2kokf")
+
+[node name="Grass_Corner_1" parent="World/Island_2" instance=ExtResource("6_ilfep")]
+transform = Transform3D(-2.12132, 0, 2.12132, 0, 3, 0, -2.12132, 0, -2.12132, 0, 6, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_2/Grass_Corner_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_2/Grass_Corner_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fu04p")
+
+[node name="Grass_Overhang_1" parent="World/Island_2" instance=ExtResource("7_oyn1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 5.5, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_2/Grass_Overhang_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_2/Grass_Overhang_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_oyn1f")
+
+[node name="Grass_Overhang_Edge_1" parent="World/Island_2" instance=ExtResource("8_cvwdr")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.1, 6.2, -0.15)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_2/Grass_Overhang_Edge_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_2/Grass_Overhang_Edge_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_cvwdr")
+
+[node name="Grass_Overhang_Edge_2" parent="World/Island_2" instance=ExtResource("8_cvwdr")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -1.192, 6.9, 0.41)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_2/Grass_Overhang_Edge_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_2/Grass_Overhang_Edge_2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_cvwdr")
+
+[node name="Grass_Overhang_Edge_3" parent="World/Island_2" instance=ExtResource("8_cvwdr")]
+transform = Transform3D(-0.75, 0, -6.55671e-08, 0, 0.75, 0, 6.55671e-08, 0, -0.75, 0, 7.6, 0.25)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_2/Grass_Overhang_Edge_3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_2/Grass_Overhang_Edge_3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_cvwdr")
+
+[node name="Grass_Overhang_Edge_4" parent="World/Island_2" instance=ExtResource("8_cvwdr")]
+transform = Transform3D(-0.649519, 0, 0.375, 0, 0.75, 0, -0.375, 0, -0.649519, 1, 8.1, 0.35)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_2/Grass_Overhang_Edge_4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_2/Grass_Overhang_Edge_4/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_cvwdr")
+
+[node name="Arrow_1" parent="World/Island_2" instance=ExtResource("4_cvwdr")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1, 9, 2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_2/Arrow_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_2/Arrow_1/StaticBody3D"]
+shape = SubResource("BoxShape3D_fu04p")
+
+[node name="Tree_1" parent="World/Island_2" instance=ExtResource("10_vkaw8")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -2, 6, -2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_2/Tree_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.666667, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_2/Tree_1/StaticBody3D"]
+shape = SubResource("CapsuleShape3D_n1o1s")
+
+[node name="Flowers_1" parent="World/Island_2" instance=ExtResource("11_si5ec")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43205, 6, -2)
+
+[node name="Flowers_2" parent="World/Island_2" instance=ExtResource("11_si5ec")]
+transform = Transform3D(0.441474, 0, -0.897274, 0, 1, 0, 0.897274, 0, 0.441474, -1.69904, 6, -1.48939)
+
+[node name="Blocks_1" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22)
+
+[node name="Block_1" parent="World/Blocks_1" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 8, -3)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_1/Block_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_1/Block_1/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_2" parent="World/Blocks_1" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 7, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_1/Block_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_1/Block_2/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_3" parent="World/Blocks_1" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 6, 3)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_1/Block_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_1/Block_3/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Island_3" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
+
+[node name="Island_Base_1" parent="World/Island_3" instance=ExtResource("1_u60kq")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_3/Island_Base_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_3/Island_Base_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_2kokf")
+
+[node name="Fence_Broken_1" parent="World/Island_3" instance=ExtResource("13_5vk7s")]
+transform = Transform3D(1.78873e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.78873e-08, 2.25, 6, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_3/Fence_Broken_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_3/Fence_Broken_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n1o1s")
+
+[node name="Fence_Broken_2" parent="World/Island_3" instance=ExtResource("13_5vk7s")]
+transform = Transform3D(1.78873e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.78873e-08, 2.25, 6, -1.5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_3/Fence_Broken_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_3/Fence_Broken_2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n1o1s")
+
+[node name="Fence_Broken_3" parent="World/Island_3" instance=ExtResource("13_5vk7s")]
+transform = Transform3D(1.13247e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.13247e-07, -2.25, 6, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_3/Fence_Broken_3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_3/Fence_Broken_3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n1o1s")
+
+[node name="Fence_1" parent="World/Island_3" instance=ExtResource("3_f7s62")]
+transform = Transform3D(-1.60927e-07, 0, 1.5, 0, 1.5, 0, -1.5, 0, -1.60927e-07, 2.25, 6, 1.5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_3/Fence_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_3/Fence_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n1o1s")
+
+[node name="Fence_2" parent="World/Island_3" instance=ExtResource("3_f7s62")]
+transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, -2.25, 6, 1.5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_3/Fence_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_3/Fence_2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n1o1s")
+
+[node name="Fence_3" parent="World/Island_3" instance=ExtResource("3_f7s62")]
+transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, -2.25, 6, -1.5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_3/Fence_3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_3/Fence_3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n1o1s")
+
+[node name="Blocks_2" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 38)
+
+[node name="Block_Moving_1" parent="World/Blocks_2" instance=ExtResource("11_fu04p")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_2/Block_Moving_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_2/Block_Moving_1/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Island_4" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 46)
+
+[node name="Island_Base_1" parent="World/Island_4" instance=ExtResource("1_u60kq")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_4/Island_Base_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_4/Island_Base_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_2kokf")
+
+[node name="Tree_1" parent="World/Island_4" instance=ExtResource("10_vkaw8")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -2, 6, 2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_4/Tree_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.666667, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_4/Tree_1/StaticBody3D"]
+shape = SubResource("CapsuleShape3D_n1o1s")
+
+[node name="Fence_Corner_1" parent="World/Island_4" instance=ExtResource("2_dd8pr")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -2.25, 6, 2.25)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_4/Fence_Corner_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_4/Fence_Corner_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_vkaw8")
+
+[node name="Fence_Broken_1" parent="World/Island_4" instance=ExtResource("13_5vk7s")]
+transform = Transform3D(1.13247e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.13247e-07, -2.25, 6, 0.75)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_4/Fence_Broken_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_4/Fence_Broken_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_n1o1s")
+
+[node name="Arrows_1" parent="World/Island_4" instance=ExtResource("15_5vk7s")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 2.5, 6, 2.5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_4/Arrows_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_4/Arrows_1/StaticBody3D"]
+shape = SubResource("BoxShape3D_fu04p")
+
+[node name="Blocks_3" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 72)
+
+[node name="Block_Moving_1" parent="World/Blocks_3" instance=ExtResource("11_fu04p")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, -12)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_3/Block_Moving_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_Moving_1/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_Moving_2" parent="World/Blocks_3" instance=ExtResource("11_fu04p")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 12)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_3/Block_Moving_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_Moving_2/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_Moving_3" parent="World/Blocks_3" instance=ExtResource("11_fu04p")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_3/Block_Moving_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_Moving_3/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_1" parent="World/Blocks_3" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, -18)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_3/Block_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_1/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_2" parent="World/Blocks_3" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, -6)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_3/Block_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_2/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_3" parent="World/Blocks_3" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 6)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_3/Block_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_3/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_4" parent="World/Blocks_3" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 18)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_3/Block_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_4/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Blocks_4" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 72)
+
+[node name="Block_1" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2, 5, -26)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_1/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_2" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2, 5, -26)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_2/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_3" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, -26)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_3/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_4" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, -22)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_4/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_5" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, -18)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_5/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_6" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, -14)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_6/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_7" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, -10)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_7/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_8" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 5, -10)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_8/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_9" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, -10)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_9/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_10" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, -6)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_10/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_22" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, -2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_22/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_11" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, 2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_11/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_12" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, 6)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_12/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_13" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, 10)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_13/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_14" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 5, 10)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_14/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_15" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 10)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_15/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_16" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 14)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_16/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_17" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 18)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_17/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_18" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 22)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_18/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_19" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 26)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_19/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_20" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2, 5, 26)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_20/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Block_21" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2, 5, 26)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_21/StaticBody3D"]
+shape = SubResource("BoxShape3D_cvwdr")
+
+[node name="Island_5" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 98)
+
+[node name="Island_Base_1" parent="World/Island_5" instance=ExtResource("1_u60kq")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_5/Island_Base_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_5/Island_Base_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_2kokf")
+
+[node name="Grass_Slope_Large_1" parent="World/Island_5" instance=ExtResource("12_2kokf")]
+transform = Transform3D(-1.5, 0, 1.31134e-07, 0, 1.5, 0, -1.31134e-07, 0, -1.5, 0, 5.7, 2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_5/Grass_Slope_Large_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_5/Grass_Slope_Large_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_si5ec")
+
+[node name="Grass_Slope_Large_2" parent="World/Island_5" instance=ExtResource("12_2kokf")]
+transform = Transform3D(-1.5, 0, 1.31134e-07, 0, 1.5, 0, -1.31134e-07, 0, -1.5, 0, 6.7, 3.725)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_5/Grass_Slope_Large_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_5/Grass_Slope_Large_2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_si5ec")
+
+[node name="Grass_Slope_Large_3" parent="World/Island_5" instance=ExtResource("12_2kokf")]
+transform = Transform3D(-1.5, 0, 1.31134e-07, 0, 1.5, 0, -1.31134e-07, 0, -1.5, 0, 7.7, 5.45)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_5/Grass_Slope_Large_3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_5/Grass_Slope_Large_3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_si5ec")
+
+[node name="Grass_Slope_Large_4" parent="World/Island_5" instance=ExtResource("12_2kokf")]
+transform = Transform3D(-1.5, 0, 1.31134e-07, 0, 1.5, 0, -1.31134e-07, 0, -1.5, 0, 8.7, 7.175)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_5/Grass_Slope_Large_4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_5/Grass_Slope_Large_4/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_si5ec")
+
+[node name="Grass_Slope_Large_5" parent="World/Island_5" instance=ExtResource("12_2kokf")]
+transform = Transform3D(-1.5, 0, 1.31134e-07, 0, 1.5, 0, -1.31134e-07, 0, -1.5, 0, 9.7, 8.9)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_5/Grass_Slope_Large_5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_5/Grass_Slope_Large_5/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_si5ec")
+
+[node name="Arrow_1" parent="World/Island_5" instance=ExtResource("4_cvwdr")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -2, 6, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_5/Arrow_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_5/Arrow_1/StaticBody3D"]
+shape = SubResource("BoxShape3D_fu04p")
+
+[node name="Arrow_2" parent="World/Island_5" instance=ExtResource("4_cvwdr")]
+transform = Transform3D(-0.866026, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866026, 2, 6, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_5/Arrow_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_5/Arrow_2/StaticBody3D"]
+shape = SubResource("BoxShape3D_fu04p")
+
+[node name="Island_6" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 125)
+
+[node name="Island_Base_1" parent="World/Island_6" instance=ExtResource("1_u60kq")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_6/Island_Base_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_6/Island_Base_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_2kokf")
+
+[node name="Flag_1" parent="World/Island_6" instance=ExtResource("13_b7g15")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+
+[node name="Boundary" type="Area3D" parent="."]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary"]
+shape = SubResource("BoxShape3D_2kokf")
+debug_color = Color(0.996227, 0, 0.190787, 0.42)
+
+[node name="Player_1" type="CharacterBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6, 0)
+
+[node name="Model" parent="Player_1" instance=ExtResource("4_f7s62")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.350222, 0)
+shape = SubResource("CapsuleShape3D_fu04p")
+
+[node name="Player_2" type="CharacterBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6, 0)
+
+[node name="Model" parent="Player_2" instance=ExtResource("5_1jlvg")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.350222, 0)
+shape = SubResource("CapsuleShape3D_fu04p")
+
+[editable path="Player_1/Model"]
+[editable path="Player_2/Model"]
