@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cmgjxmkmvt4i8"]
+[gd_scene load_steps=39 format=3 uid="uid://cmgjxmkmvt4i8"]
 
 [ext_resource type="PackedScene" uid="uid://damq7sc16f061" path="res://assets/Visuals/3D Platformer/World Assets/block-grass-large-tall.glb" id="1_u60kq"]
 [ext_resource type="PackedScene" uid="uid://67i3u0cudlbm" path="res://assets/Visuals/3D Platformer/World Assets/fence-corner-curved.glb" id="2_dd8pr"]
@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://0vskr2q7yl5h" path="res://assets/Visuals/3D Platformer/World Assets/fence-broken.glb" id="13_5vk7s"]
 [ext_resource type="PackedScene" uid="uid://cwtjy85dvif4m" path="res://assets/Visuals/3D Platformer/World Assets/flag.glb" id="13_b7g15"]
 [ext_resource type="PackedScene" uid="uid://de30dte6hxt8s" path="res://assets/Visuals/3D Platformer/World Assets/arrows.glb" id="15_5vk7s"]
+[ext_resource type="Script" uid="uid://bclofs3511hm" path="res://scripts/Games/3DPlatformer/moving_platform.gd" id="15_d622q"]
+[ext_resource type="Script" uid="uid://smckoy2i6611" path="res://scripts/Games/3DPlatformer/player.gd" id="19_drrnw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cvwdr"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -397,13 +399,15 @@ shape = SubResource("ConvexPolygonShape3D_n1o1s")
 [node name="Blocks_2" type="Node3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 38)
 
-[node name="Block_Moving_1" parent="World/Blocks_2" instance=ExtResource("11_fu04p")]
+[node name="Block_Moving_1" type="AnimatableBody3D" parent="World/Blocks_2"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 0)
+script = ExtResource("15_d622q")
+max_distance = 2.5
 
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_2/Block_Moving_1"]
+[node name="Model" parent="World/Blocks_2/Block_Moving_1" instance=ExtResource("11_fu04p")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_2/Block_Moving_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_2/Block_Moving_1/StaticBody3D"]
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Island_4" type="Node3D" parent="World"]
@@ -454,31 +458,40 @@ shape = SubResource("BoxShape3D_fu04p")
 [node name="Blocks_3" type="Node3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 72)
 
-[node name="Block_Moving_1" parent="World/Blocks_3" instance=ExtResource("11_fu04p")]
+[node name="Block_Moving_1" type="AnimatableBody3D" parent="World/Blocks_3"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, -12)
+script = ExtResource("15_d622q")
+speed = 1.25
+max_distance = 2.5
 
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_3/Block_Moving_1"]
+[node name="Model" parent="World/Blocks_3/Block_Moving_1" instance=ExtResource("11_fu04p")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_Moving_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_Moving_1/StaticBody3D"]
 shape = SubResource("BoxShape3D_cvwdr")
 
-[node name="Block_Moving_2" parent="World/Blocks_3" instance=ExtResource("11_fu04p")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 12)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_3/Block_Moving_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_Moving_2/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_Moving_3" parent="World/Blocks_3" instance=ExtResource("11_fu04p")]
+[node name="Block_Moving_2" type="AnimatableBody3D" parent="World/Blocks_3"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 0)
+script = ExtResource("15_d622q")
+speed = 5.0
+max_distance = 5.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_3/Block_Moving_3"]
+[node name="Model" parent="World/Blocks_3/Block_Moving_2" instance=ExtResource("11_fu04p")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_Moving_2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_cvwdr")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_Moving_3/StaticBody3D"]
+[node name="Block_Moving_3" type="AnimatableBody3D" parent="World/Blocks_3"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 12)
+script = ExtResource("15_d622q")
+speed = 10.0
+max_distance = 5.0
+
+[node name="Model" parent="World/Blocks_3/Block_Moving_3" instance=ExtResource("11_fu04p")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_Moving_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_1" parent="World/Blocks_3" instance=ExtResource("9_oyn1f")]
@@ -803,30 +816,80 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 
 [node name="Boundary" type="Area3D" parent="."]
 visible = false
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary"]
 shape = SubResource("BoxShape3D_2kokf")
 debug_color = Color(0.996227, 0, 0.190787, 0.42)
 
-[node name="Player_1" type="CharacterBody3D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/HBoxContainer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(957, 1080)
+render_target_update_mode = 4
+
+[node name="Player_1" type="CharacterBody3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 6, 0)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("19_drrnw")
 
-[node name="Model" parent="Player_1" instance=ExtResource("4_f7s62")]
+[node name="Model" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1" instance=ExtResource("4_f7s62")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player_1"]
+[node name="AnimationPlayer" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1/Model" index="1"]
+autoplay = "idle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.350222, 0)
 shape = SubResource("CapsuleShape3D_fu04p")
 
-[node name="Player_2" type="CharacterBody3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1, 0.75)
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/HBoxContainer/SubViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="Player_2" type="CharacterBody3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6, 0)
+collision_layer = 2
+collision_mask = 7
 
-[node name="Model" parent="Player_2" instance=ExtResource("5_1jlvg")]
+[node name="Model" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2" instance=ExtResource("5_1jlvg")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player_2"]
+[node name="AnimationPlayer" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2/Model" index="1"]
+autoplay = "idle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.350222, 0)
 shape = SubResource("CapsuleShape3D_fu04p")
 
-[editable path="Player_1/Model"]
-[editable path="Player_2/Model"]
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2"]
+transform = Transform3D(-1, 2.50243e-08, -1.30766e-07, -4.37114e-08, 0.866025, 0.5, 1.25759e-07, 0.5, -0.866025, 0, 1, -0.75)
+
+[editable path="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1/Model"]
+[editable path="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2/Model"]
