@@ -397,7 +397,7 @@ transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 
 shape = SubResource("ConvexPolygonShape3D_n1o1s")
 
 [node name="Blocks_2" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 38)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36)
 
 [node name="Block_Moving_1" type="AnimatableBody3D" parent="World/Blocks_2"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 0)
@@ -411,7 +411,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Island_4" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 46)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42)
 
 [node name="Island_Base_1" parent="World/Island_4" instance=ExtResource("1_u60kq")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
@@ -456,10 +456,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.3, 0)
 shape = SubResource("BoxShape3D_fu04p")
 
 [node name="Blocks_3" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 72)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 66)
 
 [node name="Block_Moving_1" type="AnimatableBody3D" parent="World/Blocks_3"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, -12)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, -14)
 script = ExtResource("15_d622q")
 speed = 1.25
 max_distance = 2.5
@@ -471,7 +471,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_Moving_2" type="AnimatableBody3D" parent="World/Blocks_3"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, -6)
 script = ExtResource("15_d622q")
 speed = 5.0
 max_distance = 5.0
@@ -483,7 +483,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_Moving_3" type="AnimatableBody3D" parent="World/Blocks_3"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 12)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 2)
 script = ExtResource("15_d622q")
 speed = 10.0
 max_distance = 5.0
@@ -504,7 +504,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_2" parent="World/Blocks_3" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, -6)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, -10)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_3/Block_2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -513,7 +513,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_3" parent="World/Blocks_3" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 6)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, -2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_3/Block_3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -522,7 +522,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_4" parent="World/Blocks_3" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 18)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_3/Block_4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -531,7 +531,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Blocks_4" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 72)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 68)
 
 [node name="Block_1" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2, 5, -26)
@@ -579,7 +579,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_6" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, -14)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 5, -18)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -588,7 +588,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_7" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, -10)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, -18)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -597,7 +597,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_8" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 5, -10)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, -14)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -633,7 +633,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_11" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, 2)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 5, -2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -642,7 +642,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_12" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, 6)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, -2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -651,7 +651,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_13" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, 10)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -660,7 +660,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_14" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 5, 10)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 6)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -678,7 +678,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_16" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 14)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2, 5, 10)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_16"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -687,7 +687,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_cvwdr")
 
 [node name="Block_17" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 18)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2, 5, 10)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_17"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -695,44 +695,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_17/StaticBody3D"]
 shape = SubResource("BoxShape3D_cvwdr")
 
-[node name="Block_18" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 22)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_18/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_19" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 26)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_19"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_19/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_20" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2, 5, 26)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_20"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_20/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_21" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2, 5, 26)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_21"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_21/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
 [node name="Island_5" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 98)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 78)
 
 [node name="Island_Base_1" parent="World/Island_5" instance=ExtResource("1_u60kq")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
@@ -801,7 +765,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.3, 0)
 shape = SubResource("BoxShape3D_fu04p")
 
 [node name="Island_6" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 100)
 
 [node name="Island_Base_1" parent="World/Island_6" instance=ExtResource("1_u60kq")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
@@ -878,6 +842,8 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6, 0)
 collision_layer = 2
 collision_mask = 7
+script = ExtResource("19_drrnw")
+player_id = 2
 
 [node name="Model" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2" instance=ExtResource("5_1jlvg")]
 
