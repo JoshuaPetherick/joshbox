@@ -485,7 +485,7 @@ shape = SubResource("BoxShape3D_cvwdr")
 [node name="Block_Moving_3" type="AnimatableBody3D" parent="World/Blocks_3"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 2)
 script = ExtResource("15_d622q")
-speed = 10.0
+speed = 7.5
 max_distance = 5.0
 
 [node name="Model" parent="World/Blocks_3/Block_Moving_3" instance=ExtResource("11_fu04p")]
@@ -839,13 +839,14 @@ render_target_update_mode = 4
 
 [node name="Player_2" type="CharacterBody3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, 6, 0)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("19_drrnw")
 player_id = 2
 
 [node name="Model" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2" instance=ExtResource("5_1jlvg")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="AnimationPlayer" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2/Model" index="1"]
 autoplay = "idle"
@@ -855,7 +856,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.350222, 0)
 shape = SubResource("CapsuleShape3D_fu04p")
 
 [node name="Camera3D" type="Camera3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2"]
-transform = Transform3D(-1, 2.50243e-08, -1.30766e-07, -4.37114e-08, 0.866025, 0.5, 1.25759e-07, 0.5, -0.866025, 0, 1, -0.75)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1, 0.75)
 
 [editable path="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1/Model"]
 [editable path="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2/Model"]
