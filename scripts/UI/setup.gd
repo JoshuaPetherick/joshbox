@@ -14,7 +14,7 @@ func _exit_tree() -> void:
 
 #region Events
 
-func _on_device_connected(player: int):
+func _on_device_connected(_player: int):
 	update_ui()
 
 func _on_connect_player_1_pressed() -> void:

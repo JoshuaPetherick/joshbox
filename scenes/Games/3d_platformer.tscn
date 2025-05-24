@@ -1,5 +1,6 @@
-[gd_scene load_steps=39 format=3 uid="uid://cmgjxmkmvt4i8"]
+[gd_scene load_steps=46 format=3 uid="uid://cmgjxmkmvt4i8"]
 
+[ext_resource type="Script" uid="uid://cyf7g14ruhs81" path="res://scripts/Games/3DPlatformer/main.gd" id="1_2f3es"]
 [ext_resource type="PackedScene" uid="uid://damq7sc16f061" path="res://assets/Visuals/3D Platformer/World Assets/block-grass-large-tall.glb" id="1_u60kq"]
 [ext_resource type="PackedScene" uid="uid://67i3u0cudlbm" path="res://assets/Visuals/3D Platformer/World Assets/fence-corner-curved.glb" id="2_dd8pr"]
 [ext_resource type="PackedScene" uid="uid://dpfpg0itu7jtt" path="res://assets/Visuals/3D Platformer/World Assets/platform-ramp.glb" id="2_yt001"]
@@ -20,7 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://cwtjy85dvif4m" path="res://assets/Visuals/3D Platformer/World Assets/flag.glb" id="13_b7g15"]
 [ext_resource type="PackedScene" uid="uid://de30dte6hxt8s" path="res://assets/Visuals/3D Platformer/World Assets/arrows.glb" id="15_5vk7s"]
 [ext_resource type="Script" uid="uid://bclofs3511hm" path="res://scripts/Games/3DPlatformer/moving_platform.gd" id="15_d622q"]
+[ext_resource type="Script" uid="uid://cb57yutaaatst" path="res://scripts/Games/3DPlatformer/checkpoint.gd" id="19_7sbf3"]
 [ext_resource type="Script" uid="uid://smckoy2i6611" path="res://scripts/Games/3DPlatformer/player.gd" id="19_drrnw"]
+[ext_resource type="Script" uid="uid://qcxn8huubpm2" path="res://scripts/Games/3DPlatformer/boundary.gd" id="20_87sjw"]
+[ext_resource type="Script" uid="uid://mwrriuisvqcp" path="res://scripts/Games/3DPlatformer/goal.gd" id="20_a5oom"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cvwdr"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -72,6 +76,16 @@ size = Vector3(1.05, 0.5, 1.05)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_si5ec"]
 points = PackedVector3Array(-0.991369, -0.166638, 0.696228, 0.899383, 0.0123335, -0.866429, 0.89219, 1.18807, -0.724672, -1.0245, 0.560104, 0.365671, -0.899386, 0.012464, -0.866432, -0.958447, 1.15492, -0.691715, 0.991369, -0.166774, 0.696228, -0.82614, 0.229952, 0.927519, 0.991369, 0.791346, -0.989314, -0.991369, 0.791482, -0.989314, 0.82614, 0.229952, 0.927519, -0.561734, -0.19979, 0.795296, 0.734537, 0.0152364, -0.925607, -0.729287, 1.06479, -0.91933, 1.0245, 1.05588, -0.493381, 0.993829, 0.0132785, -0.704397, -0.993759, 0.013444, -0.704542, 0.561734, -0.19979, 0.795296, -0.734559, 0.015222, -0.925634, -1.0245, 1.05588, -0.493381, 0.700323, 1.00336, -0.954797, 1.0245, 0.362013, 0.696228, -1.0245, 0.362148, 0.696228, -0.731763, 1.16234, -0.826915, -0.76467, 0.0481227, 0.892676, 0.763991, 1.09878, -0.89074, 0.561734, -0.19979, 0.762339, 0.764823, 0.04815, 0.892619, -1.0215, 0.0792794, 0.638614, 1.0215, 0.0792794, 0.638614, -0.89219, 1.18821, -0.724869, 0.991369, 0.328997, 0.762142)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_87sjw"]
+height = 1.75
+radius = 0.075
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_drrnw"]
+size = Vector3(5, 2, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7sbf3"]
+size = Vector3(5, 1, 5)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_2kokf"]
 size = Vector3(1000, 1, 1000)
 
@@ -80,6 +94,7 @@ radius = 0.225
 height = 0.7
 
 [node name="3D Platformer" type="Node3D"]
+script = ExtResource("1_2f3es")
 
 [node name="World" type="Node3D" parent="."]
 
@@ -764,8 +779,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.3, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_5/Arrow_2/StaticBody3D"]
 shape = SubResource("BoxShape3D_fu04p")
 
+[node name="Fence_Corner_1" parent="World/Island_5" instance=ExtResource("2_dd8pr")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -2.25, 6, 2.25)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_5/Fence_Corner_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_5/Fence_Corner_1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_vkaw8")
+
+[node name="Fence_Corner_2" parent="World/Island_5" instance=ExtResource("2_dd8pr")]
+transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 2.25, 6, 2.25)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_5/Fence_Corner_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_5/Fence_Corner_2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_vkaw8")
+
 [node name="Island_6" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 100)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 96)
 
 [node name="Island_Base_1" parent="World/Island_6" instance=ExtResource("1_u60kq")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
@@ -776,12 +807,84 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_2kokf")
 
 [node name="Flag_1" parent="World/Island_6" instance=ExtResource("13_b7g15")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 6, 0)
 
-[node name="Boundary" type="Area3D" parent="."]
-visible = false
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Island_6/Flag_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_6/Flag_1/StaticBody3D"]
+shape = SubResource("CylinderShape3D_87sjw")
+
+[node name="Checkpoints" type="Node3D" parent="."]
+
+[node name="Checkpoint_1" type="Area3D" parent="Checkpoints" node_paths=PackedStringArray("player_1_spawn", "player_2_spawn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 30)
 collision_layer = 4
 collision_mask = 2
+monitorable = false
+script = ExtResource("19_7sbf3")
+player_1_spawn = NodePath("Player_1_Spawn")
+player_2_spawn = NodePath("Player_2_Spawn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/Checkpoint_1"]
+shape = SubResource("BoxShape3D_drrnw")
+
+[node name="Player_1_Spawn" type="Marker3D" parent="Checkpoints/Checkpoint_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Player_2_Spawn" type="Marker3D" parent="Checkpoints/Checkpoint_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Checkpoint_2" type="Area3D" parent="Checkpoints" node_paths=PackedStringArray("player_1_spawn", "player_2_spawn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 42)
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+script = ExtResource("19_7sbf3")
+player_1_spawn = NodePath("Player_1_Spawn")
+player_2_spawn = NodePath("Player_2_Spawn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/Checkpoint_2"]
+shape = SubResource("BoxShape3D_drrnw")
+
+[node name="Player_1_Spawn" type="Marker3D" parent="Checkpoints/Checkpoint_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Player_2_Spawn" type="Marker3D" parent="Checkpoints/Checkpoint_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Checkpoint_3" type="Area3D" parent="Checkpoints" node_paths=PackedStringArray("player_1_spawn", "player_2_spawn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 78)
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+script = ExtResource("19_7sbf3")
+player_1_spawn = NodePath("Player_1_Spawn")
+player_2_spawn = NodePath("Player_2_Spawn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/Checkpoint_3"]
+shape = SubResource("BoxShape3D_drrnw")
+
+[node name="Player_1_Spawn" type="Marker3D" parent="Checkpoints/Checkpoint_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Player_2_Spawn" type="Marker3D" parent="Checkpoints/Checkpoint_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Goal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 96)
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+script = ExtResource("20_a5oom")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goal"]
+shape = SubResource("BoxShape3D_7sbf3")
+
+[node name="Boundary" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+script = ExtResource("20_87sjw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary"]
 shape = SubResource("BoxShape3D_2kokf")
