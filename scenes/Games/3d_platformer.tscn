@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cmgjxmkmvt4i8"]
+[gd_scene load_steps=55 format=3 uid="uid://cmgjxmkmvt4i8"]
 
 [ext_resource type="Script" uid="uid://cyf7g14ruhs81" path="res://scripts/Games/3DPlatformer/main.gd" id="1_2f3es"]
 [ext_resource type="PackedScene" uid="uid://damq7sc16f061" path="res://assets/Visuals/3D Platformer/World Assets/block-grass-large-tall.glb" id="1_u60kq"]
@@ -80,6 +80,12 @@ points = PackedVector3Array(-0.991369, -0.166638, 0.696228, 0.899383, 0.0123335,
 height = 1.75
 radius = 0.075
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_2f3es"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1f4iu"]
+albedo_color = Color(0, 0.884313, 0.888667, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_drrnw"]
 size = Vector3(5, 2, 5)
 
@@ -110,7 +116,7 @@ animation = &"idle"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7uhle"]
-graph_offset = Vector2(-725.156, 46.4573)
+graph_offset = Vector2(-467.053, 105.09)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_1f4iu")
 nodes/Animation/position = Vector2(-160, 420)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_2f3es")
@@ -682,6 +688,11 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 6, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Island_6/Flag_1/StaticBody3D"]
 shape = SubResource("CylinderShape3D_87sjw")
 
+[node name="Ocean" type="MeshInstance3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0122528, 0.999998, -0.060216)
+mesh = SubResource("PlaneMesh_2f3es")
+surface_material_override/0 = SubResource("StandardMaterial3D_1f4iu")
+
 [node name="Checkpoints" type="Node3D" parent="."]
 
 [node name="Checkpoint_1" type="Area3D" parent="Checkpoints" node_paths=PackedStringArray("player_1_spawn", "player_2_spawn")]
@@ -752,6 +763,10 @@ script = ExtResource("20_a5oom")
 shape = SubResource("BoxShape3D_7sbf3")
 debug_color = Color(0.763413, 0.209786, 0.966153, 0.42)
 
+[node name="EndGame" type="Timer" parent="Goal"]
+wait_time = 5.0
+one_shot = true
+
 [node name="Boundary" type="Area3D" parent="."]
 collision_layer = 4
 collision_mask = 2
@@ -793,11 +808,10 @@ script = ExtResource("19_drrnw")
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1/Model/character-male-d" index="0"]
-bones/1/rotation = Quaternion(-0.451995, 0.370274, 0.213778, 0.782878)
-bones/2/rotation = Quaternion(-0.345942, -0.39501, -0.163618, 0.835177)
-bones/4/rotation = Quaternion(-0.0399447, 0.254575, 0.150335, 0.954461)
-bones/5/rotation = Quaternion(-0.0399447, -0.254575, -0.150335, 0.954461)
-bones/6/rotation = Quaternion(0.0322036, 0, 0, 0.999481)
+bones/3/rotation = Quaternion(-0.00476223, 0, 0, 0.999989)
+bones/4/rotation = Quaternion(0, 0, -0.379284, 0.92528)
+bones/5/rotation = Quaternion(0, 0, 0.379284, 0.92528)
+bones/6/rotation = Quaternion(0, 0.00476223, 0, 0.999989)
 
 [node name="AnimationPlayer" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1/Model" index="1"]
 autoplay = "idle"
@@ -814,7 +828,11 @@ root_node = NodePath("../Model")
 tree_root = SubResource("AnimationNodeBlendTree_7uhle")
 anim_player = NodePath("../Model/AnimationPlayer")
 parameters/JumpBlend/blend_amount = -1.0
-parameters/MoveBlend/blend_amount = false
+parameters/MoveBlend/blend_amount = 0.0
+
+[node name="Respawn" type="Timer" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1"]
+wait_time = 3.0
+one_shot = true
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
@@ -838,10 +856,10 @@ player_id = 2
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2/Model/character-female-d" index="0"]
-bones/3/rotation = Quaternion(0.00569155, 0, 0, 0.999984)
-bones/4/rotation = Quaternion(0, 0, -0.366853, 0.930279)
-bones/5/rotation = Quaternion(0, 0, 0.366853, 0.930279)
-bones/6/rotation = Quaternion(0, -0.00569155, 0, 0.999984)
+bones/3/rotation = Quaternion(-0.00476223, 0, 0, 0.999989)
+bones/4/rotation = Quaternion(0, 0, -0.379284, 0.92528)
+bones/5/rotation = Quaternion(0, 0, 0.379284, 0.92528)
+bones/6/rotation = Quaternion(0, 0.00476223, 0, 0.999989)
 
 [node name="AnimationPlayer" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2/Model" index="1"]
 autoplay = "idle"
@@ -859,6 +877,10 @@ tree_root = SubResource("AnimationNodeBlendTree_7uhle")
 anim_player = NodePath("../Model/AnimationPlayer")
 parameters/JumpBlend/blend_amount = -1.0
 parameters/MoveBlend/blend_amount = 0
+
+[node name="Respawn" type="Timer" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2"]
+wait_time = 3.0
+one_shot = true
 
 [editable path="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1/Model"]
 [editable path="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2/Model"]

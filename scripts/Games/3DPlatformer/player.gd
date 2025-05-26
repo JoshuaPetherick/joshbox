@@ -10,6 +10,8 @@ var player_id: int = 1
 # Game Components
 @onready
 var animation_tree: AnimationTree = $AnimationTree
+@onready
+var respawn_timer: Timer = $Respawn
 
 # Game Variables
 var checkpoint: Vector3
@@ -22,8 +24,13 @@ var right_strength: float
 
 func _ready() -> void:
 	checkpoint = global_position
+	respawn_timer.timeout.connect(_on_respawn_timer)
 
 func _physics_process(delta: float) -> void:
+	# Check
+	if not visible:
+		return
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -98,5 +105,10 @@ func handle_animation():
 		animation_tree.set("parameters/MoveBlend/blend_amount", 0.0)
 
 func respawn():
+	visible = false
 	velocity = Vector3.ZERO
+	respawn_timer.start()
+
+func _on_respawn_timer():
+	visible = true
 	global_position = checkpoint

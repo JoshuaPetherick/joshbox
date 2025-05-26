@@ -1,14 +1,27 @@
 extends Area3D
 
+@onready
+var endgame_timer: Timer = $EndGame
+
+var winner: int = 0
+
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	endgame_timer.timeout.connect(_on_endgame_timer)
 
 func _on_body_entered(body: Node3D) -> void:
+	if (winner != 0):
+		return
+	
 	if (body is Player):
+		# Get Winner
 		if (body.name == "Player_1"):
-			call_deferred("_game_over", 1)
+			winner = 1
 		else:
-			call_deferred("_game_over", 2)
+			winner = 2
+		
+		# Start Endgame Timer
+		endgame_timer.start()
 
-func _game_over(winner: int):
+func _on_endgame_timer():
 	GlobalSignals.game_finished.emit(winner)
