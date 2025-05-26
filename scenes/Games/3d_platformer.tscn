@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cmgjxmkmvt4i8"]
+[gd_scene load_steps=53 format=3 uid="uid://cmgjxmkmvt4i8"]
 
 [ext_resource type="Script" uid="uid://cyf7g14ruhs81" path="res://scripts/Games/3DPlatformer/main.gd" id="1_2f3es"]
 [ext_resource type="PackedScene" uid="uid://damq7sc16f061" path="res://assets/Visuals/3D Platformer/World Assets/block-grass-large-tall.glb" id="1_u60kq"]
@@ -92,6 +92,39 @@ size = Vector3(1000, 1, 1000)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fu04p"]
 radius = 0.225
 height = 0.7
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2f3es"]
+animation = &"fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1f4iu"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7tvn1"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_dcdbu"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_14xsg"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8jp3a"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7uhle"]
+graph_offset = Vector2(-725.156, 46.4573)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_1f4iu")
+nodes/Animation/position = Vector2(-160, 420)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_2f3es")
+"nodes/Animation 2/position" = Vector2(-160, 580)
+nodes/IdleAnim/node = SubResource("AnimationNodeAnimation_7tvn1")
+nodes/IdleAnim/position = Vector2(-160, 60)
+nodes/JumpBlend/node = SubResource("AnimationNodeBlend3_dcdbu")
+nodes/JumpBlend/position = Vector2(300, 360)
+nodes/MoveBlend/node = SubResource("AnimationNodeBlend2_14xsg")
+nodes/MoveBlend/position = Vector2(80, 180)
+nodes/SprintAnim/node = SubResource("AnimationNodeAnimation_8jp3a")
+nodes/SprintAnim/position = Vector2(-160, 240)
+nodes/output/position = Vector2(600, 200)
+node_connections = [&"JumpBlend", 0, &"MoveBlend", &"JumpBlend", 1, &"Animation 2", &"JumpBlend", 2, &"Animation", &"MoveBlend", 0, &"IdleAnim", &"MoveBlend", 1, &"SprintAnim", &"output", 0, &"JumpBlend"]
 
 [node name="3D Platformer" type="Node3D"]
 script = ExtResource("1_2f3es")
@@ -545,171 +578,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_3/Block_4/StaticBody3D"]
 shape = SubResource("BoxShape3D_cvwdr")
 
-[node name="Blocks_4" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 68)
-
-[node name="Block_1" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2, 5, -26)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_1/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_2" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2, 5, -26)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_2/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_3" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, -26)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_3/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_4" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, -22)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_4/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_5" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, -18)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_5/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_6" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 5, -18)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_6/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_7" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, -18)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_7/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_8" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, -14)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_8/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_9" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, -10)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_9/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_10" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, -6)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_10/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_22" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, -2)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_22"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_22/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_11" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 5, -2)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_11"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_11/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_12" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, -2)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_12/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_13" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 2)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_13/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_14" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 6)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_14/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_15" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 5, 10)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_15/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_16" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2, 5, 10)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_16/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
-[node name="Block_17" parent="World/Blocks_4" instance=ExtResource("9_oyn1f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2, 5, 10)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Blocks_4/Block_17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Blocks_4/Block_17/StaticBody3D"]
-shape = SubResource("BoxShape3D_cvwdr")
-
 [node name="Island_5" type="Node3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 78)
 
@@ -827,6 +695,7 @@ player_2_spawn = NodePath("Player_2_Spawn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/Checkpoint_1"]
 shape = SubResource("BoxShape3D_drrnw")
+debug_color = Color(0.362886, 0.616641, 0.0346414, 0.42)
 
 [node name="Player_1_Spawn" type="Marker3D" parent="Checkpoints/Checkpoint_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
@@ -845,6 +714,7 @@ player_2_spawn = NodePath("Player_2_Spawn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/Checkpoint_2"]
 shape = SubResource("BoxShape3D_drrnw")
+debug_color = Color(0.362886, 0.616641, 0.0346414, 0.42)
 
 [node name="Player_1_Spawn" type="Marker3D" parent="Checkpoints/Checkpoint_2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
@@ -863,6 +733,7 @@ player_2_spawn = NodePath("Player_2_Spawn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/Checkpoint_3"]
 shape = SubResource("BoxShape3D_drrnw")
+debug_color = Color(0.362886, 0.616641, 0.0346414, 0.42)
 
 [node name="Player_1_Spawn" type="Marker3D" parent="Checkpoints/Checkpoint_3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
@@ -879,6 +750,7 @@ script = ExtResource("20_a5oom")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Goal"]
 shape = SubResource("BoxShape3D_7sbf3")
+debug_color = Color(0.763413, 0.209786, 0.966153, 0.42)
 
 [node name="Boundary" type="Area3D" parent="."]
 collision_layer = 4
@@ -920,6 +792,13 @@ script = ExtResource("19_drrnw")
 [node name="Model" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1" instance=ExtResource("4_f7s62")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
+[node name="Skeleton3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1/Model/character-male-d" index="0"]
+bones/1/rotation = Quaternion(-0.451995, 0.370274, 0.213778, 0.782878)
+bones/2/rotation = Quaternion(-0.345942, -0.39501, -0.163618, 0.835177)
+bones/4/rotation = Quaternion(-0.0399447, 0.254575, 0.150335, 0.954461)
+bones/5/rotation = Quaternion(-0.0399447, -0.254575, -0.150335, 0.954461)
+bones/6/rotation = Quaternion(0.0322036, 0, 0, 0.999481)
+
 [node name="AnimationPlayer" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1/Model" index="1"]
 autoplay = "idle"
 
@@ -929,6 +808,13 @@ shape = SubResource("CapsuleShape3D_fu04p")
 
 [node name="Camera3D" type="Camera3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1, 0.75)
+
+[node name="AnimationTree" type="AnimationTree" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1"]
+root_node = NodePath("../Model")
+tree_root = SubResource("AnimationNodeBlendTree_7uhle")
+anim_player = NodePath("../Model/AnimationPlayer")
+parameters/JumpBlend/blend_amount = -1.0
+parameters/MoveBlend/blend_amount = false
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
@@ -951,6 +837,12 @@ player_id = 2
 [node name="Model" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2" instance=ExtResource("5_1jlvg")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
+[node name="Skeleton3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2/Model/character-female-d" index="0"]
+bones/3/rotation = Quaternion(0.00569155, 0, 0, 0.999984)
+bones/4/rotation = Quaternion(0, 0, -0.366853, 0.930279)
+bones/5/rotation = Quaternion(0, 0, 0.366853, 0.930279)
+bones/6/rotation = Quaternion(0, -0.00569155, 0, 0.999984)
+
 [node name="AnimationPlayer" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2/Model" index="1"]
 autoplay = "idle"
 
@@ -960,6 +852,13 @@ shape = SubResource("CapsuleShape3D_fu04p")
 
 [node name="Camera3D" type="Camera3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1, 0.75)
+
+[node name="AnimationTree" type="AnimationTree" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2"]
+root_node = NodePath("../Model")
+tree_root = SubResource("AnimationNodeBlendTree_7uhle")
+anim_player = NodePath("../Model/AnimationPlayer")
+parameters/JumpBlend/blend_amount = -1.0
+parameters/MoveBlend/blend_amount = 0
 
 [editable path="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1/Model"]
 [editable path="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2/Model"]

@@ -7,6 +7,10 @@ const JUMP_VELOCITY = 5.0
 @export 
 var player_id: int = 1
 
+# Game Components
+@onready
+var animation_tree: AnimationTree = $AnimationTree
+
 # Game Variables
 var checkpoint: Vector3
 
@@ -35,6 +39,9 @@ func _physics_process(delta: float) -> void:
 	
 	# Move Player Character
 	move_and_slide()
+	
+	# Handle Animation
+	handle_animation()
 
 func _input(event: InputEvent) -> void:
 	# Setup
@@ -71,6 +78,24 @@ func _input(event: InputEvent) -> void:
 	# Handle jump.
 	if event.is_action("player_action_8") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
+func handle_animation():
+	# Handles Jumping/Falling
+	if is_on_floor():
+		animation_tree.set("parameters/JumpBlend/blend_amount", -1.0)
+	else:
+		if (velocity.y >= 1):
+			animation_tree.set("parameters/JumpBlend/blend_amount", 1.0)
+		elif (velocity.y >= 0):
+			animation_tree.set("parameters/JumpBlend/blend_amount", velocity.y)
+		else:
+			animation_tree.set("parameters/JumpBlend/blend_amount", 0.0)
+	
+	# Handles Movement
+	if (velocity.x != 0 && velocity.z != 0):
+		animation_tree.set("parameters/MoveBlend/blend_amount", 1.0)
+	else:
+		animation_tree.set("parameters/MoveBlend/blend_amount", 0.0)
 
 func respawn():
 	velocity = Vector3.ZERO
