@@ -27,8 +27,10 @@
 [ext_resource type="Script" uid="uid://mwrriuisvqcp" path="res://scripts/Games/3DPlatformer/goal.gd" id="20_a5oom"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cvwdr"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+sky_top_color = Color(0.255269, 0.402546, 0.8706, 1)
+sky_horizon_color = Color(0.314297, 0.710463, 0.966043, 1)
+ground_horizon_color = Color(0.313726, 0.709804, 0.964706, 1)
+ground_curve = 0.00989115
 
 [sub_resource type="Sky" id="Sky_fu04p"]
 sky_material = SubResource("ProceduralSkyMaterial_cvwdr")
@@ -36,7 +38,6 @@ sky_material = SubResource("ProceduralSkyMaterial_cvwdr")
 [sub_resource type="Environment" id="Environment_2kokf"]
 background_mode = 2
 sky = SubResource("Sky_fu04p")
-tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2kokf"]
@@ -81,10 +82,10 @@ height = 1.75
 radius = 0.075
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2f3es"]
-size = Vector2(1000, 1000)
+size = Vector2(10000, 10000)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1f4iu"]
-albedo_color = Color(0, 0.884313, 0.888667, 1)
+albedo_color = Color(0.146626, 0.552136, 0.875409, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_drrnw"]
 size = Vector3(5, 2, 5)
@@ -808,10 +809,10 @@ script = ExtResource("19_drrnw")
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1/Model/character-male-d" index="0"]
-bones/3/rotation = Quaternion(-0.00476223, 0, 0, 0.999989)
-bones/4/rotation = Quaternion(0, 0, -0.379284, 0.92528)
-bones/5/rotation = Quaternion(0, 0, 0.379284, 0.92528)
-bones/6/rotation = Quaternion(0, 0.00476223, 0, 0.999989)
+bones/3/rotation = Quaternion(-0.0356599, 0, 0, 0.999364)
+bones/4/rotation = Quaternion(0, 0, -0.290915, 0.956749)
+bones/5/rotation = Quaternion(0, 0, 0.290915, 0.956749)
+bones/6/rotation = Quaternion(0, 0.0356599, 0, 0.999364)
 
 [node name="AnimationPlayer" parent="CanvasLayer/HBoxContainer/SubViewportContainer/SubViewport/Player_1/Model" index="1"]
 autoplay = "idle"
@@ -856,10 +857,10 @@ player_id = 2
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2/Model/character-female-d" index="0"]
-bones/3/rotation = Quaternion(-0.00476223, 0, 0, 0.999989)
-bones/4/rotation = Quaternion(0, 0, -0.379284, 0.92528)
-bones/5/rotation = Quaternion(0, 0, 0.379284, 0.92528)
-bones/6/rotation = Quaternion(0, 0.00476223, 0, 0.999989)
+bones/3/rotation = Quaternion(-0.0356599, 0, 0, 0.999364)
+bones/4/rotation = Quaternion(0, 0, -0.290915, 0.956749)
+bones/5/rotation = Quaternion(0, 0, 0.290915, 0.956749)
+bones/6/rotation = Quaternion(0, 0.0356599, 0, 0.999364)
 
 [node name="AnimationPlayer" parent="CanvasLayer/HBoxContainer/SubViewportContainer2/SubViewport/Player_2/Model" index="1"]
 autoplay = "idle"
