@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="IconMapping" load_steps=62 format=3 uid="uid://dtjwk75vw3oct"]
+[gd_resource type="Resource" script_class="IconMapping" load_steps=86 format=3 uid="uid://dtjwk75vw3oct"]
 
 [ext_resource type="Texture2D" uid="uid://u1wn3uo8504t" path="res://assets/UI/Icons/Keyboard_Mouse.png" id="1_51xlo"]
 [ext_resource type="Texture2D" uid="uid://bdxwotp2fqxgm" path="res://assets/UI/Icons/Nintendo_Switch.png" id="2_s07n2"]
@@ -31,6 +31,78 @@ region = Rect2(128, 256, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jst0l"]
 atlas = ExtResource("5_vslgf")
 region = Rect2(384, 1152, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51xlo"]
+atlas = ExtResource("1_51xlo")
+region = Rect2(896, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s07n2"]
+atlas = ExtResource("2_s07n2")
+region = Rect2(1024, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjc30"]
+atlas = ExtResource("3_hjc30")
+region = Rect2(0, 896, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwwfr"]
+atlas = ExtResource("4_jg228")
+region = Rect2(1280, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mu2t4"]
+atlas = ExtResource("6_43nof")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn65p"]
+atlas = ExtResource("5_vslgf")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg228"]
+atlas = ExtResource("1_51xlo")
+region = Rect2(768, 1280, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vslgf"]
+atlas = ExtResource("2_s07n2")
+region = Rect2(896, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43nof"]
+atlas = ExtResource("3_hjc30")
+region = Rect2(1408, 1024, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxlxx"]
+atlas = ExtResource("4_jg228")
+region = Rect2(1152, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3n28"]
+atlas = ExtResource("6_43nof")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojdmw"]
+atlas = ExtResource("5_vslgf")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xexv0"]
+atlas = ExtResource("1_51xlo")
+region = Rect2(1152, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efvse"]
+atlas = ExtResource("2_s07n2")
+region = Rect2(384, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruv36"]
+atlas = ExtResource("3_hjc30")
+region = Rect2(896, 1024, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibagi"]
+atlas = ExtResource("4_jg228")
+region = Rect2(640, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xdbu"]
+atlas = ExtResource("6_43nof")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qynej"]
+atlas = ExtResource("5_vslgf")
+region = Rect2(0, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_grovj"]
 atlas = ExtResource("1_51xlo")
@@ -130,7 +202,7 @@ region = Rect2(896, 768, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3roi"]
 atlas = ExtResource("1_51xlo")
-region = Rect2(640, 1792, 128, 128)
+region = Rect2(384, 1920, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brk4b"]
 atlas = ExtResource("2_s07n2")
@@ -154,7 +226,7 @@ region = Rect2(896, 1024, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qj32g"]
 atlas = ExtResource("1_51xlo")
-region = Rect2(896, 256, 128, 128)
+region = Rect2(640, 1920, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ndbt0"]
 atlas = ExtResource("2_s07n2")
@@ -178,7 +250,7 @@ region = Rect2(1152, 1024, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4uunx"]
 atlas = ExtResource("1_51xlo")
-region = Rect2(768, 1280, 128, 128)
+region = Rect2(896, 1920, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ns2qr"]
 atlas = ExtResource("2_s07n2")
@@ -202,7 +274,7 @@ region = Rect2(640, 1024, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ojn32"]
 atlas = ExtResource("1_51xlo")
-region = Rect2(1152, 512, 128, 128)
+region = Rect2(640, 384, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rijto"]
 atlas = ExtResource("2_s07n2")
@@ -223,6 +295,30 @@ region = Rect2(256, 640, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkgsg"]
 atlas = ExtResource("5_vslgf")
 region = Rect2(384, 1024, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8ft0"]
+atlas = ExtResource("1_51xlo")
+region = Rect2(640, 1792, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqn12"]
+atlas = ExtResource("2_s07n2")
+region = Rect2(640, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyip2"]
+atlas = ExtResource("3_hjc30")
+region = Rect2(1152, 1024, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0mpj"]
+atlas = ExtResource("4_jg228")
+region = Rect2(896, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjnxn"]
+atlas = ExtResource("6_43nof")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofkqa"]
+atlas = ExtResource("5_vslgf")
+region = Rect2(256, 128, 128, 128)
 
 [resource]
 script = ExtResource("7_xexv0")
@@ -297,4 +393,36 @@ input_action_8_icon = Dictionary[int, Texture]({
 3: SubResource("AtlasTexture_hv2yv"),
 4: SubResource("AtlasTexture_vhglx"),
 5: SubResource("AtlasTexture_vkgsg")
+})
+input_action_9_icon = Dictionary[int, Texture]({
+0: SubResource("AtlasTexture_n8ft0"),
+1: SubResource("AtlasTexture_uqn12"),
+2: SubResource("AtlasTexture_dyip2"),
+3: SubResource("AtlasTexture_m0mpj"),
+4: SubResource("AtlasTexture_mjnxn"),
+5: SubResource("AtlasTexture_ofkqa")
+})
+input_action_10_icon = Dictionary[int, Texture]({
+0: SubResource("AtlasTexture_51xlo"),
+1: SubResource("AtlasTexture_s07n2"),
+2: SubResource("AtlasTexture_hjc30"),
+3: SubResource("AtlasTexture_mwwfr"),
+4: SubResource("AtlasTexture_mu2t4"),
+5: SubResource("AtlasTexture_rn65p")
+})
+input_action_11_icon = Dictionary[int, Texture]({
+0: SubResource("AtlasTexture_jg228"),
+1: SubResource("AtlasTexture_vslgf"),
+2: SubResource("AtlasTexture_43nof"),
+3: SubResource("AtlasTexture_xxlxx"),
+4: SubResource("AtlasTexture_f3n28"),
+5: SubResource("AtlasTexture_ojdmw")
+})
+input_action_12_icon = Dictionary[int, Texture]({
+0: SubResource("AtlasTexture_xexv0"),
+1: SubResource("AtlasTexture_efvse"),
+2: SubResource("AtlasTexture_ruv36"),
+3: SubResource("AtlasTexture_ibagi"),
+4: SubResource("AtlasTexture_5xdbu"),
+5: SubResource("AtlasTexture_qynej")
 })

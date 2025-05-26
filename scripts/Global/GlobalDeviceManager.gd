@@ -135,5 +135,13 @@ func get_action_icon(device: int, action: String):
 			return icon_mapping.input_action_7_icon[controller_type]
 		"player_action_8":
 			return icon_mapping.input_action_8_icon[controller_type]
+		"player_action_9":
+			return icon_mapping.input_action_9_icon[controller_type]
+		"player_action_10":
+			return icon_mapping.input_action_10_icon[controller_type]
+		"player_action_11":
+			return icon_mapping.input_action_11_icon[controller_type]
+		"player_action_12":
+			return icon_mapping.input_action_12_icon[controller_type]
 
 #endregion

@@ -13,6 +13,10 @@ enum ControllerTypes { KeyboardMouse, NintendoSwitch, Playstation, SteamDeck, Un
 @export var input_action_6_icon: Dictionary[ControllerTypes, Texture]
 @export var input_action_7_icon: Dictionary[ControllerTypes, Texture]
 @export var input_action_8_icon: Dictionary[ControllerTypes, Texture]
+@export var input_action_9_icon: Dictionary[ControllerTypes, Texture]
+@export var input_action_10_icon: Dictionary[ControllerTypes, Texture]
+@export var input_action_11_icon: Dictionary[ControllerTypes, Texture]
+@export var input_action_12_icon: Dictionary[ControllerTypes, Texture]
 
 func get_controller_type(device_name: String):
 	var device_check_name = device_name.to_upper()
