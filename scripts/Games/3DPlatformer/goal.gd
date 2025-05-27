@@ -1,7 +1,7 @@
 extends Area3D
 
 @onready
-var endgame_timer: Timer = $EndGame
+var endgame_timer: Timer = $EndGameTimer
 
 var winner: int = 0
 

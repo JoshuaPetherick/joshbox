@@ -3,9 +3,12 @@ extends CharacterBody3D
 
 const SPEED = 3.0
 const JUMP_VELOCITY = 5.0
+const RESPAWN_TICK = 3
 
 @export 
 var player_id: int = 1
+@export
+var player_label: Label
 
 # Game Components
 @onready
@@ -15,12 +18,16 @@ var respawn_timer: Timer = $Respawn
 
 # Game Variables
 var checkpoint: Vector3
+var can_move: bool 
 
 # Movement Variables
 var up_strength: float 
 var down_strength: float 
 var left_strength: float 
 var right_strength: float 
+
+# Respawn Tick
+var respawn_tick: int = 0
 
 func _ready() -> void:
 	checkpoint = global_position
@@ -29,6 +36,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# Check
 	if not visible:
+		return
+	
+	if not can_move:
 		return
 	
 	# Add the gravity.
@@ -105,10 +115,32 @@ func handle_animation():
 		animation_tree.set("parameters/MoveBlend/blend_amount", 0.0)
 
 func respawn():
+	# Reset Params
 	visible = false
+	can_move = false
+	respawn_tick = 0
 	velocity = Vector3.ZERO
+	
+	# Update Label
+	player_label.text = "Respawn in " + str(RESPAWN_TICK)
+	
+	# Start Timer
 	respawn_timer.start()
 
 func _on_respawn_timer():
-	visible = true
-	global_position = checkpoint
+	# Update Tick
+	respawn_tick += 1
+	
+	# Respawn check
+	match respawn_tick:
+		RESPAWN_TICK:
+			# Update Params
+			visible = true
+			can_move = true
+			player_label.text = ""
+			global_position = checkpoint
+			
+			# Stop Timer
+			respawn_timer.stop()
+		_:
+			player_label.text = "Respawn in " + str(RESPAWN_TICK - respawn_tick)
