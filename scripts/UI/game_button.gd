@@ -1,6 +1,8 @@
+class_name MinigameButton
 extends Button
 
-@export var game_scene : PackedScene
+@export 
+var game_scene : PackedScene
 
 func _pressed() -> void:
 	# Set Game Scene
