@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://1c8om7gpic31"]
+[gd_scene load_steps=27 format=4 uid="uid://1c8om7gpic31"]
 
 [ext_resource type="Theme" uid="uid://dpyvc17ddbao7" path="res://assets/UI/Default_Theme.tres" id="1_5d4ag"]
 [ext_resource type="Script" uid="uid://bh8ha7c2g46k4" path="res://scripts/UI/main_menu_tabs.gd" id="1_5jstl"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dn3irlukwj5e2" path="res://assets/UI/Frames/Default.png" id="4_um6dh"]
 [ext_resource type="PackedScene" uid="uid://cbf0hmtootka" path="res://scenes/Games/rock_paper_scissors.tscn" id="5_bm8t2"]
 [ext_resource type="Texture2D" uid="uid://c77cvossrle0u" path="res://assets/UI/Backgrounds/GrassBackground.png" id="6_sfthw"]
+[ext_resource type="PackedScene" uid="uid://cmgjxmkmvt4i8" path="res://scenes/Games/3d_platformer.tscn" id="12_i7p8e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mf7fl"]
 atlas = ExtResource("4_um6dh")
@@ -767,7 +768,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="WindowTabs" type="TabContainer" parent="Window"]
 layout_mode = 2
-current_tab = 3
+current_tab = 1
 tabs_visible = false
 script = ExtResource("1_5jstl")
 
@@ -860,7 +861,6 @@ text = "Exit
 "
 
 [node name="GameSelection" type="Control" parent="Window/WindowTabs"]
-visible = false
 custom_minimum_size = Vector2(375, 375)
 layout_mode = 2
 metadata/_tab_index = 1
@@ -914,9 +914,9 @@ game_scene = ExtResource("5_bm8t2")
 [node name="Game2" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "?
-"
+text = "3D Platformer"
 script = ExtResource("4_ngj32")
+game_scene = ExtResource("12_i7p8e")
 
 [node name="Game3" type="Button" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1095,6 +1095,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Setup" type="Control" parent="Window/WindowTabs" node_paths=PackedStringArray("device_info_p1", "device_icon_p1", "device_info_p2", "device_icon_p2")]
+visible = false
 layout_mode = 2
 script = ExtResource("4_e2p27")
 device_info_p1 = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/PanelContainer/VBoxContainer/DeviceInfo")

@@ -1,6 +1,6 @@
 extends "res://scripts/Generics/minigame.gd"
 
-const max_score = 2
+const MAX_SCORE = 2
 
 enum Actions { NONE, ROCK, PAPER, SCISSORS }
 
@@ -94,7 +94,7 @@ func _input(event: InputEvent) -> void:
 
 #region Events
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	finish_round()
 
 #endregion
@@ -142,12 +142,12 @@ func finish_round():
 			point_2_icon_P2.texture = point_icon
 	
 	# Player 1 Wins
-	if (player1Score >= max_score):
+	if (player1Score >= MAX_SCORE):
 		GlobalSignals.game_finished.emit(1)
 		print("Player 1 Wins!")
 		
 	# Player 2 Wins!
-	elif (player2Score >= max_score):
+	elif (player2Score >= MAX_SCORE):
 		GlobalSignals.game_finished.emit(2)
 		print("Player 2 Wins!")
 		
