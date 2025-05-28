@@ -134,6 +134,8 @@ theme_override_constants/separation = 20
 [node name="Versus" type="Button" parent="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../GameSelection")
+focus_next = NodePath("../GameSelection")
 text = "Versus
 "
 
@@ -141,27 +143,45 @@ text = "Versus
 custom_minimum_size = Vector2(325, 0)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Versus")
+focus_neighbor_bottom = NodePath("../Tournament")
+focus_next = NodePath("../Tournament")
+focus_previous = NodePath("../Versus")
 text = "Game Selection"
 
 [node name="Tournament" type="Button" parent="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../GameSelection")
+focus_neighbor_bottom = NodePath("../Setup")
+focus_next = NodePath("../Setup")
+focus_previous = NodePath("../GameSelection")
 text = "Tournament"
 
 [node name="Setup" type="Button" parent="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Tournament")
+focus_neighbor_bottom = NodePath("../Settings")
+focus_next = NodePath("../Settings")
+focus_previous = NodePath("../Tournament")
 text = "Setup"
 
 [node name="Settings" type="Button" parent="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Setup")
+focus_neighbor_bottom = NodePath("../Exit")
+focus_next = NodePath("../Exit")
+focus_previous = NodePath("../Setup")
 text = "Settings
 "
 
 [node name="Exit" type="Button" parent="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Settings")
+focus_previous = NodePath("../Settings")
 text = "Exit
 "
 
