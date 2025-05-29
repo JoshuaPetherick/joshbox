@@ -13,12 +13,15 @@ var game_goal: Area3D
 var game_label: Label
 @export
 var game_start_timer: Timer
+@export 
+var game_music: AudioStreamWAV
 
 var game_tick: int = 0
 
 func _ready() -> void:
 	# Game Started
 	GlobalSignals.game_started.emit()
+	GlobalMusicManager.play_song(game_music)
 	
 	# Setup Signals
 	game_goal.body_entered.connect(_on_body_entered)
@@ -33,6 +36,7 @@ func _ready() -> void:
 	
 	# Start Timer
 	game_start_timer.start()
+	
 
 func _on_body_entered(body: Node3D) -> void:
 	# Check

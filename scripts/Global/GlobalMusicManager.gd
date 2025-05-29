@@ -1,10 +1,16 @@
 extends Node
 
-const AUDIO_TRANSITION_SPEED_DB: float = 80
+const AUDIO_MIN_VOLUME: float = 0.0001
+const AUDIO_MAX_VOLUME: float = 1.0
+const AUDIO_TRANSITION_UP_SPEED_DB: float = 0.2
+const AUDIO_TRANSITION_DOWN_SPEED_DB: float = 0.5
 
 # Audio Properties
-var audio_1_focus: bool = true
+var music_1_focus: bool = true
 var transitioning: bool = false
+
+var audio_1_volume: float = 1.0
+var audio_2_volume: float = 0.0
 
 # Audio Components
 var _audio_stream_player_1: AudioStreamPlayer
@@ -19,9 +25,12 @@ func _ready() -> void:
 	_audio_stream_player_1.bus = "Music_1"
 	_audio_stream_player_2.bus = "Music_2"
 	
-	# Default
-	_audio_stream_player_1.volume_db = 0.0
-	_audio_stream_player_2.volume_db = -80.0
+	# Default Volume
+	audio_1_volume = AUDIO_MAX_VOLUME
+	audio_2_volume = AUDIO_MIN_VOLUME
+	
+	_audio_stream_player_1.volume_db = linear_to_db(audio_1_volume)
+	_audio_stream_player_2.volume_db = linear_to_db(audio_2_volume)
 	
 	# Add as Children
 	add_child(_audio_stream_player_1)
@@ -30,42 +39,35 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Transition Check
 	if (transitioning):
-		if (audio_1_focus):
-			if (_audio_stream_player_1.volume_db >= 0.0 &&
-				_audio_stream_player_2.volume_db <= -79.9):
-				# Set Volume
-				_audio_stream_player_1.volume_db = 0.0
-				_audio_stream_player_2.volume_db = -80.0
-				
+		# Check + Set Volume
+		if (music_1_focus):
+			if (audio_1_volume >= AUDIO_MAX_VOLUME && audio_2_volume <= AUDIO_MIN_VOLUME):
 				# Reset Params
 				transitioning = false
 				_audio_stream_player_2.stop()
 				_audio_stream_player_2.stream = null
 			else:
 				# Transition Music
-				_audio_stream_player_1.volume_db += AUDIO_TRANSITION_SPEED_DB * delta
-				_audio_stream_player_2.volume_db -= AUDIO_TRANSITION_SPEED_DB * delta
+				audio_1_volume += AUDIO_TRANSITION_UP_SPEED_DB * delta
+				audio_2_volume -= AUDIO_TRANSITION_DOWN_SPEED_DB * delta
 		else:
-			if (_audio_stream_player_2.volume_db >= 0.0 &&
-				_audio_stream_player_1.volume_db <= -79.9):
-				# Set Volume
-				_audio_stream_player_2.volume_db = 0.0
-				_audio_stream_player_1.volume_db = -80.0
-				
+			if (audio_1_volume <= AUDIO_MIN_VOLUME && audio_2_volume >= AUDIO_MAX_VOLUME):
 				# Reset Params
 				transitioning = false
 				_audio_stream_player_1.stop()
 				_audio_stream_player_1.stream = null
 			else:
 				# Transition Music
-				_audio_stream_player_2.volume_db += AUDIO_TRANSITION_SPEED_DB * delta
-				_audio_stream_player_1.volume_db -= AUDIO_TRANSITION_SPEED_DB * delta
+				audio_1_volume -= AUDIO_TRANSITION_DOWN_SPEED_DB * delta
+				audio_2_volume += AUDIO_TRANSITION_UP_SPEED_DB * delta
 		
-		print(_audio_stream_player_1.volume_db)
-		print(_audio_stream_player_2.volume_db)
-		print('------')
+		# Clamp Values
+		audio_1_volume = clamp(audio_1_volume, AUDIO_MIN_VOLUME, AUDIO_MAX_VOLUME)
+		audio_2_volume = clamp(audio_2_volume, AUDIO_MIN_VOLUME, AUDIO_MAX_VOLUME)
 		
-		return
+		# Set Volume
+		_audio_stream_player_1.volume_db = linear_to_db(audio_1_volume)
+		_audio_stream_player_2.volume_db = linear_to_db(audio_2_volume)
 	
 	# Loop Check
 	if (_audio_stream_player_1.stream != null && 
@@ -80,18 +82,18 @@ func play_song(stream: AudioStreamWAV):
 	# Check if playing
 	if (_audio_stream_player_1.stream == null && 
 		_audio_stream_player_2.stream == null):
-		audio_1_focus = true
+		music_1_focus = true
 		_audio_stream_player_1.stream = stream
 		_audio_stream_player_1.play()
-		
+	
 	elif (_audio_stream_player_1.stream == null):
 		transitioning = true
-		audio_1_focus = true
+		music_1_focus = true
 		_audio_stream_player_1.stream = stream
 		_audio_stream_player_1.play()
-		
+	
 	else:
 		transitioning = true
-		audio_1_focus = false
+		music_1_focus = false
 		_audio_stream_player_2.stream = stream
 		_audio_stream_player_2.play()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=57 format=3 uid="uid://cmgjxmkmvt4i8"]
+[gd_scene load_steps=58 format=3 uid="uid://cmgjxmkmvt4i8"]
 
 [ext_resource type="Script" uid="uid://cyf7g14ruhs81" path="res://scripts/Games/3DPlatformer/main.gd" id="1_2f3es"]
 [ext_resource type="PackedScene" uid="uid://damq7sc16f061" path="res://assets/Visuals/3D Platformer/World Assets/block-grass-large-tall.glb" id="1_u60kq"]
+[ext_resource type="AudioStream" uid="uid://bib6qlmjibud1" path="res://assets/Music/Funky Dunk.wav" id="2_dcdbu"]
 [ext_resource type="PackedScene" uid="uid://67i3u0cudlbm" path="res://assets/Visuals/3D Platformer/World Assets/fence-corner-curved.glb" id="2_dd8pr"]
 [ext_resource type="PackedScene" uid="uid://dpfpg0itu7jtt" path="res://assets/Visuals/3D Platformer/World Assets/platform-ramp.glb" id="2_yt001"]
 [ext_resource type="PackedScene" uid="uid://c8hrhb55n3eqv" path="res://assets/Visuals/3D Platformer/World Assets/platform.glb" id="3_dd8pr"]
@@ -142,6 +143,7 @@ player_2 = NodePath("UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_
 game_goal = NodePath("Goal")
 game_label = NodePath("UILayer/UI/GameLabel")
 game_start_timer = NodePath("GameStartTimer")
+game_music = ExtResource("2_dcdbu")
 
 [node name="World" type="Node3D" parent="."]
 
@@ -817,8 +819,10 @@ player_label = NodePath("../../../../UI/PlayerLabels/Player1Label")
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1/Model/character-male-d" index="0"]
-bones/4/rotation = Quaternion(0, 0, -0.382683, 0.92388)
-bones/5/rotation = Quaternion(0, 0, 0.382683, 0.92388)
+bones/3/rotation = Quaternion(0.0413739, 0, 0, 0.999144)
+bones/4/rotation = Quaternion(0, 0, -0.268241, 0.963352)
+bones/5/rotation = Quaternion(0, 0, 0.268241, 0.963352)
+bones/6/rotation = Quaternion(0, -0.0413739, 0, 0.999144)
 
 [node name="AnimationPlayer" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1/Model" index="1"]
 autoplay = "idle"
@@ -862,10 +866,10 @@ player_label = NodePath("../../../../UI/PlayerLabels/Player2Label")
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2/Model/character-female-d" index="0"]
-bones/3/rotation = Quaternion(0.0181495, 0, 0, 0.999835)
-bones/4/rotation = Quaternion(0, 0, -0.349777, 0.936833)
-bones/5/rotation = Quaternion(0, 0, 0.349777, 0.936833)
-bones/6/rotation = Quaternion(0, -0.0181495, 0, 0.999835)
+bones/3/rotation = Quaternion(0.0413739, 0, 0, 0.999144)
+bones/4/rotation = Quaternion(0, 0, -0.268241, 0.963352)
+bones/5/rotation = Quaternion(0, 0, 0.268241, 0.963352)
+bones/6/rotation = Quaternion(0, -0.0413739, 0, 0.999144)
 
 [node name="AnimationPlayer" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2/Model" index="1"]
 autoplay = "idle"

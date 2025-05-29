@@ -11,6 +11,8 @@ var player2Action = Actions.NONE
 var player1Score = 0
 var player2Score = 0
 
+@export var game_music: AudioStreamWAV
+
 @export var no_point_icon: Texture
 @export var point_icon: Texture
 
@@ -54,6 +56,7 @@ func _ready() -> void:
 	
 	# Game Started
 	GlobalSignals.game_started.emit()
+	GlobalMusicManager.play_song(game_music)
 
 func _input(event: InputEvent) -> void:
 	# Checks

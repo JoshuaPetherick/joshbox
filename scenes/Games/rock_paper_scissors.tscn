@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbf0hmtootka"]
+[gd_scene load_steps=15 format=3 uid="uid://cbf0hmtootka"]
 
 [ext_resource type="Script" uid="uid://c75qr5ia2ndgk" path="res://scripts/Games/RockPaperScissors/main.gd" id="1_0uxnx"]
 [ext_resource type="Texture2D" uid="uid://jd8jr43ohomy" path="res://assets/Visuals/GameIcons.png" id="2_0uxnx"]
+[ext_resource type="AudioStream" uid="uid://032iiq7k7fti" path="res://assets/Music/Martini.wav" id="2_eumd7"]
 [ext_resource type="Texture2D" uid="uid://c4wdp7uiri1hl" path="res://assets/Visuals/Circle_Scores.png" id="2_nagne"]
 [ext_resource type="FontFile" uid="uid://dol81bbdnq80f" path="res://assets/Fonts/Default_Game.ttf" id="2_nbkgs"]
 [ext_resource type="Texture2D" uid="uid://5pmtl7koa7ty" path="res://assets/Visuals/BlueBackground.png" id="3_nbkgs"]
@@ -220,6 +221,7 @@ _data = {
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("point_1_icon_P1", "point_2_icon_P1", "point_1_icon_P2", "point_2_icon_P2", "action_1_icon_P1", "action_2_icon_P1", "action_3_icon_P1", "action_1_icon_P2", "action_2_icon_P2", "action_3_icon_P2")]
 script = ExtResource("1_0uxnx")
+game_music = ExtResource("2_eumd7")
 no_point_icon = SubResource("AtlasTexture_0uxnx")
 point_icon = SubResource("AtlasTexture_x4r11")
 point_1_icon_P1 = NodePath("UILayer/UI/TopRow/LPoints/Point1")
