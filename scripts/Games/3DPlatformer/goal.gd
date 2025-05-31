@@ -2,6 +2,8 @@ extends Area3D
 
 @onready
 var endgame_timer: Timer = $EndGameTimer
+@onready 
+var point_sfx: AudioStreamPlayer = $Point
 
 var winner: int = 0
 
@@ -19,6 +21,9 @@ func _on_body_entered(body: Node3D) -> void:
 			winner = 1
 		else:
 			winner = 2
+		
+		# Play SFX
+		point_sfx.play()
 		
 		# Start Endgame Timer
 		endgame_timer.start()

@@ -15,6 +15,10 @@ var game_label: Label
 var game_start_timer: Timer
 @export 
 var game_music: AudioStreamWAV
+@export
+var game_tick_sfx: AudioStreamPlayer 
+@export
+var game_start_sfx: AudioStreamPlayer 
 
 var game_tick: int = 0
 
@@ -72,6 +76,12 @@ func _on_game_start_timer_timeout():
 			
 			# Set Game Label
 			game_label.text = "GO!"
+			
+			# Play SFX
+			game_start_sfx.play()
 		_:
 			# Set Countdown text
 			game_label.text = str(GAME_START_TICK - game_tick)
+			
+			# Play SFX
+			game_tick_sfx.play()

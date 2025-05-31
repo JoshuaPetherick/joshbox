@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbf0hmtootka"]
+[gd_scene load_steps=19 format=3 uid="uid://cbf0hmtootka"]
 
 [ext_resource type="Script" uid="uid://c75qr5ia2ndgk" path="res://scripts/Games/RockPaperScissors/main.gd" id="1_0uxnx"]
 [ext_resource type="Texture2D" uid="uid://jd8jr43ohomy" path="res://assets/Visuals/GameIcons.png" id="2_0uxnx"]
@@ -7,6 +7,10 @@
 [ext_resource type="FontFile" uid="uid://dol81bbdnq80f" path="res://assets/Fonts/Default_Game.ttf" id="2_nbkgs"]
 [ext_resource type="Texture2D" uid="uid://5pmtl7koa7ty" path="res://assets/Visuals/BlueBackground.png" id="3_nbkgs"]
 [ext_resource type="Texture2D" uid="uid://cfsugrmlyg2v6" path="res://assets/Visuals/RockPaperSissors.png" id="5_0uxnx"]
+[ext_resource type="Script" uid="uid://br0r6i0tj6dbx" path="res://scripts/HUD/input_icon.gd" id="6_x4r11"]
+[ext_resource type="AudioStream" uid="uid://d1p27rn64udp" path="res://assets/SFX/ImpactLow.ogg" id="9_fftk1"]
+[ext_resource type="AudioStream" uid="uid://cm2dm0u7lb0kq" path="res://assets/SFX/ImpactHigh.ogg" id="10_0hlto"]
+[ext_resource type="AudioStream" uid="uid://hrifnadljhcy" path="res://assets/SFX/Point.ogg" id="11_0hlto"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0uxnx"]
 atlas = ExtResource("2_nagne")
@@ -108,6 +112,30 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [""]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SFX/ImpactLow:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SFX/ImpactHigh:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_0uxnx"]
@@ -212,6 +240,30 @@ tracks/7/keys = {
 "update": 1,
 "values": ["", "Rock", "Paper", "Scissors!"]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SFX/ImpactLow:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.666667, 1.33333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SFX/ImpactHigh:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nagne"]
 _data = {
@@ -219,21 +271,17 @@ _data = {
 &"Start": SubResource("Animation_0uxnx")
 }
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("point_1_icon_P1", "point_2_icon_P1", "point_1_icon_P2", "point_2_icon_P2", "action_1_icon_P1", "action_2_icon_P1", "action_3_icon_P1", "action_1_icon_P2", "action_2_icon_P2", "action_3_icon_P2")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("header_label", "point_sfx", "point_1_icon_P1", "point_2_icon_P1", "point_1_icon_P2", "point_2_icon_P2")]
 script = ExtResource("1_0uxnx")
 game_music = ExtResource("2_eumd7")
+header_label = NodePath("UILayer/UI/Buffer/Countdown")
+point_sfx = NodePath("SFX/Point")
 no_point_icon = SubResource("AtlasTexture_0uxnx")
 point_icon = SubResource("AtlasTexture_x4r11")
 point_1_icon_P1 = NodePath("UILayer/UI/TopRow/LPoints/Point1")
 point_2_icon_P1 = NodePath("UILayer/UI/TopRow/LPoints/Point2")
 point_1_icon_P2 = NodePath("UILayer/UI/TopRow/RPoints/Point1")
 point_2_icon_P2 = NodePath("UILayer/UI/TopRow/RPoints/Point2")
-action_1_icon_P1 = NodePath("UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Rock/Action1Icon")
-action_2_icon_P1 = NodePath("UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Paper/Action2Icon")
-action_3_icon_P1 = NodePath("UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Scissors/Action3Icon")
-action_1_icon_P2 = NodePath("UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Rock/Action1Icon")
-action_2_icon_P2 = NodePath("UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Paper/Action2Icon")
-action_3_icon_P2 = NodePath("UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Scissors/Action3Icon")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
@@ -334,6 +382,8 @@ horizontal_alignment = 1
 [node name="Action1Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Rock"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
+script = ExtResource("6_x4r11")
+input = "player_action_1"
 
 [node name="Paper" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
 layout_mode = 2
@@ -349,6 +399,8 @@ horizontal_alignment = 1
 [node name="Action2Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Paper"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
+script = ExtResource("6_x4r11")
+input = "player_action_2"
 
 [node name="Scissors" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
 layout_mode = 2
@@ -364,6 +416,8 @@ horizontal_alignment = 1
 [node name="Action3Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Scissors"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
+script = ExtResource("6_x4r11")
+input = "player_action_1"
 
 [node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
 layout_mode = 2
@@ -396,6 +450,9 @@ horizontal_alignment = 1
 [node name="Action1Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Rock"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
+script = ExtResource("6_x4r11")
+player = 2
+input = "player_action_1"
 
 [node name="Paper" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
 layout_mode = 2
@@ -411,6 +468,9 @@ horizontal_alignment = 1
 [node name="Action2Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Paper"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
+script = ExtResource("6_x4r11")
+player = 2
+input = "player_action_2"
 
 [node name="Scissors" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
 layout_mode = 2
@@ -426,6 +486,9 @@ horizontal_alignment = 1
 [node name="Action3Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Scissors"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
+script = ExtResource("6_x4r11")
+player = 2
+input = "player_action_3"
 
 [node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
 layout_mode = 2
@@ -459,5 +522,23 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="ImpactLow" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("9_fftk1")
+bus = &"SFX"
+
+[node name="ImpactHigh" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_0hlto")
+bus = &"SFX"
+
+[node name="Point" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("11_0hlto")
+bus = &"SFX"
+
+[node name="EndGameTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
