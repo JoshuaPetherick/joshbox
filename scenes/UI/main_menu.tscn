@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://1c8om7gpic31"]
+[gd_scene load_steps=19 format=3 uid="uid://1c8om7gpic31"]
 
 [ext_resource type="Theme" uid="uid://dpyvc17ddbao7" path="res://assets/UI/Default_Theme.tres" id="1_5d4ag"]
 [ext_resource type="Script" uid="uid://bh8ha7c2g46k4" path="res://scripts/UI/main_menu_tabs.gd" id="1_5jstl"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c77cvossrle0u" path="res://assets/UI/Backgrounds/GrassBackground.png" id="6_sfthw"]
 [ext_resource type="Script" uid="uid://biybat2qxspw7" path="res://scripts/UI/minigame_listing.gd" id="10_d6l81"]
 [ext_resource type="Resource" uid="uid://0eq6flshm4p5" path="res://resources/game_mapping.tres" id="11_a1wsg"]
+[ext_resource type="Script" uid="uid://fhw4n2gvbxax" path="res://scripts/UI/settings.gd" id="14_sfthw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mf7fl"]
 atlas = ExtResource("4_um6dh")
@@ -73,12 +74,11 @@ theme_override_constants/margin_bottom = 10
 
 [node name="WindowTabs" type="TabContainer" parent="Window"]
 layout_mode = 2
-current_tab = 1
+current_tab = 0
 tabs_visible = false
 script = ExtResource("1_5jstl")
 
 [node name="MainMenu" type="Control" parent="Window/WindowTabs"]
-visible = false
 custom_minimum_size = Vector2(275, 275)
 layout_mode = 2
 script = ExtResource("1_qwnig")
@@ -159,6 +159,7 @@ focus_neighbor_top = NodePath("../GameSelection")
 focus_neighbor_bottom = NodePath("../Setup")
 focus_next = NodePath("../Setup")
 focus_previous = NodePath("../GameSelection")
+disabled = true
 text = "Tournament"
 
 [node name="Setup" type="Button" parent="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
@@ -189,6 +190,7 @@ text = "Exit
 "
 
 [node name="GameSelection" type="Control" parent="Window/WindowTabs"]
+visible = false
 custom_minimum_size = Vector2(375, 375)
 layout_mode = 2
 metadata/_tab_index = 1
@@ -363,22 +365,111 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Back"
 
-[node name="Settings" type="Control" parent="Window/WindowTabs"]
+[node name="Settings" type="Control" parent="Window/WindowTabs" node_paths=PackedStringArray("master_volume", "music_volume", "sfx_volume")]
 visible = false
 layout_mode = 2
+script = ExtResource("14_sfthw")
+master_volume = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MasterVolume/HSlider")
+music_volume = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MusicVolume/HSlider")
+sfx_volume = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SFXVolume/HSlider")
 metadata/_tab_index = 4
 
-[node name="TODO" type="Control" parent="Window/WindowTabs/Settings"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CenterContainer" type="CenterContainer" parent="Window/WindowTabs/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Window/WindowTabs/Settings/CenterContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 48
+text = "Sound"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterVolume" type="HBoxContainer" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MasterVolume"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 2
+text = "Master"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 5.0
+
+[node name="MusicVolume" type="HBoxContainer" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MusicVolume"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 2
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 5.0
+
+[node name="SFXVolume" type="HBoxContainer" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SFXVolume"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 2
+text = "SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SFXVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 5.0
+
+[node name="Buffer" type="Control" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Back" type="Button" parent="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
 
 [connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Versus" to="Window/WindowTabs/MainMenu" method="_on_versus_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GameSelection" to="Window/WindowTabs" method="_on_game_selection_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Setup" to="Window/WindowTabs" method="_on_setup_pressed"]
+[connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Settings" to="Window/WindowTabs" method="_on_settings_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Exit" to="Window/WindowTabs/MainMenu" method="_on_exit_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back" to="Window/WindowTabs" method="_on_back_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/ConnectPlayer1" to="Window/WindowTabs/Setup" method="_on_connect_player_1_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup/ConnectPlayer2" to="Window/WindowTabs/Setup" method="_on_connect_player_2_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back" to="Window/WindowTabs" method="_on_back_pressed"]
+[connection signal="pressed" from="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back" to="Window/WindowTabs" method="_on_back_pressed"]

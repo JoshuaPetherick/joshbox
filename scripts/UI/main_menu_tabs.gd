@@ -9,5 +9,8 @@ func _on_game_selection_pressed() -> void:
 func _on_setup_pressed() -> void:
 	current_tab = 3
 
+func _on_settings_pressed() -> void:
+	current_tab = 4
+
 func _on_back_pressed() -> void:
 	current_tab = 0
