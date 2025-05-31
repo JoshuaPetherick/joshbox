@@ -2,8 +2,10 @@ extends Control
 
 @export var device_info_p1: Label
 @export var device_icon_p1: TextureRect
+@export var device_listen_p1: Button
 @export var device_info_p2: Label
 @export var device_icon_p2: TextureRect
+@export var device_listen_p2: Button
 
 func _ready() -> void:
 	update_ui()
@@ -18,9 +20,11 @@ func _on_device_connected(_player: int):
 	update_ui()
 
 func _on_connect_player_1_pressed() -> void:
+	device_listen_p1.text = "Listening..."
 	GlobalDeviceManager.listen_for_device(1)
 
 func _on_connect_player_2_pressed() -> void:
+	device_listen_p2.text = "Listening..."
 	GlobalDeviceManager.listen_for_device(2)
 
 #endregion
@@ -28,6 +32,10 @@ func _on_connect_player_2_pressed() -> void:
 #region Operations
 
 func update_ui():
+	# Reset Text
+	device_listen_p1.text = "Connect"
+	device_listen_p2.text = "Connect"
+	
 	# Iterate 
 	for i in range(1, 3):
 		# Setup
