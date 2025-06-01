@@ -251,13 +251,15 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Setup" type="Control" parent="Window/WindowTabs" node_paths=PackedStringArray("device_info_p1", "device_icon_p1", "device_listen_p1", "device_info_p2", "device_icon_p2", "device_listen_p2")]
+[node name="Setup" type="Control" parent="Window/WindowTabs" node_paths=PackedStringArray("player_name_p1", "device_info_p1", "device_icon_p1", "device_listen_p1", "player_name_p2", "device_info_p2", "device_icon_p2", "device_listen_p2")]
 visible = false
 layout_mode = 2
 script = ExtResource("4_e2p27")
+player_name_p1 = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/PanelContainer/VBoxContainer/Header")
 device_info_p1 = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/PanelContainer/VBoxContainer/DeviceInfo")
 device_icon_p1 = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/PanelContainer/VBoxContainer/DeviceIcon")
 device_listen_p1 = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/ConnectPlayer1")
+player_name_p2 = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup/PanelContainer/VBoxContainer/Header")
 device_info_p2 = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup/PanelContainer/VBoxContainer/DeviceInfo")
 device_icon_p2 = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup/PanelContainer/VBoxContainer/DeviceIcon")
 device_listen_p2 = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup/ConnectPlayer2")
@@ -304,10 +306,11 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_mf7fl")
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/PanelContainer"]
 layout_mode = 2
 
-[node name="Header" type="Label" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/PanelContainer/VBoxContainer"]
+[node name="Header" type="LineEdit" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Player 1"
-horizontal_alignment = 1
+alignment = 1
 
 [node name="DeviceIcon" type="TextureRect" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 150)
@@ -340,10 +343,11 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_mf7fl")
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup/PanelContainer"]
 layout_mode = 2
 
-[node name="Header" type="Label" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup/PanelContainer/VBoxContainer"]
+[node name="Header" type="LineEdit" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Player 2"
-horizontal_alignment = 1
+alignment = 1
 
 [node name="DeviceIcon" type="TextureRect" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 150)

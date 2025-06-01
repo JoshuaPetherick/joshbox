@@ -417,7 +417,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 script = ExtResource("6_x4r11")
-input = "player_action_1"
+input = "player_action_3"
 
 [node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
 layout_mode = 2

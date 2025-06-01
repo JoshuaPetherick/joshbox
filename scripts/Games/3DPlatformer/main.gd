@@ -51,9 +51,9 @@ func _on_body_entered(body: Node3D) -> void:
 	if (body is Player):
 		# Get Winner
 		if (body.name == "Player_1"):
-			game_label.text = "Player 1 Wins!"
+			game_label.text = GlobalGameProperties.player_1_name + " Wins!"
 		else:
-			game_label.text = "Player 2 Wins!"
+			game_label.text = GlobalGameProperties.player_2_name + " Wins!"
 
 func _on_game_start_timer_timeout():
 	# Increment Game Tick
