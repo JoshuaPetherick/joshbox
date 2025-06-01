@@ -46,9 +46,17 @@ func on_game_load():
 			GlobalGameProperties.player_scores_dict = {1: 0, 2: 0}
 			
 			# Generate Versus Game Listing
-			while _gameScenes.size() < VERSUS_GAME_COUNT:
+			var max_game_count = VERSUS_GAME_COUNT
+			if (game_mapping.minigames.size() < VERSUS_GAME_COUNT):
+				max_game_count = game_mapping.minigames.size()
+
+			while _gameScenes.size() < max_game_count:
+				# Setup
 				var minigame_index = rng.randi_range(0, game_mapping.minigames.size() - 1)
-				_gameScenes.append(game_mapping.minigames.values()[minigame_index])
+				var minigame_scene = game_mapping.minigames.values()[minigame_index]
+				
+				if (not _gameScenes.has(minigame_scene)):
+					_gameScenes.append(minigame_scene)
 			
 			# Queue Next Game
 			_nextScene = _gameScenes[1].resource_path
