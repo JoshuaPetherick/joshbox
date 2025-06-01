@@ -1,14 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://m3ras8dookfr"]
+[gd_scene load_steps=4 format=3 uid="uid://m3ras8dookfr"]
 
 [ext_resource type="PackedScene" uid="uid://1c8om7gpic31" path="res://scenes/UI/main_menu.tscn" id="1_0wu41"]
 [ext_resource type="Script" uid="uid://by3cuuekhmoen" path="res://scripts/app.gd" id="1_1670a"]
+[ext_resource type="Resource" uid="uid://0eq6flshm4p5" path="res://resources/game_mapping.tres" id="3_dmsei"]
 
-[node name="App" type="Node" node_paths=PackedStringArray("current")]
+[node name="App" type="Node" node_paths=PackedStringArray("current", "scores_label", "schedule_label")]
 script = ExtResource("1_1670a")
 menuScene = ExtResource("1_0wu41")
+game_mapping = ExtResource("3_dmsei")
 current = NodePath("Current")
+scores_label = NodePath("Overlay/MarginContainer/Score")
+schedule_label = NodePath("Overlay/MarginContainer/Schedule")
 
 [node name="Overlay" type="CanvasLayer" parent="."]
+layer = 99
+
+[node name="MarginContainer" type="MarginContainer" parent="Overlay"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 25
+
+[node name="Score" type="Label" parent="Overlay/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.960351, 0.960351, 0.960351, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+text = "Player 1 vs Player 2
+0 : 0 "
+horizontal_alignment = 1
+
+[node name="Schedule" type="Label" parent="Overlay/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.960784, 0.960784, 0.960784, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+text = "Up Next: 
+Player 1 vs Player 2"
+horizontal_alignment = 1
 
 [node name="Current" type="Node" parent="."]
 
