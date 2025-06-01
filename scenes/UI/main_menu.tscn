@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://1c8om7gpic31"]
+[gd_scene load_steps=24 format=3 uid="uid://1c8om7gpic31"]
 
 [ext_resource type="Theme" uid="uid://dpyvc17ddbao7" path="res://assets/UI/Default_Theme.tres" id="1_5d4ag"]
 [ext_resource type="Script" uid="uid://bh8ha7c2g46k4" path="res://scripts/UI/main_menu_tabs.gd" id="1_5jstl"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://biybat2qxspw7" path="res://scripts/UI/minigame_listing.gd" id="10_d6l81"]
 [ext_resource type="Resource" uid="uid://0eq6flshm4p5" path="res://resources/game_mapping.tres" id="11_a1wsg"]
 [ext_resource type="Script" uid="uid://fhw4n2gvbxax" path="res://scripts/UI/settings.gd" id="14_sfthw"]
+[ext_resource type="Script" uid="uid://bousnyy6cwne6" path="res://scripts/UI/victory_screen.gd" id="15_scr1a"]
+[ext_resource type="Texture2D" uid="uid://jd8jr43ohomy" path="res://assets/Visuals/GameIcons.png" id="16_d0t0a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mf7fl"]
 atlas = ExtResource("4_um6dh")
@@ -37,6 +39,18 @@ texture_margin_left = 12.0
 texture_margin_top = 38.0
 texture_margin_right = 12.0
 texture_margin_bottom = 38.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scr1a"]
+atlas = ExtResource("16_d0t0a")
+region = Rect2(0, 1152, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0t0a"]
+atlas = ExtResource("16_d0t0a")
+region = Rect2(128, 1152, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfqjx"]
+atlas = ExtResource("16_d0t0a")
+region = Rect2(128, 1152, 128, 128)
 
 [node name="HomeMenu" type="Control" node_paths=PackedStringArray("background_node")]
 layout_mode = 3
@@ -471,6 +485,84 @@ layout_mode = 2
 layout_mode = 2
 text = "Back"
 
+[node name="VictoryScreen" type="Control" parent="Window/WindowTabs" node_paths=PackedStringArray("icons_list", "names_list", "scores_list")]
+visible = false
+layout_mode = 2
+script = ExtResource("15_scr1a")
+icons_list = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/Results/Icons")
+names_list = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/Results/Names")
+scores_list = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/Results/Scores")
+first_place_icon = SubResource("AtlasTexture_scr1a")
+second_place_icon = SubResource("AtlasTexture_d0t0a")
+third_place_icon = SubResource("AtlasTexture_wfqjx")
+metadata/_tab_index = 5
+
+[node name="CenterContainer" type="CenterContainer" parent="Window/WindowTabs/VictoryScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Window/WindowTabs/VictoryScreen/CenterContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Window/WindowTabs/VictoryScreen/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/WindowTabs/VictoryScreen/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Header" type="Label" parent="Window/WindowTabs/VictoryScreen/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 48
+text = "Results"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Window/WindowTabs/VictoryScreen/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Window/WindowTabs/VictoryScreen/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 5
+
+[node name="Results" type="HBoxContainer" parent="Window/WindowTabs/VictoryScreen/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Icons" type="VBoxContainer" parent="Window/WindowTabs/VictoryScreen/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/Results"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Names" type="VBoxContainer" parent="Window/WindowTabs/VictoryScreen/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/Results"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Scores" type="VBoxContainer" parent="Window/WindowTabs/VictoryScreen/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/Results"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Back" type="Button" parent="Window/WindowTabs/VictoryScreen/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Return to Main Menu"
+
 [connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Versus" to="Window/WindowTabs/MainMenu" method="_on_versus_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GameSelection" to="Window/WindowTabs" method="_on_game_selection_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Setup" to="Window/WindowTabs" method="_on_setup_pressed"]
@@ -481,3 +573,4 @@ text = "Back"
 [connection signal="pressed" from="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup/ConnectPlayer2" to="Window/WindowTabs/Setup" method="_on_connect_player_2_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back" to="Window/WindowTabs" method="_on_back_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back" to="Window/WindowTabs" method="_on_back_pressed"]
+[connection signal="pressed" from="Window/WindowTabs/VictoryScreen/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back" to="Window/WindowTabs" method="_on_back_pressed"]

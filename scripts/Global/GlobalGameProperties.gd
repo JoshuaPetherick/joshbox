@@ -1,9 +1,9 @@
 extends Node
 
-enum GameTypes { VERSUS, SINGLE, TOURNAMENT }
+enum GameTypes { NONE, VERSUS, SINGLE, TOURNAMENT }
 
 # Game Management Variables
-var game_type: GameTypes
+var game_type: GameTypes = GameTypes.NONE
 var game_scene: PackedScene
 
 # Player Variables
