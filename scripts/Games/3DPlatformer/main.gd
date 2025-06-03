@@ -40,7 +40,6 @@ func _ready() -> void:
 	
 	# Start Timer
 	game_start_timer.start()
-	
 
 func _on_body_entered(body: Node3D) -> void:
 	# Check
@@ -51,9 +50,9 @@ func _on_body_entered(body: Node3D) -> void:
 	if (body is Player):
 		# Get Winner
 		if (body.name == "Player_1"):
-			game_label.text = GlobalGameProperties.player_1_name + " Wins!"
+			game_label.text = GlobalGameProperties.get_player_name(1) + " Wins!"
 		else:
-			game_label.text = GlobalGameProperties.player_2_name + " Wins!"
+			game_label.text = GlobalGameProperties.get_player_name(2) + " Wins!"
 
 func _on_game_start_timer_timeout():
 	# Increment Game Tick

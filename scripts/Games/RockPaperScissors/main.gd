@@ -141,13 +141,13 @@ func finish_round():
 	if (player1Score >= MAX_SCORE):
 		winner = 1
 		endgame_timer.start()
-		header_label.text = GlobalGameProperties.player_1_name + " Wins!"
+		header_label.text = GlobalGameProperties.get_player_name(1) + " Wins!"
 		
 	# Player 2 Wins!
 	elif (player2Score >= MAX_SCORE):
 		winner = 2
 		endgame_timer.start()
-		header_label.text = GlobalGameProperties.player_2_name + " Wins!"
+		header_label.text = GlobalGameProperties.get_player_name(2) + " Wins!"
 		
 	# Restart Round
 	else:

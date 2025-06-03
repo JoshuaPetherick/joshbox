@@ -12,17 +12,18 @@ const VERSUS_GAME_COUNT: int = 5
 @export var schedule_label: Label
 @export var header_label: Label
 @export var versus_label: Label
-@export var ready_check: Control
 @export var ready_player_1_label: Label
+@export var ready_player_1_icon: TextureRect
 @export var ready_player_2_label: Label
+@export var ready_player_2_icon: TextureRect
 @export var animation_player: AnimationPlayer
 
 # Game Properties
 var _nextScene: String
 var _gameScenes: Array[PackedScene]
 var _rng: RandomNumberGenerator
-var _player_1_ready: bool = false
-var _player_2_ready: bool = false
+var _player_1_ready: bool = true
+var _player_2_ready: bool = true
 
 # Tournament Properties
 var _round_id: int = 1
@@ -42,7 +43,8 @@ func _ready() -> void:
 	versus_label.text = ""
 	ready_player_1_label.text = ""
 	ready_player_2_label.text = ""
-	ready_check.visible = false
+	ready_player_1_icon.visible = false
+	ready_player_2_icon.visible = false
 	
 	# Setup Signals
 	GlobalSignals.game_load.connect(on_game_load)
@@ -55,7 +57,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	# Checks
-	if (not ready_check.visible):
+	if (_player_1_ready == true && _player_2_ready == true):
 		return
 	
 	if (not event.is_action("player_action_8")):
@@ -84,7 +86,8 @@ func _input(event: InputEvent) -> void:
 	versus_label.text = ""
 	ready_player_1_label.text = ""
 	ready_player_2_label.text = ""
-	ready_check.visible = false
+	ready_player_1_icon.visible = false
+	ready_player_2_icon.visible = false
 	
 	# Start Game
 	_load_next_scene()
@@ -127,6 +130,11 @@ func on_game_load():
 			# Get Tournament Pairings
 			_generate_tournament_pairings();
 			
+			# Clear + Append Scores
+			GlobalGameProperties.player_scores_dict.clear()
+			for i in range(0, GlobalGameProperties.tournament_names.size()):
+				GlobalGameProperties.player_scores_dict[i] = 0
+			
 			# Get Pairings
 			_nextPairing = _tournamentPairings[_rng.randi_range(0, _tournamentPairings.size() - 1)]
 			_nextScene = _nextPairing.game_scene.resource_path
@@ -154,7 +162,12 @@ func on_game_load():
 ## It'll also update the Overlay to state player scores or who will be playing next in a tournament mode. 
 func on_game_started():
 	# Pass to Resource Loader for background loading
-	ResourceLoader.load_threaded_request(_nextScene)
+	match GlobalGameProperties.game_type:
+		GlobalGameProperties.GameTypes.VERSUS:
+			ResourceLoader.load_threaded_request(_nextScene)
+			
+		GlobalGameProperties.GameTypes.SINGLE:
+			ResourceLoader.load_threaded_request(_nextScene)
 	
 	# Setup Labels
 	match GlobalGameProperties.game_type:
@@ -166,15 +179,15 @@ func on_game_started():
 
 ## This gets called once a game has been completed so it can handle the winners score and load the next scene (prepared by _on_game_started). 
 func on_game_finished(winner: int):
-	# Set Score
-	if (!GlobalGameProperties.player_scores_dict.has(winner)):
-		GlobalGameProperties.player_scores_dict[winner] = 1
-	else:
-		GlobalGameProperties.player_scores_dict[winner] += 1
-	
-	# Prepare Next Scene
+	# Set Scores + Next Steps
 	match GlobalGameProperties.game_type:
 		GlobalGameProperties.GameTypes.TOURNAMENT:
+			# Set Score
+			if (winner == 1):
+				GlobalGameProperties.player_scores_dict[_nextPairing.player_1_id] += 1
+			else:
+				GlobalGameProperties.player_scores_dict[_nextPairing.player_2_id] += 1
+			
 			# Clear current labels
 			schedule_label.text = ""
 			
@@ -189,6 +202,7 @@ func on_game_finished(winner: int):
 			if (_tournamentPairings.size() > 0):
 				# Get Next Pairing
 				_nextPairing = _tournamentPairings[_rng.randi_range(0, _tournamentPairings.size() - 1)]
+				_nextScene = _nextPairing.game_scene.resource_path
 				
 				# Clear from Listing
 				_tournamentPairings.erase(_nextPairing)
@@ -196,7 +210,16 @@ func on_game_finished(winner: int):
 				# Load Menu Scene
 				_nextPairing = null
 				_nextScene = menuScene.resource_path
-				ResourceLoader.load_threaded_request(_nextScene)
+			
+			# Pass to Resource Loader for background loading
+			ResourceLoader.load_threaded_request(_nextScene)
+		
+		_:
+			# Set Score
+			if (!GlobalGameProperties.player_scores_dict.has(winner)):
+				GlobalGameProperties.player_scores_dict[winner] = 1
+			else:
+				GlobalGameProperties.player_scores_dict[winner] += 1
 	
 	# Fade Out
 	animation_player.play("fade_out")
@@ -213,12 +236,16 @@ func _on_animation_finished(anim_name: String):
 						_player_1_ready = false
 						_player_2_ready = false
 						
+						GlobalGameProperties.tournament_player_1_name = GlobalGameProperties.tournament_names[_nextPairing.player_1_id]
+						GlobalGameProperties.tournament_player_2_name = GlobalGameProperties.tournament_names[_nextPairing.player_2_id]
+						
 						# Update UI
 						header_label.text = "Tournament %s %s" % [_round_text, _round_id]
 						versus_label.text = "%s vs %s" % [GlobalGameProperties.tournament_names[_nextPairing.player_1_id], GlobalGameProperties.tournament_names[_nextPairing.player_2_id]]
 						ready_player_1_label.text = "Not Ready"
+						ready_player_1_icon.visible = true
 						ready_player_2_label.text = "Not Ready"
-						ready_check.visible = true
+						ready_player_2_icon.visible = true
 						
 						# Remove Previous Scene
 						current.remove_child(current.get_child(0))
@@ -230,8 +257,8 @@ func _on_animation_finished(anim_name: String):
 						animation_player.play("fade_in")
 				
 				_:
-					# Load Scene
-					_load_next_scene()
+					# Setup
+					var sceneToLoad = ResourceLoader.load_threaded_get(_nextScene)
 					
 					# Main Menu check
 					if (_gameScenes.size() == 0):
@@ -245,6 +272,13 @@ func _on_animation_finished(anim_name: String):
 					
 						# Remove First Record
 						_gameScenes.remove_at(0)
+					
+					# Remove Current
+					if (current.get_child_count() > 0):
+						current.remove_child(current.get_child(0))
+
+					# Load Next Scene
+					current.add_child(sceneToLoad.instantiate())
 					
 					# Play Fade In
 					animation_player.play("fade_in")
