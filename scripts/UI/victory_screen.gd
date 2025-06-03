@@ -135,7 +135,7 @@ func get_player_name(index: int) -> String:
 			else:
 				return GlobalGameProperties.player_2_name
 		GlobalGameProperties.GameTypes.TOURNAMENT:
-			pass #TODO
+			return GlobalGameProperties.tournament_names[index]
 	
 	# Return empty string upon error!
 	return ""

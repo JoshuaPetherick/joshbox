@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://1c8om7gpic31"]
+[gd_scene load_steps=25 format=3 uid="uid://1c8om7gpic31"]
 
 [ext_resource type="Theme" uid="uid://dpyvc17ddbao7" path="res://assets/UI/Default_Theme.tres" id="1_5d4ag"]
 [ext_resource type="Script" uid="uid://bh8ha7c2g46k4" path="res://scripts/UI/main_menu_tabs.gd" id="1_5jstl"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c77cvossrle0u" path="res://assets/UI/Backgrounds/GrassBackground.png" id="6_sfthw"]
 [ext_resource type="Script" uid="uid://biybat2qxspw7" path="res://scripts/UI/minigame_listing.gd" id="10_d6l81"]
 [ext_resource type="Resource" uid="uid://0eq6flshm4p5" path="res://resources/game_mapping.tres" id="11_a1wsg"]
+[ext_resource type="Script" uid="uid://b8bswwc34ne6e" path="res://scripts/UI/tournament.gd" id="13_d0t0a"]
 [ext_resource type="Script" uid="uid://fhw4n2gvbxax" path="res://scripts/UI/settings.gd" id="14_sfthw"]
 [ext_resource type="Script" uid="uid://bousnyy6cwne6" path="res://scripts/UI/victory_screen.gd" id="15_scr1a"]
 [ext_resource type="Texture2D" uid="uid://jd8jr43ohomy" path="res://assets/Visuals/GameIcons.png" id="16_d0t0a"]
@@ -173,7 +174,6 @@ focus_neighbor_top = NodePath("../GameSelection")
 focus_neighbor_bottom = NodePath("../Setup")
 focus_next = NodePath("../Setup")
 focus_previous = NodePath("../GameSelection")
-disabled = true
 text = "Tournament"
 
 [node name="Setup" type="Button" parent="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
@@ -232,6 +232,13 @@ theme_override_constants/margin_bottom = 25
 layout_mode = 2
 theme_override_constants/separation = 10
 
+[node name="Header" type="Label" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 48
+text = "Minigames"
+horizontal_alignment = 1
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
@@ -255,15 +262,101 @@ game_mapping = ExtResource("11_a1wsg")
 layout_mode = 2
 text = "Back"
 
-[node name="Tournament" type="Control" parent="Window/WindowTabs"]
+[node name="Tournament" type="Control" parent="Window/WindowTabs" node_paths=PackedStringArray("player_listing", "start_button", "add_player_button", "remove_player_button")]
 visible = false
 layout_mode = 2
+script = ExtResource("13_d0t0a")
+player_listing = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/PlayerListing")
+start_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Start")
+add_player_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Add")
+remove_player_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Remove")
 metadata/_tab_index = 2
 
-[node name="TODO" type="Control" parent="Window/WindowTabs/Tournament"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CenterContainer" type="CenterContainer" parent="Window/WindowTabs/Tournament"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Window/WindowTabs/Tournament/CenterContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="Label" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 48
+text = "Tournament"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 5
+
+[node name="PlayerListing" type="VBoxContainer" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+
+[node name="Player_1" type="LineEdit" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/PlayerListing"]
+layout_mode = 2
+text = "Player 1"
+alignment = 1
+
+[node name="Player_2" type="LineEdit" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/PlayerListing"]
+layout_mode = 2
+text = "Player 2"
+alignment = 1
+
+[node name="Player_3" type="LineEdit" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/PlayerListing"]
+layout_mode = 2
+text = "Player 3"
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Add" type="Button" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add"
+
+[node name="Remove" type="Button" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Remove"
+
+[node name="Start" type="Button" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Back" type="Button" parent="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
 
 [node name="Setup" type="Control" parent="Window/WindowTabs" node_paths=PackedStringArray("player_name_p1", "device_info_p1", "device_icon_p1", "device_listen_p1", "player_name_p2", "device_info_p2", "device_icon_p2", "device_listen_p2")]
 visible = false
@@ -322,7 +415,6 @@ layout_mode = 2
 
 [node name="Header" type="LineEdit" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Player 1"
 alignment = 1
 
@@ -359,7 +451,7 @@ layout_mode = 2
 
 [node name="Header" type="LineEdit" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 text = "Player 2"
 alignment = 1
 
@@ -565,10 +657,12 @@ text = "Return to Main Menu"
 
 [connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Versus" to="Window/WindowTabs/MainMenu" method="_on_versus_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/GameSelection" to="Window/WindowTabs" method="_on_game_selection_pressed"]
+[connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Tournament" to="Window/WindowTabs" method="_on_tournament_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Setup" to="Window/WindowTabs" method="_on_setup_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Settings" to="Window/WindowTabs" method="_on_settings_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Exit" to="Window/WindowTabs/MainMenu" method="_on_exit_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back" to="Window/WindowTabs" method="_on_back_pressed"]
+[connection signal="pressed" from="Window/WindowTabs/Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back" to="Window/WindowTabs" method="_on_back_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/ConnectPlayer1" to="Window/WindowTabs/Setup" method="_on_connect_player_1_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup/ConnectPlayer2" to="Window/WindowTabs/Setup" method="_on_connect_player_2_pressed"]
 [connection signal="pressed" from="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back" to="Window/WindowTabs" method="_on_back_pressed"]
