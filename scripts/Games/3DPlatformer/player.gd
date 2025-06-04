@@ -9,6 +9,10 @@ const RESPAWN_TICK = 3
 var player_id: int = 1
 @export
 var player_label: Label
+@export
+var footstep_sfx: AudioStreamPlayer 
+@export
+var jump_sfx: AudioStreamPlayer 
 
 # Game Components
 @onready
@@ -17,8 +21,9 @@ var animation_tree: AnimationTree = $AnimationTree
 var respawn_timer: Timer = $Respawn
 
 # Game Variables
-var checkpoint: Vector3
 var can_move: bool 
+var checkpoint: Vector3
+var rng: RandomNumberGenerator
 
 # Movement Variables
 var up_strength: float 
@@ -31,6 +36,7 @@ var respawn_tick: int = 0
 
 func _ready() -> void:
 	checkpoint = global_position
+	rng = RandomNumberGenerator.new()
 	respawn_timer.timeout.connect(_on_respawn_timer)
 
 func _physics_process(delta: float) -> void:
@@ -59,6 +65,14 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle Animation
 	handle_animation()
+	
+	# Handle SFX
+	if (velocity.x != 0 || velocity.z != 0):
+		if (not footstep_sfx.playing && is_on_floor()):
+			footstep_sfx.pitch_scale = 1.0 + rng.randf_range(-0.1, 0.1)
+			footstep_sfx.play()
+		elif (footstep_sfx.playing && not is_on_floor()):
+			footstep_sfx.stop()
 
 func _input(event: InputEvent) -> void:
 	# Setup
@@ -94,7 +108,12 @@ func _input(event: InputEvent) -> void:
 	
 	# Handle jump.
 	if event.is_action("player_action_8") and is_on_floor():
+		# Apply Velocity
 		velocity.y = JUMP_VELOCITY
+		
+		# Play SFX
+		jump_sfx.pitch_scale = 1.0 + rng.randf_range(-0.1, 0.1)
+		jump_sfx.play()
 
 func handle_animation():
 	# Handles Jumping/Falling

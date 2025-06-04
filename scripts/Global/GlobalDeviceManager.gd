@@ -38,11 +38,19 @@ func _input(event: InputEvent) -> void:
 		&& Input.is_action_just_pressed("player_action_5") != true
 		&& Input.is_action_just_pressed("player_action_6") != true
 		&& Input.is_action_just_pressed("player_action_7") != true
-		&& Input.is_action_just_pressed("player_action_8") != true):
+		&& Input.is_action_just_pressed("player_action_8") != true
+		&& Input.is_action_just_pressed("player_action_9") != true
+		&& Input.is_action_just_pressed("player_action_10") != true
+		&& Input.is_action_just_pressed("player_action_11") != true
+		&& Input.is_action_just_pressed("player_action_12") != true):
 		return
 	
 	# Get Device based on Event
 	var deviceId = get_actual_device_id(event)
+	
+	# Unassign device if already assigned
+	if (get_player_from_device(deviceId) != null):
+		_player_dict[get_player_from_device(deviceId)] = -1
 	
 	# Assign Device to Player
 	_player_dict[_player_index] = deviceId
@@ -100,7 +108,9 @@ func get_actual_device_id(event: InputEvent):
 	return event.device
 
 func get_device_name(device: int):
-	if (device == -2):
+	if (device == -1):
+		return "Missing"
+	elif (device == -2):
 		return "Mouse + Keyboard"
 	return "%s %s" % [Input.get_joy_name(device), (device + 1)]
 
@@ -108,6 +118,10 @@ func get_controller_icon(device: int):
 	# Setup
 	var device_name = get_device_name(device)
 	var controller_type = icon_mapping.get_controller_type(device_name)
+	
+	# Check
+	if (device_name == "Missing"):
+		return null
 	
 	# Result
 	return icon_mapping.controller_icon[controller_type]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=57 format=3 uid="uid://cmgjxmkmvt4i8"]
+[gd_scene load_steps=64 format=3 uid="uid://cmgjxmkmvt4i8"]
 
 [ext_resource type="Script" uid="uid://cyf7g14ruhs81" path="res://scripts/Games/3DPlatformer/main.gd" id="1_2f3es"]
 [ext_resource type="PackedScene" uid="uid://damq7sc16f061" path="res://assets/Visuals/3D Platformer/World Assets/block-grass-large-tall.glb" id="1_u60kq"]
+[ext_resource type="AudioStream" uid="uid://bib6qlmjibud1" path="res://assets/Music/Funky Dunk.wav" id="2_dcdbu"]
 [ext_resource type="PackedScene" uid="uid://67i3u0cudlbm" path="res://assets/Visuals/3D Platformer/World Assets/fence-corner-curved.glb" id="2_dd8pr"]
 [ext_resource type="PackedScene" uid="uid://dpfpg0itu7jtt" path="res://assets/Visuals/3D Platformer/World Assets/platform-ramp.glb" id="2_yt001"]
 [ext_resource type="PackedScene" uid="uid://c8hrhb55n3eqv" path="res://assets/Visuals/3D Platformer/World Assets/platform.glb" id="3_dd8pr"]
@@ -25,8 +26,51 @@
 [ext_resource type="Script" uid="uid://smckoy2i6611" path="res://scripts/Games/3DPlatformer/player.gd" id="19_drrnw"]
 [ext_resource type="Script" uid="uid://qcxn8huubpm2" path="res://scripts/Games/3DPlatformer/boundary.gd" id="20_87sjw"]
 [ext_resource type="Script" uid="uid://mwrriuisvqcp" path="res://scripts/Games/3DPlatformer/goal.gd" id="20_a5oom"]
+[ext_resource type="AudioStream" uid="uid://c3dngnoo7xvl8" path="res://assets/SFX/Splash.ogg" id="24_14xsg"]
 [ext_resource type="FontFile" uid="uid://dol81bbdnq80f" path="res://assets/Fonts/Default_Game.ttf" id="26_7tvn1"]
 [ext_resource type="Script" uid="uid://br0r6i0tj6dbx" path="res://scripts/HUD/input_icon.gd" id="27_dcdbu"]
+[ext_resource type="AudioStream" uid="uid://ctgxto7tgue5t" path="res://assets/SFX/Footstep.ogg" id="30_7uhle"]
+[ext_resource type="AudioStream" uid="uid://cov0gwvm262vd" path="res://assets/SFX/Jump.ogg" id="31_0ynu8"]
+[ext_resource type="AudioStream" uid="uid://d1p27rn64udp" path="res://assets/SFX/ImpactLow.ogg" id="32_qgt3l"]
+[ext_resource type="AudioStream" uid="uid://cm2dm0u7lb0kq" path="res://assets/SFX/ImpactHigh.ogg" id="33_egryy"]
+[ext_resource type="AudioStream" uid="uid://hrifnadljhcy" path="res://assets/SFX/Point.ogg" id="34_egryy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fu04p"]
+radius = 0.225
+height = 0.7
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2f3es"]
+animation = &"fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1f4iu"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7tvn1"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_dcdbu"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_14xsg"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8jp3a"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7uhle"]
+graph_offset = Vector2(-393.223, 62.4049)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_1f4iu")
+nodes/Animation/position = Vector2(-160, 420)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_2f3es")
+"nodes/Animation 2/position" = Vector2(-160, 580)
+nodes/IdleAnim/node = SubResource("AnimationNodeAnimation_7tvn1")
+nodes/IdleAnim/position = Vector2(-160, 60)
+nodes/JumpBlend/node = SubResource("AnimationNodeBlend3_dcdbu")
+nodes/JumpBlend/position = Vector2(300, 360)
+nodes/MoveBlend/node = SubResource("AnimationNodeBlend2_14xsg")
+nodes/MoveBlend/position = Vector2(80, 180)
+nodes/SprintAnim/node = SubResource("AnimationNodeAnimation_8jp3a")
+nodes/SprintAnim/position = Vector2(-160, 240)
+nodes/output/position = Vector2(600, 200)
+node_connections = [&"JumpBlend", 0, &"MoveBlend", &"JumpBlend", 1, &"Animation 2", &"JumpBlend", 2, &"Animation", &"MoveBlend", 0, &"IdleAnim", &"MoveBlend", 1, &"SprintAnim", &"output", 0, &"JumpBlend"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cvwdr"]
 sky_top_color = Color(0.255269, 0.402546, 0.8706, 1)
@@ -98,50 +142,415 @@ size = Vector3(5, 1, 5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2kokf"]
 size = Vector3(1000, 1, 1000)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fu04p"]
-radius = 0.225
-height = 0.7
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2f3es"]
-animation = &"fall"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1f4iu"]
-animation = &"jump"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7tvn1"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_dcdbu"]
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_14xsg"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8jp3a"]
-animation = &"walk"
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7uhle"]
-graph_offset = Vector2(-505.269, 34.8397)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_1f4iu")
-nodes/Animation/position = Vector2(-160, 420)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_2f3es")
-"nodes/Animation 2/position" = Vector2(-160, 580)
-nodes/IdleAnim/node = SubResource("AnimationNodeAnimation_7tvn1")
-nodes/IdleAnim/position = Vector2(-160, 60)
-nodes/JumpBlend/node = SubResource("AnimationNodeBlend3_dcdbu")
-nodes/JumpBlend/position = Vector2(300, 360)
-nodes/MoveBlend/node = SubResource("AnimationNodeBlend2_14xsg")
-nodes/MoveBlend/position = Vector2(80, 180)
-nodes/SprintAnim/node = SubResource("AnimationNodeAnimation_8jp3a")
-nodes/SprintAnim/position = Vector2(-160, 240)
-nodes/output/position = Vector2(600, 200)
-node_connections = [&"JumpBlend", 0, &"MoveBlend", &"JumpBlend", 1, &"Animation 2", &"JumpBlend", 2, &"Animation", &"MoveBlend", 0, &"IdleAnim", &"MoveBlend", 1, &"SprintAnim", &"output", 0, &"JumpBlend"]
-
-[node name="3D Platformer" type="Node3D" node_paths=PackedStringArray("player_1", "player_2", "game_goal", "game_label", "game_start_timer")]
+[node name="3D Platformer" type="Node3D" node_paths=PackedStringArray("player_1", "player_2", "game_goal", "game_label", "game_start_timer", "game_tick_sfx", "game_start_sfx")]
 script = ExtResource("1_2f3es")
 player_1 = NodePath("UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1")
 player_2 = NodePath("UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2")
 game_goal = NodePath("Goal")
 game_label = NodePath("UILayer/UI/GameLabel")
 game_start_timer = NodePath("GameStartTimer")
+game_music = ExtResource("2_dcdbu")
+game_tick_sfx = NodePath("SFX/ImpactLow")
+game_start_sfx = NodePath("SFX/ImpactHigh")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="ViewPorts" type="HBoxContainer" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="UILayer/ViewPorts"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="UILayer/ViewPorts/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(957, 1080)
+render_target_update_mode = 4
+
+[node name="Player_1" type="CharacterBody3D" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport" node_paths=PackedStringArray("player_label", "footstep_sfx", "jump_sfx")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 6, 0)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("19_drrnw")
+player_label = NodePath("../../../../UI/PlayerLabels/Player1Label")
+footstep_sfx = NodePath("Footstep")
+jump_sfx = NodePath("Jump")
+
+[node name="Model" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1" instance=ExtResource("4_f7s62")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1/Model/character-male-d" index="0"]
+bones/3/rotation = Quaternion(0.00856004, 0, 0, 0.999963)
+bones/4/rotation = Quaternion(0, 0, -0.372761, 0.927928)
+bones/5/rotation = Quaternion(0, 0, 0.372761, 0.927928)
+bones/6/rotation = Quaternion(0, -0.00856004, 0, 0.999963)
+
+[node name="AnimationPlayer" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1/Model" index="1"]
+autoplay = "idle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.350222, 0)
+shape = SubResource("CapsuleShape3D_fu04p")
+
+[node name="Camera3D" type="Camera3D" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1"]
+transform = Transform3D(1, 3.55271e-15, -7.10543e-15, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.15, 1.1)
+
+[node name="AnimationTree" type="AnimationTree" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1"]
+root_node = NodePath("../Model")
+tree_root = SubResource("AnimationNodeBlendTree_7uhle")
+anim_player = NodePath("../Model/AnimationPlayer")
+parameters/JumpBlend/blend_amount = -1.0
+parameters/MoveBlend/blend_amount = 0.0
+
+[node name="Respawn" type="Timer" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1"]
+
+[node name="Footstep" type="AudioStreamPlayer" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1"]
+stream = ExtResource("30_7uhle")
+bus = &"SFX"
+
+[node name="Jump" type="AudioStreamPlayer" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1"]
+stream = ExtResource("31_0ynu8")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="UILayer/ViewPorts"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="UILayer/ViewPorts/SubViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="Player_2" type="CharacterBody3D" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport" node_paths=PackedStringArray("player_label", "footstep_sfx", "jump_sfx")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, 6, 0)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("19_drrnw")
+player_id = 2
+player_label = NodePath("../../../../UI/PlayerLabels/Player2Label")
+footstep_sfx = NodePath("Footstep")
+jump_sfx = NodePath("Jump")
+
+[node name="Model" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2" instance=ExtResource("5_1jlvg")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2/Model/character-female-d" index="0"]
+bones/3/rotation = Quaternion(0.00856004, 0, 0, 0.999963)
+bones/4/rotation = Quaternion(0, 0, -0.372761, 0.927928)
+bones/5/rotation = Quaternion(0, 0, 0.372761, 0.927928)
+bones/6/rotation = Quaternion(0, -0.00856004, 0, 0.999963)
+
+[node name="AnimationPlayer" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2/Model" index="1"]
+autoplay = "idle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.350222, 0)
+shape = SubResource("CapsuleShape3D_fu04p")
+
+[node name="Camera3D" type="Camera3D" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.15, 1.1)
+
+[node name="AnimationTree" type="AnimationTree" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2"]
+root_node = NodePath("../Model")
+tree_root = SubResource("AnimationNodeBlendTree_7uhle")
+anim_player = NodePath("../Model/AnimationPlayer")
+parameters/JumpBlend/blend_amount = -1.0
+parameters/MoveBlend/blend_amount = 0
+
+[node name="Respawn" type="Timer" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2"]
+
+[node name="Footstep" type="AudioStreamPlayer" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2"]
+stream = ExtResource("30_7uhle")
+bus = &"SFX"
+
+[node name="Jump" type="AudioStreamPlayer" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2"]
+stream = ExtResource("31_0ynu8")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="UI" type="VBoxContainer" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameLabel" type="Label" parent="UILayer/UI"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("26_7tvn1")
+theme_override_font_sizes/font_size = 128
+horizontal_alignment = 1
+
+[node name="PlayerLabels" type="HBoxContainer" parent="UILayer/UI"]
+layout_mode = 2
+
+[node name="Player1Label" type="Label" parent="UILayer/UI/PlayerLabels"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("26_7tvn1")
+theme_override_font_sizes/font_size = 96
+horizontal_alignment = 1
+
+[node name="Player2Label" type="Label" parent="UILayer/UI/PlayerLabels"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("26_7tvn1")
+theme_override_font_sizes/font_size = 96
+horizontal_alignment = 1
+
+[node name="Buffer" type="Control" parent="UILayer/UI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BottomRow" type="HBoxContainer" parent="UILayer/UI"]
+layout_mode = 2
+
+[node name="LHSContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="LBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Left" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Left"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("26_7tvn1")
+theme_override_font_sizes/font_size = 48
+text = "Left"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Left"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("27_dcdbu")
+input = "player_action_9"
+
+[node name="Forward" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Forward"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("26_7tvn1")
+theme_override_font_sizes/font_size = 48
+text = "Forward"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Forward"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("27_dcdbu")
+input = "player_action_10"
+
+[node name="Right" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Right"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("26_7tvn1")
+theme_override_font_sizes/font_size = 48
+text = "Right"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Right"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("27_dcdbu")
+input = "player_action_11"
+
+[node name="Backward" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Backward"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("26_7tvn1")
+theme_override_font_sizes/font_size = 48
+text = "Backward"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Backward"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("27_dcdbu")
+input = "player_action_12"
+
+[node name="Jump" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Jump"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("26_7tvn1")
+theme_override_font_sizes/font_size = 48
+text = "Jump"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Jump"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("27_dcdbu")
+input = "player_action_8"
+
+[node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RHSContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="LBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Left" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Left"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("26_7tvn1")
+theme_override_font_sizes/font_size = 48
+text = "Left"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Left"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("27_dcdbu")
+player = 2
+input = "player_action_9"
+
+[node name="Forward" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Forward"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("26_7tvn1")
+theme_override_font_sizes/font_size = 48
+text = "Forward"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Forward"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("27_dcdbu")
+player = 2
+input = "player_action_10"
+
+[node name="Right" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Right"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("26_7tvn1")
+theme_override_font_sizes/font_size = 48
+text = "Right"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Right"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("27_dcdbu")
+player = 2
+input = "player_action_11"
+
+[node name="Backward" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Backward"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("26_7tvn1")
+theme_override_font_sizes/font_size = 48
+text = "Backward"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Backward"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("27_dcdbu")
+player = 2
+input = "player_action_12"
+
+[node name="Jump" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Jump"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("26_7tvn1")
+theme_override_font_sizes/font_size = 48
+text = "Jump"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Jump"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("27_dcdbu")
+player = 2
+input = "player_action_8"
+
+[node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="World" type="Node3D" parent="."]
 
@@ -771,6 +1180,10 @@ script = ExtResource("20_a5oom")
 shape = SubResource("BoxShape3D_7sbf3")
 debug_color = Color(0.763413, 0.209786, 0.966153, 0.42)
 
+[node name="Point" type="AudioStreamPlayer" parent="Goal"]
+stream = ExtResource("34_egryy")
+bus = &"SFX"
+
 [node name="EndGameTimer" type="Timer" parent="Goal"]
 wait_time = 5.0
 one_shot = true
@@ -785,380 +1198,19 @@ script = ExtResource("20_87sjw")
 shape = SubResource("BoxShape3D_2kokf")
 debug_color = Color(0.996227, 0, 0.190787, 0.42)
 
-[node name="UILayer" type="CanvasLayer" parent="."]
-
-[node name="ViewPorts" type="HBoxContainer" parent="UILayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 5
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="UILayer/ViewPorts"]
-layout_mode = 2
-size_flags_horizontal = 3
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="UILayer/ViewPorts/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(957, 1080)
-render_target_update_mode = 4
-
-[node name="Player_1" type="CharacterBody3D" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport" node_paths=PackedStringArray("player_label")]
-unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 6, 0)
-collision_layer = 2
-collision_mask = 7
-script = ExtResource("19_drrnw")
-player_label = NodePath("../../../../UI/PlayerLabels/Player1Label")
-
-[node name="Model" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1" instance=ExtResource("4_f7s62")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="Skeleton3D" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1/Model/character-male-d" index="0"]
-bones/4/rotation = Quaternion(0, 0, -0.382683, 0.92388)
-bones/5/rotation = Quaternion(0, 0, 0.382683, 0.92388)
-
-[node name="AnimationPlayer" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1/Model" index="1"]
-autoplay = "idle"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.350222, 0)
-shape = SubResource("CapsuleShape3D_fu04p")
-
-[node name="Camera3D" type="Camera3D" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1"]
-transform = Transform3D(1, 3.55271e-15, -7.10543e-15, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.15, 1.1)
-
-[node name="AnimationTree" type="AnimationTree" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1"]
-root_node = NodePath("../Model")
-tree_root = SubResource("AnimationNodeBlendTree_7uhle")
-anim_player = NodePath("../Model/AnimationPlayer")
-parameters/JumpBlend/blend_amount = -1.0
-parameters/MoveBlend/blend_amount = 0.0
-
-[node name="Respawn" type="Timer" parent="UILayer/ViewPorts/SubViewportContainer/SubViewport/Player_1"]
-
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="UILayer/ViewPorts"]
-layout_mode = 2
-size_flags_horizontal = 3
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="UILayer/ViewPorts/SubViewportContainer2"]
-handle_input_locally = false
-size = Vector2i(958, 1080)
-render_target_update_mode = 4
-
-[node name="Player_2" type="CharacterBody3D" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport" node_paths=PackedStringArray("player_label")]
-unique_name_in_owner = true
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, 6, 0)
-collision_layer = 2
-collision_mask = 7
-script = ExtResource("19_drrnw")
-player_id = 2
-player_label = NodePath("../../../../UI/PlayerLabels/Player2Label")
-
-[node name="Model" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2" instance=ExtResource("5_1jlvg")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="Skeleton3D" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2/Model/character-female-d" index="0"]
-bones/3/rotation = Quaternion(0.0181495, 0, 0, 0.999835)
-bones/4/rotation = Quaternion(0, 0, -0.349777, 0.936833)
-bones/5/rotation = Quaternion(0, 0, 0.349777, 0.936833)
-bones/6/rotation = Quaternion(0, -0.0181495, 0, 0.999835)
-
-[node name="AnimationPlayer" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2/Model" index="1"]
-autoplay = "idle"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.350222, 0)
-shape = SubResource("CapsuleShape3D_fu04p")
-
-[node name="Camera3D" type="Camera3D" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.15, 1.1)
-
-[node name="AnimationTree" type="AnimationTree" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2"]
-root_node = NodePath("../Model")
-tree_root = SubResource("AnimationNodeBlendTree_7uhle")
-anim_player = NodePath("../Model/AnimationPlayer")
-parameters/JumpBlend/blend_amount = -1.0
-parameters/MoveBlend/blend_amount = 0
-
-[node name="Respawn" type="Timer" parent="UILayer/ViewPorts/SubViewportContainer2/SubViewport/Player_2"]
-
-[node name="UI" type="VBoxContainer" parent="UILayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 40.0
-offset_right = -40.0
-offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GameLabel" type="Label" parent="UILayer/UI"]
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("26_7tvn1")
-theme_override_font_sizes/font_size = 128
-horizontal_alignment = 1
-
-[node name="PlayerLabels" type="HBoxContainer" parent="UILayer/UI"]
-layout_mode = 2
-
-[node name="Player1Label" type="Label" parent="UILayer/UI/PlayerLabels"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("26_7tvn1")
-theme_override_font_sizes/font_size = 96
-horizontal_alignment = 1
-
-[node name="Player2Label" type="Label" parent="UILayer/UI/PlayerLabels"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("26_7tvn1")
-theme_override_font_sizes/font_size = 96
-horizontal_alignment = 1
-
-[node name="Buffer" type="Control" parent="UILayer/UI"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="BottomRow" type="HBoxContainer" parent="UILayer/UI"]
-layout_mode = 2
-
-[node name="LHSContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 10
-
-[node name="LBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer"]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="Left" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Left"]
-layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("26_7tvn1")
-theme_override_font_sizes/font_size = 48
-text = "Left"
-horizontal_alignment = 1
-
-[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Left"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-script = ExtResource("27_dcdbu")
-input = "player_action_9"
-
-[node name="Forward" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Forward"]
-layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("26_7tvn1")
-theme_override_font_sizes/font_size = 48
-text = "Forward"
-horizontal_alignment = 1
-
-[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Forward"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-script = ExtResource("27_dcdbu")
-input = "player_action_10"
-
-[node name="Right" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Right"]
-layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("26_7tvn1")
-theme_override_font_sizes/font_size = 48
-text = "Right"
-horizontal_alignment = 1
-
-[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Right"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-script = ExtResource("27_dcdbu")
-input = "player_action_11"
-
-[node name="Backward" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Backward"]
-layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("26_7tvn1")
-theme_override_font_sizes/font_size = 48
-text = "Backward"
-horizontal_alignment = 1
-
-[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Backward"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-script = ExtResource("27_dcdbu")
-input = "player_action_12"
-
-[node name="Jump" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Jump"]
-layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("26_7tvn1")
-theme_override_font_sizes/font_size = 48
-text = "Jump"
-horizontal_alignment = 1
-
-[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Jump"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-script = ExtResource("27_dcdbu")
-input = "player_action_8"
-
-[node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="RHSContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 10
-
-[node name="LBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer"]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="Left" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Left"]
-layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("26_7tvn1")
-theme_override_font_sizes/font_size = 48
-text = "Left"
-horizontal_alignment = 1
-
-[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Left"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-script = ExtResource("27_dcdbu")
-player = 2
-input = "player_action_9"
-
-[node name="Forward" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Forward"]
-layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("26_7tvn1")
-theme_override_font_sizes/font_size = 48
-text = "Forward"
-horizontal_alignment = 1
-
-[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Forward"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-script = ExtResource("27_dcdbu")
-player = 2
-input = "player_action_10"
-
-[node name="Right" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Right"]
-layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("26_7tvn1")
-theme_override_font_sizes/font_size = 48
-text = "Right"
-horizontal_alignment = 1
-
-[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Right"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-script = ExtResource("27_dcdbu")
-player = 2
-input = "player_action_11"
-
-[node name="Backward" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Backward"]
-layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("26_7tvn1")
-theme_override_font_sizes/font_size = 48
-text = "Backward"
-horizontal_alignment = 1
-
-[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Backward"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-script = ExtResource("27_dcdbu")
-player = 2
-input = "player_action_12"
-
-[node name="Jump" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Jump"]
-layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("26_7tvn1")
-theme_override_font_sizes/font_size = 48
-text = "Jump"
-horizontal_alignment = 1
-
-[node name="Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Jump"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-script = ExtResource("27_dcdbu")
-player = 2
-input = "player_action_8"
-
-[node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="Splash" type="AudioStreamPlayer" parent="Boundary"]
+stream = ExtResource("24_14xsg")
+bus = &"SFX"
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="ImpactLow" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("32_qgt3l")
+bus = &"SFX"
+
+[node name="ImpactHigh" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("33_egryy")
+bus = &"SFX"
 
 [node name="GameStartTimer" type="Timer" parent="."]
 
