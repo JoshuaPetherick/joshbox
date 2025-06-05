@@ -61,6 +61,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	# Move Player Character
+	# Note: delta is not needed since it's applied internally by move_and_slide()
 	move_and_slide()
 	
 	# Handle Animation

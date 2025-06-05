@@ -1,0 +1,546 @@
+[gd_scene load_steps=27 format=3 uid="uid://0c2lrd2o1jqj"]
+
+[ext_resource type="Script" uid="uid://c15tfmyvtf42y" path="res://scripts/Games/Pong/main.gd" id="1_kkvar"]
+[ext_resource type="AudioStream" uid="uid://b4ahny7cdro1m" path="res://assets/Music/Electric.wav" id="2_3x34y"]
+[ext_resource type="FontFile" uid="uid://dol81bbdnq80f" path="res://assets/Fonts/Default_Game.ttf" id="2_41nt8"]
+[ext_resource type="Script" uid="uid://br0r6i0tj6dbx" path="res://scripts/HUD/input_icon.gd" id="3_23cbn"]
+[ext_resource type="Texture2D" uid="uid://c4wdp7uiri1hl" path="res://assets/Visuals/Circle_Scores.png" id="3_j68lf"]
+[ext_resource type="Script" uid="uid://rncetb2hd7wx" path="res://scripts/Games/Pong/ball.gd" id="4_23cbn"]
+[ext_resource type="Script" uid="uid://cs12p4802aesx" path="res://scripts/Games/Pong/player.gd" id="4_41nt8"]
+[ext_resource type="AudioStream" uid="uid://d1p27rn64udp" path="res://assets/SFX/ImpactLow.ogg" id="7_x3emu"]
+[ext_resource type="AudioStream" uid="uid://cm2dm0u7lb0kq" path="res://assets/SFX/ImpactHigh.ogg" id="8_3x34y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x2ck"]
+atlas = ExtResource("3_j68lf")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55h4f"]
+atlas = ExtResource("3_j68lf")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j68lf"]
+atlas = ExtResource("3_j68lf")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x34y"]
+atlas = ExtResource("3_j68lf")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfkpg"]
+atlas = ExtResource("3_j68lf")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ismb6"]
+atlas = ExtResource("3_j68lf")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mel0w"]
+atlas = ExtResource("3_j68lf")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nk5el"]
+atlas = ExtResource("3_j68lf")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="Gradient" id="Gradient_jbo7r"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hy5ne"]
+gradient = SubResource("Gradient_jbo7r")
+width = 1922
+height = 1082
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbo7r"]
+size = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_hy5ne"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ksc2k"]
+gradient = SubResource("Gradient_hy5ne")
+width = 1
+height = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hy5ne"]
+size = Vector2(500, 2000)
+
+[sub_resource type="Animation" id="Animation_hy5ne"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arena/Top:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1525, 25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Arena/Bottom:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1525, 25)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Arena/Goal1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-825, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Arena/Goal2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(825, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player1Offset:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-750, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Player2Offset:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(750, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jbo7r"]
+resource_name = "default"
+length = 300.0
+step = 60.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arena/Top:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 300),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1510, 10), Vector2(510, 10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Arena/Bottom:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 300),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1510, 10), Vector2(510, 10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Arena/Goal1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 300),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-825, 0), Vector2(-325, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Arena/Goal2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 300),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(825, 0), Vector2(325, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player1Offset:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 300),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-750, 0), Vector2(-250, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Player2Offset:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 300),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(750, 0), Vector2(250, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ksc2k"]
+_data = {
+&"RESET": SubResource("Animation_hy5ne"),
+&"default": SubResource("Animation_jbo7r")
+}
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("header_label", "point_1_icon_P1", "point_2_icon_P1", "point_3_icon_P1", "point_1_icon_P2", "point_2_icon_P2", "point_3_icon_P2")]
+script = ExtResource("1_kkvar")
+game_music = ExtResource("2_3x34y")
+header_label = NodePath("UILayer/UI/Buffer/Header")
+point_icon = SubResource("AtlasTexture_0x2ck")
+no_point_icon = SubResource("AtlasTexture_55h4f")
+point_1_icon_P1 = NodePath("UILayer/UI/TopRow/LPoints/Point1")
+point_2_icon_P1 = NodePath("UILayer/UI/TopRow/LPoints/Point2")
+point_3_icon_P1 = NodePath("UILayer/UI/TopRow/LPoints/Point3")
+point_1_icon_P2 = NodePath("UILayer/UI/TopRow/RPoints/Point1")
+point_2_icon_P2 = NodePath("UILayer/UI/TopRow/RPoints/Point2")
+point_3_icon_P2 = NodePath("UILayer/UI/TopRow/RPoints/Point3")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="VBoxContainer" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopRow" type="HBoxContainer" parent="UILayer/UI"]
+layout_mode = 2
+theme_override_constants/separation = 150
+
+[node name="LPoints" type="HBoxContainer" parent="UILayer/UI/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 50
+alignment = 2
+
+[node name="Point1" type="TextureRect" parent="UILayer/UI/TopRow/LPoints"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_j68lf")
+expand_mode = 1
+
+[node name="Point2" type="TextureRect" parent="UILayer/UI/TopRow/LPoints"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_3x34y")
+expand_mode = 1
+
+[node name="Point3" type="TextureRect" parent="UILayer/UI/TopRow/LPoints"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_sfkpg")
+expand_mode = 1
+
+[node name="RPoints" type="HBoxContainer" parent="UILayer/UI/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 50
+
+[node name="Point3" type="TextureRect" parent="UILayer/UI/TopRow/RPoints"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_ismb6")
+expand_mode = 1
+
+[node name="Point2" type="TextureRect" parent="UILayer/UI/TopRow/RPoints"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_mel0w")
+expand_mode = 1
+
+[node name="Point1" type="TextureRect" parent="UILayer/UI/TopRow/RPoints"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_nk5el")
+expand_mode = 1
+
+[node name="Buffer" type="Control" parent="UILayer/UI"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Header" type="Label" parent="UILayer/UI/Buffer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_41nt8")
+theme_override_font_sizes/font_size = 128
+text = "TEST"
+horizontal_alignment = 1
+
+[node name="BottomRow" type="HBoxContainer" parent="UILayer/UI"]
+layout_mode = 2
+
+[node name="LHSContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="LBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Up" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Up"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_41nt8")
+theme_override_font_sizes/font_size = 48
+text = "Move Up"
+horizontal_alignment = 1
+
+[node name="Action1Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Up"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch_mode = 5
+script = ExtResource("3_23cbn")
+input = "player_action_10"
+
+[node name="Down" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Down"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_41nt8")
+theme_override_font_sizes/font_size = 48
+text = "Move Down"
+horizontal_alignment = 1
+
+[node name="Action2Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/HBoxContainer/Down"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch_mode = 5
+script = ExtResource("3_23cbn")
+input = "player_action_12"
+
+[node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RHSContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="LBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Up" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Up"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_41nt8")
+theme_override_font_sizes/font_size = 48
+text = "Move Up"
+horizontal_alignment = 1
+
+[node name="Action1Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Up"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch_mode = 5
+script = ExtResource("3_23cbn")
+player = 2
+input = "player_action_10"
+
+[node name="Down" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Down"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_41nt8")
+theme_override_font_sizes/font_size = 48
+text = "Move Down"
+horizontal_alignment = 1
+
+[node name="Action2Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/HBoxContainer/Down"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch_mode = 5
+script = ExtResource("3_23cbn")
+player = 2
+input = "player_action_12"
+
+[node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_hy5ne")
+
+[node name="Arena" type="Node2D" parent="."]
+
+[node name="Top" type="StaticBody2D" parent="Arena"]
+position = Vector2(0, -275)
+scale = Vector2(1525, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Top"]
+shape = SubResource("RectangleShape2D_jbo7r")
+
+[node name="Sprite2D" type="Sprite2D" parent="Arena/Top/CollisionShape2D"]
+texture = SubResource("GradientTexture2D_ksc2k")
+
+[node name="Bottom" type="StaticBody2D" parent="Arena"]
+position = Vector2(0, 275)
+scale = Vector2(1525, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Bottom"]
+shape = SubResource("RectangleShape2D_jbo7r")
+
+[node name="Sprite2D" type="Sprite2D" parent="Arena/Bottom/CollisionShape2D"]
+texture = SubResource("GradientTexture2D_ksc2k")
+
+[node name="Goal1" type="Area2D" parent="Arena"]
+unique_name_in_owner = true
+position = Vector2(-825, 0)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Goal1"]
+position = Vector2(-250, 0)
+shape = SubResource("RectangleShape2D_hy5ne")
+debug_color = Color(0.301388, 0.621779, 0.261085, 0.42)
+
+[node name="Goal2" type="Area2D" parent="Arena"]
+unique_name_in_owner = true
+position = Vector2(825, 0)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Goal2"]
+position = Vector2(250, 0)
+shape = SubResource("RectangleShape2D_hy5ne")
+debug_color = Color(0.301961, 0.623529, 0.262745, 0.419608)
+
+[node name="Ball" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 8)
+scale = Vector2(10, 10)
+script = ExtResource("4_23cbn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("RectangleShape2D_jbo7r")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball/CollisionShape2D"]
+texture = SubResource("GradientTexture2D_ksc2k")
+
+[node name="Player1Offset" type="Node2D" parent="."]
+position = Vector2(-750, 0)
+
+[node name="Player1" type="CharacterBody2D" parent="Player1Offset"]
+unique_name_in_owner = true
+scale = Vector2(10, 75)
+script = ExtResource("4_41nt8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1Offset/Player1"]
+shape = SubResource("RectangleShape2D_jbo7r")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player1Offset/Player1/CollisionShape2D"]
+texture = SubResource("GradientTexture2D_ksc2k")
+
+[node name="Player2Offset" type="Node2D" parent="."]
+position = Vector2(750, 0)
+
+[node name="Player2" type="CharacterBody2D" parent="Player2Offset"]
+unique_name_in_owner = true
+scale = Vector2(10, 75)
+script = ExtResource("4_41nt8")
+player_id = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2Offset/Player2"]
+shape = SubResource("RectangleShape2D_jbo7r")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player2Offset/Player2/CollisionShape2D"]
+texture = SubResource("GradientTexture2D_ksc2k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ksc2k")
+}
+autoplay = "default"
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="ImpactLow" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("7_x3emu")
+bus = &"SFX"
+
+[node name="ImpactHigh" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("8_3x34y")
+bus = &"SFX"
+
+[node name="GameStartTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="GameEndTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
