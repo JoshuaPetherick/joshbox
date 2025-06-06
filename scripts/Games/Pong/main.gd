@@ -25,7 +25,9 @@ const GAME_MAX_POINTS = 3
 
 @onready var game_tick_sfx: AudioStreamPlayer = %ImpactLow
 @onready var game_start_sfx: AudioStreamPlayer = %ImpactHigh
+@onready var game_point_sfx: AudioStreamPlayer = %Goal
 
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var gamestart_timer: Timer = %GameStartTimer
 @onready var gameend_timer: Timer = %GameEndTimer
 
@@ -60,7 +62,7 @@ func _ready() -> void:
 
 #region Events
 
-func _on_goal_1_area_entered(area: Area2D) -> void:
+func _on_goal_1_area_entered(_area: Area2D) -> void:
 	# Add Point
 	player2Score += 1
 	
@@ -77,6 +79,7 @@ func _on_goal_1_area_entered(area: Area2D) -> void:
 		
 		# Disable Ball
 		ball.can_move = false
+		animation_player.pause()
 		
 		# Update UI
 		header_label.text = GlobalGameProperties.get_player_name(2) + " Wins!"
@@ -84,11 +87,16 @@ func _on_goal_1_area_entered(area: Area2D) -> void:
 		# Start Timer
 		gameend_timer.start()
 	
+	# Play SFX
+	game_point_sfx.play()
+	
 	# Reset Ball
 	ball.speed = ball.STARTING_SPEED
+	ball.move_up = not ball.move_up
+	ball.move_left = not ball.move_left
 	ball.global_position = Vector2(0,0)
 
-func _on_goal_2_area_entered(area: Area2D) -> void:
+func _on_goal_2_area_entered(_area: Area2D) -> void:
 	# Add Point
 	player1Score += 1
 	
@@ -105,6 +113,7 @@ func _on_goal_2_area_entered(area: Area2D) -> void:
 		
 		# Disable Ball
 		ball.can_move = false
+		animation_player.pause()
 		
 		# Update UI
 		header_label.text = GlobalGameProperties.get_player_name(1) + " Wins!"
@@ -112,8 +121,13 @@ func _on_goal_2_area_entered(area: Area2D) -> void:
 		# Start Timer
 		gameend_timer.start()
 	
+	# Play SFX
+	game_point_sfx.play()
+	
 	# Reset Ball
 	ball.speed = ball.STARTING_SPEED
+	ball.move_up = not ball.move_up
+	ball.move_left = not ball.move_left
 	ball.global_position = Vector2(0,0)
 
 func _on_gamestart_timer_timeout() -> void:
@@ -141,6 +155,9 @@ func _on_gamestart_timer_timeout() -> void:
 			
 			# Play SFX
 			game_start_sfx.play()
+			
+			# Play Animation
+			animation_player.play("default")
 		_:
 			# Set Countdown text
 			header_label.text = str(GAME_START_TICK - game_tick)

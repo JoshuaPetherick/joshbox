@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://0c2lrd2o1jqj"]
+[gd_scene load_steps=29 format=3 uid="uid://0c2lrd2o1jqj"]
 
 [ext_resource type="Script" uid="uid://c15tfmyvtf42y" path="res://scripts/Games/Pong/main.gd" id="1_kkvar"]
 [ext_resource type="AudioStream" uid="uid://b4ahny7cdro1m" path="res://assets/Music/Electric.wav" id="2_3x34y"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://cs12p4802aesx" path="res://scripts/Games/Pong/player.gd" id="4_41nt8"]
 [ext_resource type="AudioStream" uid="uid://d1p27rn64udp" path="res://assets/SFX/ImpactLow.ogg" id="7_x3emu"]
 [ext_resource type="AudioStream" uid="uid://cm2dm0u7lb0kq" path="res://assets/SFX/ImpactHigh.ogg" id="8_3x34y"]
+[ext_resource type="AudioStream" uid="uid://c8o1jrucskgva" path="res://assets/SFX/Ping.ogg" id="10_j68lf"]
+[ext_resource type="AudioStream" uid="uid://dha3gd8vdcqps" path="res://assets/SFX/Goal.ogg" id="11_55h4f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0x2ck"]
 atlas = ExtResource("3_j68lf")
@@ -78,7 +80,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1525, 25)]
+"values": [Vector2(1510, 10)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -90,7 +92,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1525, 25)]
+"values": [Vector2(1510, 10)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -102,7 +104,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-825, 0)]
+"values": [Vector2(-800, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -114,7 +116,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(825, 0)]
+"values": [Vector2(800, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -153,7 +155,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 300),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(2.25, 3),
 "update": 0,
 "values": [Vector2(1510, 10), Vector2(510, 10)]
 }
@@ -165,7 +167,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 300),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(2.25, 3),
 "update": 0,
 "values": [Vector2(1510, 10), Vector2(510, 10)]
 }
@@ -177,9 +179,9 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 300),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(2.25, 3),
 "update": 0,
-"values": [Vector2(-825, 0), Vector2(-325, 0)]
+"values": [Vector2(-800, 0), Vector2(-300, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -189,9 +191,9 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 300),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(2.25, 3),
 "update": 0,
-"values": [Vector2(825, 0), Vector2(325, 0)]
+"values": [Vector2(800, 0), Vector2(300, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -201,7 +203,7 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 300),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(2.25, 3),
 "update": 0,
 "values": [Vector2(-750, 0), Vector2(-250, 0)]
 }
@@ -213,7 +215,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 300),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(2.25, 3),
 "update": 0,
 "values": [Vector2(750, 0), Vector2(250, 0)]
 }
@@ -257,23 +259,25 @@ theme_override_constants/separation = 150
 [node name="LPoints" type="HBoxContainer" parent="UILayer/UI/TopRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 50
+theme_override_constants/separation = 25
 alignment = 2
 
 [node name="Point1" type="TextureRect" parent="UILayer/UI/TopRow/LPoints"]
-custom_minimum_size = Vector2(128, 128)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 texture = SubResource("AtlasTexture_j68lf")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="Point2" type="TextureRect" parent="UILayer/UI/TopRow/LPoints"]
-custom_minimum_size = Vector2(128, 128)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 texture = SubResource("AtlasTexture_3x34y")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="Point3" type="TextureRect" parent="UILayer/UI/TopRow/LPoints"]
-custom_minimum_size = Vector2(128, 128)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 texture = SubResource("AtlasTexture_sfkpg")
 expand_mode = 1
@@ -281,22 +285,22 @@ expand_mode = 1
 [node name="RPoints" type="HBoxContainer" parent="UILayer/UI/TopRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 50
+theme_override_constants/separation = 25
 
 [node name="Point3" type="TextureRect" parent="UILayer/UI/TopRow/RPoints"]
-custom_minimum_size = Vector2(128, 128)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 texture = SubResource("AtlasTexture_ismb6")
 expand_mode = 1
 
 [node name="Point2" type="TextureRect" parent="UILayer/UI/TopRow/RPoints"]
-custom_minimum_size = Vector2(128, 128)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 texture = SubResource("AtlasTexture_mel0w")
 expand_mode = 1
 
 [node name="Point1" type="TextureRect" parent="UILayer/UI/TopRow/RPoints"]
-custom_minimum_size = Vector2(128, 128)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 texture = SubResource("AtlasTexture_nk5el")
 expand_mode = 1
@@ -437,7 +441,7 @@ texture = SubResource("GradientTexture2D_hy5ne")
 
 [node name="Top" type="StaticBody2D" parent="Arena"]
 position = Vector2(0, -275)
-scale = Vector2(1525, 25)
+scale = Vector2(1510, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Top"]
 shape = SubResource("RectangleShape2D_jbo7r")
@@ -447,7 +451,7 @@ texture = SubResource("GradientTexture2D_ksc2k")
 
 [node name="Bottom" type="StaticBody2D" parent="Arena"]
 position = Vector2(0, 275)
-scale = Vector2(1525, 25)
+scale = Vector2(1510, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Bottom"]
 shape = SubResource("RectangleShape2D_jbo7r")
@@ -457,7 +461,7 @@ texture = SubResource("GradientTexture2D_ksc2k")
 
 [node name="Goal1" type="Area2D" parent="Arena"]
 unique_name_in_owner = true
-position = Vector2(-825, 0)
+position = Vector2(-800, 0)
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Goal1"]
@@ -467,7 +471,7 @@ debug_color = Color(0.301388, 0.621779, 0.261085, 0.42)
 
 [node name="Goal2" type="Area2D" parent="Arena"]
 unique_name_in_owner = true
-position = Vector2(825, 0)
+position = Vector2(800, 0)
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Goal2"]
@@ -519,10 +523,10 @@ texture = SubResource("GradientTexture2D_ksc2k")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_ksc2k")
 }
-autoplay = "default"
 
 [node name="SFX" type="Node" parent="."]
 
@@ -534,6 +538,19 @@ bus = &"SFX"
 [node name="ImpactHigh" type="AudioStreamPlayer" parent="SFX"]
 unique_name_in_owner = true
 stream = ExtResource("8_3x34y")
+bus = &"SFX"
+
+[node name="Ping" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("10_j68lf")
+volume_db = 10.0
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="Goal" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("11_55h4f")
+max_polyphony = 4
 bus = &"SFX"
 
 [node name="GameStartTimer" type="Timer" parent="."]
