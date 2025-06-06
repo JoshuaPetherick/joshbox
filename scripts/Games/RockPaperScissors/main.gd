@@ -31,6 +31,10 @@ var winner: int = -1
 @onready var endgame_timer: Timer = $EndGameTimer
 
 func _ready() -> void:
+	# Game Started
+	GlobalSignals.game_started.emit()
+	GlobalMusicManager.play_song(game_music)
+	
 	# Load Textures
 	point_1_icon_P1.texture = no_point_icon
 	point_1_icon_P2.texture = no_point_icon
@@ -40,10 +44,6 @@ func _ready() -> void:
 	
 	# Connect to Signal
 	endgame_timer.timeout.connect(_on_endgame_timer_timeout)
-	
-	# Game Started
-	GlobalSignals.game_started.emit()
-	GlobalMusicManager.play_song(game_music)
 
 func _input(event: InputEvent) -> void:
 	# Checks

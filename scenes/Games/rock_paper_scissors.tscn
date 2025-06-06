@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://cbf0hmtootka"]
+[gd_scene load_steps=17 format=3 uid="uid://cbf0hmtootka"]
 
 [ext_resource type="Script" uid="uid://c75qr5ia2ndgk" path="res://scripts/Games/RockPaperScissors/main.gd" id="1_0uxnx"]
-[ext_resource type="Texture2D" uid="uid://jd8jr43ohomy" path="res://assets/Visuals/GameIcons.png" id="2_0uxnx"]
 [ext_resource type="AudioStream" uid="uid://032iiq7k7fti" path="res://assets/Music/Martini.wav" id="2_eumd7"]
 [ext_resource type="Texture2D" uid="uid://c4wdp7uiri1hl" path="res://assets/Visuals/Circle_Scores.png" id="2_nagne"]
 [ext_resource type="FontFile" uid="uid://dol81bbdnq80f" path="res://assets/Fonts/Default_Game.ttf" id="2_nbkgs"]
@@ -19,10 +18,6 @@ region = Rect2(0, 0, 256, 256)
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4r11"]
 atlas = ExtResource("2_nagne")
 region = Rect2(1024, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eumd7"]
-atlas = ExtResource("2_0uxnx")
-region = Rect2(1664, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nagne"]
 atlas = ExtResource("5_0uxnx")
@@ -104,7 +99,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("UILayer/UI/Buffer/Countdown:text")
+tracks/6/path = NodePath("UILayer/UI/Buffer/Header:text")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -231,7 +226,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("UILayer/UI/Buffer/Countdown:text")
+tracks/7/path = NodePath("UILayer/UI/Buffer/Header:text")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -274,7 +269,7 @@ _data = {
 [node name="Main" type="Node2D" node_paths=PackedStringArray("header_label", "point_sfx", "point_1_icon_P1", "point_2_icon_P1", "point_1_icon_P2", "point_2_icon_P2")]
 script = ExtResource("1_0uxnx")
 game_music = ExtResource("2_eumd7")
-header_label = NodePath("UILayer/UI/Buffer/Countdown")
+header_label = NodePath("UILayer/UI/Buffer/Header")
 point_sfx = NodePath("SFX/Point")
 no_point_icon = SubResource("AtlasTexture_0uxnx")
 point_icon = SubResource("AtlasTexture_x4r11")
@@ -309,13 +304,13 @@ alignment = 2
 [node name="Point1" type="TextureRect" parent="UILayer/UI/TopRow/LPoints"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = SubResource("AtlasTexture_eumd7")
+texture = SubResource("AtlasTexture_0uxnx")
 expand_mode = 1
 
 [node name="Point2" type="TextureRect" parent="UILayer/UI/TopRow/LPoints"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = SubResource("AtlasTexture_eumd7")
+texture = SubResource("AtlasTexture_0uxnx")
 expand_mode = 1
 
 [node name="RPoints" type="HBoxContainer" parent="UILayer/UI/TopRow"]
@@ -326,20 +321,20 @@ theme_override_constants/separation = 50
 [node name="Point2" type="TextureRect" parent="UILayer/UI/TopRow/RPoints"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = SubResource("AtlasTexture_eumd7")
+texture = SubResource("AtlasTexture_0uxnx")
 expand_mode = 1
 
 [node name="Point1" type="TextureRect" parent="UILayer/UI/TopRow/RPoints"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = SubResource("AtlasTexture_eumd7")
+texture = SubResource("AtlasTexture_0uxnx")
 expand_mode = 1
 
 [node name="Buffer" type="Control" parent="UILayer/UI"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Countdown" type="Label" parent="UILayer/UI/Buffer"]
+[node name="Header" type="Label" parent="UILayer/UI/Buffer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
