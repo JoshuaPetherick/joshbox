@@ -87,11 +87,17 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="WindowTabs" type="TabContainer" parent="Window"]
+[node name="WindowTabs" type="TabContainer" parent="Window" node_paths=PackedStringArray("tab_1_default_focus", "tab_2_default_focus", "tab_3_default_focus", "tab_4_default_focus", "tab_5_default_focus", "tab_6_default_focus")]
 layout_mode = 2
 current_tab = 0
 tabs_visible = false
 script = ExtResource("1_5jstl")
+tab_1_default_focus = NodePath("MainMenu/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Versus")
+tab_2_default_focus = NodePath("GameSelection/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back")
+tab_3_default_focus = NodePath("Tournament/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Start")
+tab_4_default_focus = NodePath("Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back")
+tab_5_default_focus = NodePath("Settings/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back")
+tab_6_default_focus = NodePath("VictoryScreen/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back")
 
 [node name="MainMenu" type="Control" parent="Window/WindowTabs"]
 custom_minimum_size = Vector2(275, 275)
@@ -415,6 +421,8 @@ layout_mode = 2
 
 [node name="Header" type="LineEdit" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup/PanelContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../../../RHS Setup/PanelContainer/VBoxContainer/Header")
+focus_neighbor_bottom = NodePath("../../../ConnectPlayer1")
 text = "Player 1"
 alignment = 1
 
@@ -434,6 +442,9 @@ autowrap_mode = 2
 [node name="ConnectPlayer1" type="Button" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/LHS Setup"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+focus_neighbor_top = NodePath("../PanelContainer/VBoxContainer/Header")
+focus_neighbor_right = NodePath("../../RHS Setup/ConnectPlayer2")
+focus_neighbor_bottom = NodePath("../../../Back")
 text = "Connect"
 
 [node name="RHS Setup" type="VBoxContainer" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens"]
@@ -451,6 +462,8 @@ layout_mode = 2
 
 [node name="Header" type="LineEdit" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup/PanelContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../../LHS Setup/PanelContainer/VBoxContainer/Header")
+focus_neighbor_bottom = NodePath("../../../ConnectPlayer2")
 theme_override_constants/outline_size = 0
 text = "Player 2"
 alignment = 1
@@ -471,12 +484,18 @@ autowrap_mode = 2
 [node name="ConnectPlayer2" type="Button" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Device Screens/RHS Setup"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+focus_neighbor_left = NodePath("../../LHS Setup/ConnectPlayer1")
+focus_neighbor_top = NodePath("../PanelContainer/VBoxContainer/Header")
+focus_neighbor_bottom = NodePath("../../../Back")
 text = "Connect"
 
 [node name="Back" type="Button" parent="Window/WindowTabs/Setup/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_left = NodePath("../Device Screens/LHS Setup/ConnectPlayer1")
+focus_neighbor_top = NodePath("../Device Screens/LHS Setup/ConnectPlayer1")
+focus_neighbor_right = NodePath("../Device Screens/RHS Setup/ConnectPlayer2")
 text = "Back"
 
 [node name="Settings" type="Control" parent="Window/WindowTabs" node_paths=PackedStringArray("master_volume", "music_volume", "sfx_volume")]
