@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 const SPEED = 3.0
 const JUMP_VELOCITY = 5.0
-const RESPAWN_TICK = 3
+const RESPAWN_TICK = 2
 
 @export 
 var player_id: int = 1
@@ -141,9 +141,6 @@ func respawn():
 	respawn_tick = 0
 	velocity = Vector3.ZERO
 	
-	# Update Label
-	player_label.text = "Respawn in " + str(RESPAWN_TICK)
-	
 	# Start Timer
 	respawn_timer.start()
 
@@ -157,10 +154,7 @@ func _on_respawn_timer():
 			# Update Params
 			visible = true
 			can_move = true
-			player_label.text = ""
 			global_position = checkpoint
 			
 			# Stop Timer
 			respawn_timer.stop()
-		_:
-			player_label.text = "Respawn in " + str(RESPAWN_TICK - respawn_tick)
