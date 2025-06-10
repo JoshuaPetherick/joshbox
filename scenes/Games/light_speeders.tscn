@@ -1,0 +1,421 @@
+[gd_scene load_steps=29 format=3 uid="uid://cd81eu8ttqwfy"]
+
+[ext_resource type="FontFile" uid="uid://dol81bbdnq80f" path="res://assets/Fonts/Default_Game.ttf" id="1_myaiq"]
+[ext_resource type="Script" uid="uid://dtjsad70pgegx" path="res://scripts/Games/LightSpeeders/main.gd" id="1_uueev"]
+[ext_resource type="Script" uid="uid://br0r6i0tj6dbx" path="res://scripts/HUD/input_icon.gd" id="2_ac0hs"]
+[ext_resource type="PackedScene" uid="uid://d1pm0teits7vx" path="res://scenes/Games/light_speeders/trail.tscn" id="4_ithlu"]
+[ext_resource type="Script" uid="uid://gvev7ynpyjro" path="res://scripts/Games/LightSpeeders/player.gd" id="4_m6ijp"]
+
+[sub_resource type="Gradient" id="Gradient_jbo7r"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_myaiq"]
+gradient = SubResource("Gradient_jbo7r")
+width = 1922
+height = 1082
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ac0hs"]
+size = Vector2(5, 5)
+
+[sub_resource type="Gradient" id="Gradient_myaiq"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ithlu"]
+gradient = SubResource("Gradient_myaiq")
+width = 4
+height = 4
+
+[sub_resource type="Gradient" id="Gradient_m6ijp"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_be8qy"]
+gradient = SubResource("Gradient_m6ijp")
+width = 2
+height = 1
+
+[sub_resource type="Gradient" id="Gradient_slpnc"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_18ibm"]
+gradient = SubResource("Gradient_slpnc")
+width = 2
+height = 1
+
+[sub_resource type="Gradient" id="Gradient_8qlac"]
+offsets = PackedFloat32Array(0, 0)
+colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nu5v0"]
+gradient = SubResource("Gradient_8qlac")
+width = 2
+height = 1
+
+[sub_resource type="Gradient" id="Gradient_mo4fq"]
+colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5q2sn"]
+gradient = SubResource("Gradient_mo4fq")
+width = 2
+height = 1
+
+[sub_resource type="Gradient" id="Gradient_ac0hs"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uueev"]
+gradient = SubResource("Gradient_ac0hs")
+width = 4
+height = 4
+
+[sub_resource type="Gradient" id="Gradient_ithlu"]
+offsets = PackedFloat32Array(0, 0)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m6ijp"]
+gradient = SubResource("Gradient_ithlu")
+width = 2
+height = 1
+
+[sub_resource type="Gradient" id="Gradient_be8qy"]
+offsets = PackedFloat32Array(0, 0)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_slpnc"]
+gradient = SubResource("Gradient_be8qy")
+width = 2
+height = 1
+
+[sub_resource type="Gradient" id="Gradient_18ibm"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8qlac"]
+gradient = SubResource("Gradient_18ibm")
+width = 2
+height = 1
+
+[sub_resource type="Gradient" id="Gradient_nu5v0"]
+offsets = PackedFloat32Array(0.9, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mo4fq"]
+gradient = SubResource("Gradient_nu5v0")
+width = 2
+height = 1
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_uueev")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="VBoxContainer" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buffer" type="Control" parent="UILayer/UI"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Header" type="Label" parent="UILayer/UI/Buffer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_myaiq")
+theme_override_font_sizes/font_size = 128
+text = "TEST"
+horizontal_alignment = 1
+
+[node name="BottomRow" type="HBoxContainer" parent="UILayer/UI"]
+layout_mode = 2
+
+[node name="LHSContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="LBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Left" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer/MarginContainer/HBoxContainer/Left"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_myaiq")
+theme_override_font_sizes/font_size = 48
+text = "Left"
+horizontal_alignment = 1
+
+[node name="Action2Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer/MarginContainer/HBoxContainer/Left"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch_mode = 5
+script = ExtResource("2_ac0hs")
+input = "player_action_1"
+
+[node name="Up" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer/MarginContainer/HBoxContainer/Up"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_myaiq")
+theme_override_font_sizes/font_size = 48
+text = "Up"
+horizontal_alignment = 1
+
+[node name="Action1Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer/MarginContainer/HBoxContainer/Up"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch_mode = 5
+script = ExtResource("2_ac0hs")
+input = "player_action_2"
+
+[node name="Right" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer/MarginContainer/HBoxContainer/Right"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_myaiq")
+theme_override_font_sizes/font_size = 48
+text = "Right"
+horizontal_alignment = 1
+
+[node name="Action2Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer/MarginContainer/HBoxContainer/Right"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch_mode = 5
+script = ExtResource("2_ac0hs")
+input = "player_action_3"
+
+[node name="Down" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer/MarginContainer/HBoxContainer/Down"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_myaiq")
+theme_override_font_sizes/font_size = 48
+text = "Down"
+horizontal_alignment = 1
+
+[node name="Action2Icon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/PanelContainer/MarginContainer/HBoxContainer/Down"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch_mode = 5
+script = ExtResource("2_ac0hs")
+input = "player_action_4"
+
+[node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RHSContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="LBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Left" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer/MarginContainer/HBoxContainer/Left"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_myaiq")
+theme_override_font_sizes/font_size = 48
+text = "Left"
+horizontal_alignment = 1
+
+[node name="Action2Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer/MarginContainer/HBoxContainer/Left"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch_mode = 5
+script = ExtResource("2_ac0hs")
+player = 2
+input = "player_action_1"
+
+[node name="Up" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer/MarginContainer/HBoxContainer/Up"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_myaiq")
+theme_override_font_sizes/font_size = 48
+text = "Up"
+horizontal_alignment = 1
+
+[node name="Action1Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer/MarginContainer/HBoxContainer/Up"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch_mode = 5
+script = ExtResource("2_ac0hs")
+player = 2
+input = "player_action_2"
+
+[node name="Right" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer/MarginContainer/HBoxContainer/Right"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_myaiq")
+theme_override_font_sizes/font_size = 48
+text = "Right"
+horizontal_alignment = 1
+
+[node name="Action2Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer/MarginContainer/HBoxContainer/Right"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch_mode = 5
+script = ExtResource("2_ac0hs")
+player = 2
+input = "player_action_3"
+
+[node name="Down" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer/MarginContainer/HBoxContainer/Down"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_myaiq")
+theme_override_font_sizes/font_size = 48
+text = "Down"
+horizontal_alignment = 1
+
+[node name="Action2Icon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/PanelContainer/MarginContainer/HBoxContainer/Down"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch_mode = 5
+script = ExtResource("2_ac0hs")
+player = 2
+input = "player_action_4"
+
+[node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_myaiq")
+
+[node name="Trails" type="Node2D" parent="."]
+
+[node name="Player1" type="CharacterBody2D" parent="." node_paths=PackedStringArray("trail_parent")]
+unique_name_in_owner = true
+process_mode = 4
+visible = false
+position = Vector2(-850, 0)
+scale = Vector2(10, 5)
+script = ExtResource("4_m6ijp")
+trail = ExtResource("4_ithlu")
+trail_colour = Color(0, 0, 1, 0.784314)
+trail_parent = NodePath("../Trails")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
+shape = SubResource("RectangleShape2D_ac0hs")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player1/CollisionShape2D"]
+texture = SubResource("GradientTexture2D_ithlu")
+
+[node name="TopLeftBumper" type="Sprite2D" parent="Player1/CollisionShape2D/Sprite2D"]
+position = Vector2(-1.5, -2)
+texture = SubResource("GradientTexture2D_be8qy")
+
+[node name="BottomLeftBumper" type="Sprite2D" parent="Player1/CollisionShape2D/Sprite2D"]
+position = Vector2(-1.5, 2)
+texture = SubResource("GradientTexture2D_18ibm")
+
+[node name="TopRightBumper" type="Sprite2D" parent="Player1/CollisionShape2D/Sprite2D"]
+position = Vector2(1.5, -2)
+texture = SubResource("GradientTexture2D_nu5v0")
+
+[node name="BottomRightBumper" type="Sprite2D" parent="Player1/CollisionShape2D/Sprite2D"]
+position = Vector2(1.5, 2)
+texture = SubResource("GradientTexture2D_5q2sn")
+
+[node name="Player2" type="CharacterBody2D" parent="." node_paths=PackedStringArray("trail_parent")]
+unique_name_in_owner = true
+position = Vector2(850, 0)
+scale = Vector2(10, 5)
+script = ExtResource("4_m6ijp")
+trail = ExtResource("4_ithlu")
+trail_colour = Color(1, 0, 0, 0.784314)
+trail_parent = NodePath("../Trails")
+player_id = 2
+direction = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
+shape = SubResource("RectangleShape2D_ac0hs")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player2/CollisionShape2D"]
+texture = SubResource("GradientTexture2D_uueev")
+
+[node name="TopLeftBumper" type="Sprite2D" parent="Player2/CollisionShape2D/Sprite2D"]
+position = Vector2(-1.5, -2)
+texture = SubResource("GradientTexture2D_m6ijp")
+
+[node name="BottomLeftBumper" type="Sprite2D" parent="Player2/CollisionShape2D/Sprite2D"]
+position = Vector2(-1.5, 2)
+texture = SubResource("GradientTexture2D_slpnc")
+
+[node name="TopRightBumper" type="Sprite2D" parent="Player2/CollisionShape2D/Sprite2D"]
+position = Vector2(1.5, -2)
+texture = SubResource("GradientTexture2D_8qlac")
+
+[node name="BottomRightBumper" type="Sprite2D" parent="Player2/CollisionShape2D/Sprite2D"]
+position = Vector2(1.5, 2)
+texture = SubResource("GradientTexture2D_mo4fq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Trail" parent="." instance=ExtResource("4_ithlu")]
+modulate = Color(0, 0.0235294, 1, 1)
+position = Vector2(835, 5.68434e-14)

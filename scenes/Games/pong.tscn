@@ -44,24 +44,24 @@ region = Rect2(0, 0, 256, 256)
 atlas = ExtResource("3_j68lf")
 region = Rect2(0, 0, 256, 256)
 
-[sub_resource type="Gradient" id="Gradient_jbo7r"]
+[sub_resource type="Gradient" id="Gradient_55h4f"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_hy5ne"]
-gradient = SubResource("Gradient_jbo7r")
+gradient = SubResource("Gradient_55h4f")
 width = 1922
 height = 1082
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbo7r"]
 size = Vector2(1, 1)
 
-[sub_resource type="Gradient" id="Gradient_hy5ne"]
+[sub_resource type="Gradient" id="Gradient_0x2ck"]
 offsets = PackedFloat32Array(1)
 colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ksc2k"]
-gradient = SubResource("Gradient_hy5ne")
+gradient = SubResource("Gradient_0x2ck")
 width = 1
 height = 1
 
