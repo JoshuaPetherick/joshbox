@@ -81,46 +81,16 @@ func _input(event: InputEvent) -> void:
 	
 	# Get Movement Action
 	if (event.is_action_pressed("player_action_1") && direction != DIRECTIONS.EAST && direction != DIRECTIONS.WEST):
-		# Set Params
-		direction = DIRECTIONS.WEST
-		
-		# Adjust Player
-		global_position.x += 10
-		rotation_degrees = get_player_rotation()
-		
-		# Spawn Trail
-		spawn_trail()
+		change_direction(DIRECTIONS.WEST)
 		
 	if (event.is_action_pressed("player_action_2") && direction != DIRECTIONS.NORTH && direction != DIRECTIONS.SOUTH):
-		# Set Params
-		direction = DIRECTIONS.NORTH
-		
-		# Adjust Player
-		global_position.y += 10
-		rotation_degrees = get_player_rotation()
-		
-		# Spawn Trail
-		spawn_trail()
+		change_direction(DIRECTIONS.NORTH)
 		
 	if (event.is_action_pressed("player_action_3") && direction != DIRECTIONS.WEST && direction != DIRECTIONS.EAST):
-		# Set Params
-		direction = DIRECTIONS.EAST
-		
-		# Adjust Player
-		rotation_degrees = get_player_rotation()
-		
-		# Spawn Trail
-		spawn_trail()
+		change_direction(DIRECTIONS.EAST)
 		
 	if (event.is_action_pressed("player_action_4") && direction != DIRECTIONS.SOUTH && direction != DIRECTIONS.NORTH):
-		# Set Params
-		direction = DIRECTIONS.SOUTH
-		
-		# Adjust Player
-		rotation_degrees = get_player_rotation()
-		
-		# Spawn Trail
-		spawn_trail()
+		change_direction(DIRECTIONS.SOUTH)
 
 func spawn_trail():
 	# Setup
@@ -130,6 +100,19 @@ func spawn_trail():
 	current_trail.global_position = global_position
 	current_trail.player_collision.connect(_on_player_collision)
 	trail_parent.add_child(current_trail)
+
+func change_direction(new_direction: DIRECTIONS):
+	# Apply
+	direction = new_direction
+	
+	# Adjust Player
+	match direction:
+		DIRECTIONS.WEST: global_position.x += 10
+		DIRECTIONS.NORTH: global_position.y += 10
+	rotation_degrees = get_player_rotation()
+	
+	# Spawn Trail
+	spawn_trail()
 
 func get_player_rotation() -> float:
 	match direction:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cd81eu8ttqwfy"]
+[gd_scene load_steps=35 format=3 uid="uid://cd81eu8ttqwfy"]
 
 [ext_resource type="FontFile" uid="uid://dol81bbdnq80f" path="res://assets/Fonts/Default_Game.ttf" id="1_myaiq"]
 [ext_resource type="Script" uid="uid://dtjsad70pgegx" path="res://scripts/Games/LightSpeeders/main.gd" id="1_uueev"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dbwgbwkhu8w" path="res://assets/Music/Lazer Invaders.wav" id="2_m6ijp"]
 [ext_resource type="PackedScene" uid="uid://d1pm0teits7vx" path="res://scenes/Games/light_speeders/trail.tscn" id="4_ithlu"]
 [ext_resource type="Script" uid="uid://gvev7ynpyjro" path="res://scripts/Games/LightSpeeders/player.gd" id="4_m6ijp"]
+[ext_resource type="Script" uid="uid://4x7xp1wmogyx" path="res://scripts/Games/LightSpeeders/barrier.gd" id="5_18ibm"]
 [ext_resource type="AudioStream" uid="uid://d1p27rn64udp" path="res://assets/SFX/ImpactLow.ogg" id="7_slpnc"]
 [ext_resource type="AudioStream" uid="uid://cm2dm0u7lb0kq" path="res://assets/SFX/ImpactHigh.ogg" id="8_18ibm"]
 
@@ -17,6 +18,12 @@ colors = PackedColorArray(0, 0, 0, 1)
 gradient = SubResource("Gradient_jbo7r")
 width = 1922
 height = 1082
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slpnc"]
+size = Vector2(2000, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18ibm"]
+size = Vector2(20, 1200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ac0hs"]
 size = Vector2(1, 3)
@@ -348,8 +355,41 @@ input = "player_action_4"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Arena" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Arena"]
 texture = SubResource("GradientTexture2D_myaiq")
+
+[node name="TopBarrier" type="Area2D" parent="Arena"]
+position = Vector2(0, -540)
+script = ExtResource("5_18ibm")
+redirect = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/TopBarrier"]
+shape = SubResource("RectangleShape2D_slpnc")
+
+[node name="LeftBarrier" type="Area2D" parent="Arena"]
+position = Vector2(-960, 0)
+script = ExtResource("5_18ibm")
+redirect = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/LeftBarrier"]
+shape = SubResource("RectangleShape2D_18ibm")
+
+[node name="RightBarrier" type="Area2D" parent="Arena"]
+position = Vector2(960, 0)
+script = ExtResource("5_18ibm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/RightBarrier"]
+shape = SubResource("RectangleShape2D_18ibm")
+
+[node name="BottomBarrier" type="Area2D" parent="Arena"]
+position = Vector2(0, 540)
+script = ExtResource("5_18ibm")
+redirect = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/BottomBarrier"]
+shape = SubResource("RectangleShape2D_slpnc")
 
 [node name="Trails" type="Node2D" parent="."]
 
