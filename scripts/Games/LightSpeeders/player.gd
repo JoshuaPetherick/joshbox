@@ -1,9 +1,11 @@
 extends CharacterBody2D
-class_name Player
+class_name LSPlayer
 
 const SPEED = 100.0
 
 enum DIRECTIONS { NORTH, SOUTH, EAST, WEST }
+
+signal player_collision(player: int)
 
 # Trail Scene
 @export_group("Trail Settings")
@@ -18,12 +20,18 @@ enum DIRECTIONS { NORTH, SOUTH, EAST, WEST }
 
 # Runtime Vars
 var current_trail: Trail
-var trail_offset: Vector2 = Vector2.ZERO
+var can_move: bool = false
 
 func _ready() -> void:
+	# Setup
 	spawn_trail()
+	rotation_degrees = get_player_rotation()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	# Checks
+	if (not can_move):
+		return
+	
 	# Setup
 	var old_position = global_position
 	
@@ -44,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	# Move Player
 	move_and_slide()
 	
-	# Update Trail THIS IS BROKEN PLS FIX!
+	# Update Trail 
 	var adjustment = 0
 	match direction:
 		DIRECTIONS.NORTH:
@@ -62,7 +70,6 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	# Setup
-	var newTrail: bool = false
 	var player = GlobalDeviceManager.get_player_from_event(event)
 	
 	# Checks
@@ -74,35 +81,45 @@ func _input(event: InputEvent) -> void:
 	
 	# Get Movement Action
 	if (event.is_action_pressed("player_action_1") && direction != DIRECTIONS.EAST && direction != DIRECTIONS.WEST):
-		trail_offset = calculate_offset(direction, DIRECTIONS.WEST)
+		# Set Params
 		direction = DIRECTIONS.WEST
-		rotation_degrees = 0
-		newTrail = true
+		
+		# Adjust Player
+		global_position.x += 10
+		rotation_degrees = get_player_rotation()
+		
+		# Spawn Trail
+		spawn_trail()
 		
 	if (event.is_action_pressed("player_action_2") && direction != DIRECTIONS.NORTH && direction != DIRECTIONS.SOUTH):
-		trail_offset = calculate_offset(direction, DIRECTIONS.NORTH)
+		# Set Params
 		direction = DIRECTIONS.NORTH
-		rotation_degrees = 270
-		newTrail = true
+		
+		# Adjust Player
+		global_position.y += 10
+		rotation_degrees = get_player_rotation()
+		
+		# Spawn Trail
+		spawn_trail()
 		
 	if (event.is_action_pressed("player_action_3") && direction != DIRECTIONS.WEST && direction != DIRECTIONS.EAST):
-		trail_offset = calculate_offset(direction, DIRECTIONS.EAST)
+		# Set Params
 		direction = DIRECTIONS.EAST
-		rotation_degrees = 180
-		newTrail = true
+		
+		# Adjust Player
+		rotation_degrees = get_player_rotation()
+		
+		# Spawn Trail
+		spawn_trail()
 		
 	if (event.is_action_pressed("player_action_4") && direction != DIRECTIONS.SOUTH && direction != DIRECTIONS.NORTH):
-		trail_offset = calculate_offset(direction, DIRECTIONS.SOUTH)
+		# Set Params
 		direction = DIRECTIONS.SOUTH
-		rotation_degrees = 90
-		newTrail = true
-	
-	# New Trail Check
-	if (newTrail):
-		# Enable Current Trail
-		# TODO
 		
-		# Spawn New Trail
+		# Adjust Player
+		rotation_degrees = get_player_rotation()
+		
+		# Spawn Trail
 		spawn_trail()
 
 func spawn_trail():
@@ -110,22 +127,17 @@ func spawn_trail():
 	current_trail = trail.instantiate()
 	current_trail.name = name + "_Trail"
 	current_trail.modulate = trail_colour
-	current_trail.global_position = (global_position + trail_offset)
+	current_trail.global_position = global_position
+	current_trail.player_collision.connect(_on_player_collision)
 	trail_parent.add_child(current_trail)
 
-# TODO: AT SOME POINT
-func calculate_offset(old_direction: DIRECTIONS, new_direction: DIRECTIONS):
-	match new_direction:
-		DIRECTIONS.NORTH:
-			if (old_direction == DIRECTIONS.WEST):
-				return Vector2(0, 10)
-			else:
-				return Vector2(0, 0)
-		DIRECTIONS.EAST:
-			if (old_direction == DIRECTIONS.SOUTH):
-				return Vector2(10, 0)
-			else:
-				return Vector2(0, 0)
-			
-	
-	return Vector2.ZERO
+func get_player_rotation() -> float:
+	match direction:
+		DIRECTIONS.WEST: return 0
+		DIRECTIONS.NORTH: return 90
+		DIRECTIONS.EAST: return 180
+		DIRECTIONS.SOUTH: return 270
+		_: return 0
+
+func _on_player_collision(player: int):
+	player_collision.emit(player)
