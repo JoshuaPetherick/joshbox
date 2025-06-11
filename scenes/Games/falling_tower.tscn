@@ -62,7 +62,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_eof6t"]
 resource_name = "default"
-length = 10.0
+length = 8.0
 loop_mode = 1
 step = 2.5
 tracks/0/type = "value"
@@ -72,7 +72,7 @@ tracks/0/path = NodePath("Player_1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.5, 5, 7.5, 10),
+"times": PackedFloat32Array(0, 2, 4, 6, 8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-500, -400), Vector2(-750, -400), Vector2(-500, -400), Vector2(-250, -400), Vector2(-500, -400)]
@@ -84,7 +84,7 @@ tracks/1/path = NodePath("Player_2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.5, 5, 7.5, 10),
+"times": PackedFloat32Array(0, 2, 4, 6, 8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(500, -400), Vector2(750, -400), Vector2(500, -400), Vector2(250, -400), Vector2(500, -400)]
@@ -158,7 +158,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 script = ExtResource("3_srueh")
-input = "player_action_5"
+input = "player_action_8"
 
 [node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
 layout_mode = 2
@@ -189,7 +189,7 @@ custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 script = ExtResource("3_srueh")
 player = 2
-input = "player_action_5"
+input = "player_action_8"
 
 [node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
 layout_mode = 2
@@ -226,8 +226,6 @@ shape = SubResource("RectangleShape2D_eof6t")
 [node name="Goal_1" type="Area2D" parent="Arena"]
 unique_name_in_owner = true
 position = Vector2(-500, -465)
-collision_layer = 2
-collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Goal_1"]
@@ -236,8 +234,6 @@ shape = SubResource("RectangleShape2D_qywbt")
 [node name="Goal_2" type="Area2D" parent="Arena"]
 unique_name_in_owner = true
 position = Vector2(500, -465)
-collision_layer = 2
-collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Goal_2"]

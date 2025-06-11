@@ -33,14 +33,14 @@ func _ready() -> void:
 	header.text = "Game Starting!"
 	
 	# Connect to Signals
-	goal_1.area_entered.connect(_on_goal_1_area_entered)
-	goal_2.area_entered.connect(_on_goal_2_area_entered)
+	goal_1.body_entered.connect(_on_goal_1_body_entered)
+	goal_2.body_entered.connect(_on_goal_2_body_entered)
 	gamestart_timer.timeout.connect(_on_gamestart_timer_timeout)
 	gameend_timer.timeout.connect(_on_gameend_timer_timeout)
 
 #region Events
 
-func _on_goal_1_area_entered(_area: Area2D) -> void:
+func _on_goal_1_body_entered(_body: Node2D) -> void:
 	# Set Winner
 	winner = 1
 	
@@ -55,7 +55,7 @@ func _on_goal_1_area_entered(_area: Area2D) -> void:
 	# Start Timer
 	gameend_timer.start()
 
-func _on_goal_2_area_entered(_area: Area2D) -> void:
+func _on_goal_2_body_entered(_body: Node2D) -> void:
 	# Set Winner
 	winner = 2
 	

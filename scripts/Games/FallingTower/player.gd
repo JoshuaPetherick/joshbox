@@ -29,7 +29,7 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	# Get Actions
-	if (event.is_action_pressed("player_action_5")):
+	if (event.is_action_pressed("player_action_8")):
 		_spawn_box()
 
 func _spawn_box():
