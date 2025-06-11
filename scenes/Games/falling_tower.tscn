@@ -1,0 +1,315 @@
+[gd_scene load_steps=21 format=4 uid="uid://bt8e2m8mf2ka1"]
+
+[ext_resource type="Script" uid="uid://b7ign2s5lahg2" path="res://scripts/Games/FallingTower/main.gd" id="1_gkoam"]
+[ext_resource type="Texture2D" uid="uid://umf07knmp4cw" path="res://assets/Visuals/CastleBackground.png" id="1_htfwd"]
+[ext_resource type="AudioStream" uid="uid://d3svihmums44j" path="res://assets/Music/Food Court.wav" id="2_0pih8"]
+[ext_resource type="FontFile" uid="uid://dol81bbdnq80f" path="res://assets/Fonts/Default_Game.ttf" id="2_foyul"]
+[ext_resource type="Script" uid="uid://br0r6i0tj6dbx" path="res://scripts/HUD/input_icon.gd" id="3_srueh"]
+[ext_resource type="Texture2D" uid="uid://c62ybx8nx78ir" path="res://assets/Visuals/FallingTower/Wall.png" id="4_srueh"]
+[ext_resource type="Texture2D" uid="uid://c3thfyc8qmpcn" path="res://assets/Visuals/FallingTower/Box.png" id="5_eof6t"]
+[ext_resource type="AudioStream" uid="uid://d1p27rn64udp" path="res://assets/SFX/ImpactLow.ogg" id="6_16vte"]
+[ext_resource type="Script" uid="uid://cn7t2n2w7o2n" path="res://scripts/Games/FallingTower/player.gd" id="6_qywbt"]
+[ext_resource type="PackedScene" uid="uid://o6wsqrfjlqbu" path="res://scenes/Games/FallingTower/box.tscn" id="7_qywbt"]
+[ext_resource type="AudioStream" uid="uid://cm2dm0u7lb0kq" path="res://assets/SFX/ImpactHigh.ogg" id="7_twu6b"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_srueh"]
+texture = ExtResource("4_srueh")
+texture_region_size = Vector2i(70, 70)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_eof6t"]
+tile_size = Vector2i(70, 70)
+sources/0 = SubResource("TileSetAtlasSource_srueh")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_srueh"]
+size = Vector2(2100, 350)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eof6t"]
+size = Vector2(140, 770)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qywbt"]
+size = Vector2(875, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dcvr"]
+size = Vector2(70, 70)
+
+[sub_resource type="Animation" id="Animation_2dcvr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-500, -400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player_2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(500, -400)]
+}
+
+[sub_resource type="Animation" id="Animation_eof6t"]
+resource_name = "default"
+length = 10.0
+loop_mode = 1
+step = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5, 7.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-500, -400), Vector2(-750, -400), Vector2(-500, -400), Vector2(-250, -400), Vector2(-500, -400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player_2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5, 5, 7.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(500, -400), Vector2(750, -400), Vector2(500, -400), Vector2(250, -400), Vector2(500, -400)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjqmi"]
+_data = {
+&"RESET": SubResource("Animation_2dcvr"),
+&"default": SubResource("Animation_eof6t")
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_gkoam")
+game_music = ExtResource("2_0pih8")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="VBoxContainer" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buffer" type="Control" parent="UILayer/UI"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Header" type="Label" parent="UILayer/UI/Buffer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_foyul")
+theme_override_font_sizes/font_size = 128
+horizontal_alignment = 1
+
+[node name="BottomRow" type="HBoxContainer" parent="UILayer/UI"]
+layout_mode = 2
+
+[node name="LHSContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="LBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="VBoxContainer" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/LHSContainer/Control"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_foyul")
+theme_override_font_sizes/font_size = 48
+text = "Drop Box"
+horizontal_alignment = 1
+
+[node name="ActionIcon" type="TextureRect" parent="UILayer/UI/BottomRow/LHSContainer/Control"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+script = ExtResource("3_srueh")
+input = "player_action_5"
+
+[node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/LHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RHSContainer" type="HBoxContainer" parent="UILayer/UI/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="LBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="VBoxContainer" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UI/BottomRow/RHSContainer/Control"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_foyul")
+theme_override_font_sizes/font_size = 48
+text = "Drop Box"
+horizontal_alignment = 1
+
+[node name="ActionIcon" type="TextureRect" parent="UILayer/UI/BottomRow/RHSContainer/Control"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+script = ExtResource("3_srueh")
+player = 2
+input = "player_action_5"
+
+[node name="RBuffer" type="Control" parent="UILayer/UI/BottomRow/RHSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_htfwd")
+
+[node name="Arena" type="Node2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Arena"]
+tile_map_data = PackedByteArray("AADy/wcAAAAAAAAAAADz/wcAAAAAAAAAAAD0/wcAAAAAAAAAAAD1/wcAAAAAAAAAAAD2/wcAAAAAAAAAAAD3/wcAAAAAAAAAAAD4/wcAAAAAAAAAAAD5/wcAAAAAAAAAAAD6/wcAAAAAAAAAAAD7/wcAAAAAAAAAAAD8/wcAAAAAAAAAAAD9/wcAAAAAAAAAAAD+/wcAAAAAAAAAAAD//wcAAAAAAAAAAAAAAAcAAAAAAAAAAAABAAcAAAAAAAAAAAACAAcAAAAAAAAAAAADAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAAFAAcAAAAAAAAAAAAGAAcAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAcAAAAAAAAAAAAJAAcAAAAAAAAAAAAKAAcAAAAAAAAAAAALAAcAAAAAAAAAAAAMAAcAAAAAAAAAAAANAAcAAAAAAAAAAAANAAYAAAAAAAAAAAAMAAYAAAAAAAAAAAALAAYAAAAAAAAAAAAKAAYAAAAAAAAAAAAJAAYAAAAAAAAAAAAIAAYAAAAAAAAAAAAHAAYAAAAAAAAAAAAGAAYAAAAAAAAAAAAFAAYAAAAAAAAAAAAEAAYAAAAAAAAAAAADAAYAAAAAAAAAAAACAAYAAAAAAAAAAAABAAYAAAAAAAAAAAAAAAYAAAAAAAAAAAD//wYAAAAAAAAAAAD+/wYAAAAAAAAAAAD9/wYAAAAAAAAAAAD8/wYAAAAAAAAAAAD7/wYAAAAAAAAAAAD6/wYAAAAAAAAAAAD5/wYAAAAAAAAAAAD4/wYAAAAAAAAAAAD3/wYAAAAAAAAAAAD2/wYAAAAAAAAAAAD1/wYAAAAAAAAAAAD0/wYAAAAAAAAAAADz/wYAAAAAAAAAAADy/wYAAAAAAAAAAADy/wUAAAAAAAAAAADz/wUAAAAAAAAAAAD7/wUAAAAAAAAAAAD6/wUAAAAAAAAAAAD5/wUAAAAAAAAAAAD4/wUAAAAAAAAAAAD3/wUAAAAAAAAAAAD2/wUAAAAAAAAAAAD1/wUAAAAAAAAAAAD0/wUAAAAAAAAAAAD8/wUAAAAAAAAAAAD9/wUAAAAAAAAAAAD+/wUAAAAAAAAAAAD//wUAAAAAAAAAAAAAAAUAAAAAAAAAAAABAAUAAAAAAAAAAAACAAUAAAAAAAAAAAADAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAAFAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAHAAUAAAAAAAAAAAAIAAUAAAAAAAAAAAAJAAUAAAAAAAAAAAAKAAUAAAAAAAAAAAALAAUAAAAAAAAAAAAMAAUAAAAAAAAAAAANAAUAAAAAAAAAAADy/wQAAAAAAAAAAADz/wQAAAAAAAAAAAD0/wQAAAAAAAAAAAD1/wQAAAAAAAAAAAD2/wQAAAAAAAAAAAD3/wQAAAAAAAAAAAD4/wQAAAAAAAAAAAD5/wQAAAAAAAAAAAD6/wQAAAAAAAAAAAD7/wQAAAAAAAAAAAD8/wQAAAAAAAAAAAD9/wQAAAAAAAAAAAD+/wQAAAAAAAAAAAD//wQAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAAKAAQAAAAAAAAAAAALAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAANAAQAAAAAAAAAAAANAAMAAAAAAAAAAAANAAIAAAAAAAAAAAANAAEAAAAAAAAAAAANAAAAAAAAAAAAAAANAP//AAAAAAAAAAANAP7/AAAAAAAAAAANAP3/AAAAAAAAAAANAPz/AAAAAAAAAAANAPv/AAAAAAAAAAANAPr/AAAAAAAAAAANAPn/AAAAAAAAAAANAPj/AAAAAAAAAADy/wMAAAAAAAAAAADy/wIAAAAAAAAAAADy/wEAAAAAAAAAAADy/wAAAAAAAAAAAADy////AAAAAAAAAADy//7/AAAAAAAAAADy//3/AAAAAAAAAADy//z/AAAAAAAAAADy//v/AAAAAAAAAADy//r/AAAAAAAAAADy//n/AAAAAAAAAADy//j/AAAAAAAAAADz//j/AAAAAAAAAAD0//j/AAAAAAAAAAD1//j/AAAAAAAAAAD2//j/AAAAAAAAAAD3//j/AAAAAAAAAAD4//j/AAAAAAAAAAD5//j/AAAAAAAAAAD6//j/AAAAAAAAAAD7//j/AAAAAAAAAAD8//j/AAAAAAAAAAD9//j/AAAAAAAAAAD+//j/AAAAAAAAAAD///j/AAAAAAAAAAAAAPj/AAAAAAAAAAABAPj/AAAAAAAAAAACAPj/AAAAAAAAAAADAPj/AAAAAAAAAAAEAPj/AAAAAAAAAAAFAPj/AAAAAAAAAAAGAPj/AAAAAAAAAAAHAPj/AAAAAAAAAAAIAPj/AAAAAAAAAAAJAPj/AAAAAAAAAAAKAPj/AAAAAAAAAAALAPj/AAAAAAAAAAAMAPj/AAAAAAAAAADx/wcAAAAAAAAAAADx/wYAAAAAAAAAAADx/wUAAAAAAAAAAADx/wQAAAAAAAAAAADx/wMAAAAAAAAAAADx/wIAAAAAAAAAAADx/wEAAAAAAAAAAADx/wAAAAAAAAAAAADx////AAAAAAAAAADx//7/AAAAAAAAAADx//3/AAAAAAAAAADx//z/AAAAAAAAAADx//v/AAAAAAAAAADx//r/AAAAAAAAAADx//n/AAAAAAAAAADx//j/AAAAAAAAAADx//f/AAAAAAAAAADy//f/AAAAAAAAAADz//f/AAAAAAAAAAD0//f/AAAAAAAAAAD1//f/AAAAAAAAAAD2//f/AAAAAAAAAAD3//f/AAAAAAAAAAD4//f/AAAAAAAAAAD5//f/AAAAAAAAAAD6//f/AAAAAAAAAAD7//f/AAAAAAAAAAD8//f/AAAAAAAAAAD9//f/AAAAAAAAAAD+//f/AAAAAAAAAAD///f/AAAAAAAAAAAAAPf/AAAAAAAAAAABAPf/AAAAAAAAAAACAPf/AAAAAAAAAAADAPf/AAAAAAAAAAAEAPf/AAAAAAAAAAAFAPf/AAAAAAAAAAAGAPf/AAAAAAAAAAAHAPf/AAAAAAAAAAAIAPf/AAAAAAAAAAAJAPf/AAAAAAAAAAAKAPf/AAAAAAAAAAALAPf/AAAAAAAAAAAMAPf/AAAAAAAAAAANAPf/AAAAAAAAAAAOAPf/AAAAAAAAAAAOAPj/AAAAAAAAAAAOAPn/AAAAAAAAAAAOAPr/AAAAAAAAAAAOAPv/AAAAAAAAAAAOAPz/AAAAAAAAAAAOAP3/AAAAAAAAAAAOAP7/AAAAAAAAAAAOAP//AAAAAAAAAAAOAAAAAAAAAAAAAAAOAAEAAAAAAAAAAAAOAAIAAAAAAAAAAAAOAAMAAAAAAAAAAAAOAAQAAAAAAAAAAAAOAAUAAAAAAAAAAAAOAAYAAAAAAAAAAAAOAAcAAAAAAAAAAAAOAAgAAAAAAAAAAAANAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAALAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAADAAgAAAAAAAAAAAACAAgAAAAAAAAAAAABAAgAAAAAAAAAAAAAAAgAAAAAAAAAAAD//wgAAAAAAAAAAAD+/wgAAAAAAAAAAAD9/wgAAAAAAAAAAAD8/wgAAAAAAAAAAAD7/wgAAAAAAAAAAAD6/wgAAAAAAAAAAAD5/wgAAAAAAAAAAAD4/wgAAAAAAAAAAAD3/wgAAAAAAAAAAAD2/wgAAAAAAAAAAAD1/wgAAAAAAAAAAAD0/wgAAAAAAAAAAADz/wgAAAAAAAAAAADy/wgAAAAAAAAAAADx/wgAAAAAAAAAAAD//wMAAAAAAAAAAAD//wIAAAAAAAAAAAD//wEAAAAAAAAAAAD//wAAAAAAAAAAAAD/////AAAAAAAAAAD///7/AAAAAAAAAAD///3/AAAAAAAAAAD///z/AAAAAAAAAAD///v/AAAAAAAAAAD///r/AAAAAAAAAAD///n/AAAAAAAAAAAAAPn/AAAAAAAAAAAAAPr/AAAAAAAAAAAAAPv/AAAAAAAAAAAAAPz/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_eof6t")
+
+[node name="CollisionMap" type="StaticBody2D" parent="Arena"]
+position = Vector2(0, 455)
+
+[node name="CollisionShape2D_1" type="CollisionShape2D" parent="Arena/CollisionMap"]
+shape = SubResource("RectangleShape2D_srueh")
+
+[node name="CollisionShape2D_2" type="CollisionShape2D" parent="Arena/CollisionMap"]
+position = Vector2(0, -560)
+shape = SubResource("RectangleShape2D_eof6t")
+
+[node name="CollisionShape2D_3" type="CollisionShape2D" parent="Arena/CollisionMap"]
+position = Vector2(-980, -560)
+shape = SubResource("RectangleShape2D_eof6t")
+
+[node name="CollisionShape2D_4" type="CollisionShape2D" parent="Arena/CollisionMap"]
+position = Vector2(980, -560)
+shape = SubResource("RectangleShape2D_eof6t")
+
+[node name="Goal_1" type="Area2D" parent="Arena"]
+unique_name_in_owner = true
+position = Vector2(-500, -465)
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Goal_1"]
+shape = SubResource("RectangleShape2D_qywbt")
+
+[node name="Goal_2" type="Area2D" parent="Arena"]
+unique_name_in_owner = true
+position = Vector2(500, -465)
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Goal_2"]
+shape = SubResource("RectangleShape2D_qywbt")
+
+[node name="Player_1" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("cooldown_timer")]
+unique_name_in_owner = true
+position = Vector2(-500, -400)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("6_qywbt")
+box_scene = ExtResource("7_qywbt")
+cooldown_timer = NodePath("CooldownTimer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_1"]
+shape = SubResource("RectangleShape2D_2dcvr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player_1/CollisionShape2D"]
+modulate = Color(1, 1, 1, 0.686275)
+texture = ExtResource("5_eof6t")
+
+[node name="CooldownTimer" type="Timer" parent="Player_1"]
+wait_time = 2.0
+
+[node name="Player_2" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("cooldown_timer")]
+unique_name_in_owner = true
+position = Vector2(500, -400)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("6_qywbt")
+player_id = 2
+box_scene = ExtResource("7_qywbt")
+cooldown_timer = NodePath("CooldownTimer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_2"]
+shape = SubResource("RectangleShape2D_2dcvr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player_2/CollisionShape2D"]
+modulate = Color(1, 1, 1, 0.686275)
+texture = ExtResource("5_eof6t")
+
+[node name="CooldownTimer" type="Timer" parent="Player_2"]
+wait_time = 2.0
+
+[node name="Boxes" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_fjqmi")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="ImpactLow" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("6_16vte")
+bus = &"SFX"
+
+[node name="ImpactHigh" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("7_twu6b")
+bus = &"SFX"
+
+[node name="GameStartTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="GameEndTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
