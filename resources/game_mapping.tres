@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="GameMapping" load_steps=5 format=3 uid="uid://0eq6flshm4p5"]
+[gd_resource type="Resource" script_class="GameMapping" load_steps=6 format=3 uid="uid://0eq6flshm4p5"]
 
 [ext_resource type="PackedScene" uid="uid://cbf0hmtootka" path="res://scenes/Games/rock_paper_scissors.tscn" id="1_4nv4g"]
 [ext_resource type="Script" uid="uid://4px07wotgw2g" path="res://scripts/Resources/game_mapping.gd" id="1_slobu"]
 [ext_resource type="PackedScene" uid="uid://cmgjxmkmvt4i8" path="res://scenes/Games/3d_platformer.tscn" id="2_dlcsq"]
 [ext_resource type="PackedScene" uid="uid://0c2lrd2o1jqj" path="res://scenes/Games/pong.tscn" id="3_dlcsq"]
+[ext_resource type="PackedScene" uid="uid://cd81eu8ttqwfy" path="res://scenes/Games/light_speeders.tscn" id="4_57n7j"]
 
 [resource]
 script = ExtResource("1_slobu")
 minigames = Dictionary[String, PackedScene]({
 "3D Platformer": ExtResource("2_dlcsq"),
+"Light Speeders": ExtResource("4_57n7j"),
 "Pong": ExtResource("3_dlcsq"),
 "Rock, Paper, Scissors": ExtResource("1_4nv4g")
 })

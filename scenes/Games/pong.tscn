@@ -44,24 +44,24 @@ region = Rect2(0, 0, 256, 256)
 atlas = ExtResource("3_j68lf")
 region = Rect2(0, 0, 256, 256)
 
-[sub_resource type="Gradient" id="Gradient_jbo7r"]
+[sub_resource type="Gradient" id="Gradient_55h4f"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_hy5ne"]
-gradient = SubResource("Gradient_jbo7r")
+gradient = SubResource("Gradient_55h4f")
 width = 1922
 height = 1082
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbo7r"]
 size = Vector2(1, 1)
 
-[sub_resource type="Gradient" id="Gradient_hy5ne"]
+[sub_resource type="Gradient" id="Gradient_0x2ck"]
 offsets = PackedFloat32Array(1)
 colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ksc2k"]
-gradient = SubResource("Gradient_hy5ne")
+gradient = SubResource("Gradient_0x2ck")
 width = 1
 height = 1
 
@@ -145,7 +145,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_jbo7r"]
 resource_name = "default"
-length = 300.0
+length = 240.0
 step = 60.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -154,7 +154,7 @@ tracks/0/path = NodePath("Arena/Top:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 300),
+"times": PackedFloat32Array(0, 240),
 "transitions": PackedFloat32Array(2.25, 3),
 "update": 0,
 "values": [Vector2(1510, 10), Vector2(510, 10)]
@@ -166,7 +166,7 @@ tracks/1/path = NodePath("Arena/Bottom:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 300),
+"times": PackedFloat32Array(0, 240),
 "transitions": PackedFloat32Array(2.25, 3),
 "update": 0,
 "values": [Vector2(1510, 10), Vector2(510, 10)]
@@ -178,7 +178,7 @@ tracks/2/path = NodePath("Arena/Goal1:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 300),
+"times": PackedFloat32Array(0, 240),
 "transitions": PackedFloat32Array(2.25, 3),
 "update": 0,
 "values": [Vector2(-800, 0), Vector2(-300, 0)]
@@ -190,7 +190,7 @@ tracks/3/path = NodePath("Arena/Goal2:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 300),
+"times": PackedFloat32Array(0, 240),
 "transitions": PackedFloat32Array(2.25, 3),
 "update": 0,
 "values": [Vector2(800, 0), Vector2(300, 0)]
@@ -202,7 +202,7 @@ tracks/4/path = NodePath("Player1Offset:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 300),
+"times": PackedFloat32Array(0, 240),
 "transitions": PackedFloat32Array(2.25, 3),
 "update": 0,
 "values": [Vector2(-750, 0), Vector2(-250, 0)]
@@ -214,7 +214,7 @@ tracks/5/path = NodePath("Player2Offset:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 300),
+"times": PackedFloat32Array(0, 240),
 "transitions": PackedFloat32Array(2.25, 3),
 "update": 0,
 "values": [Vector2(750, 0), Vector2(250, 0)]

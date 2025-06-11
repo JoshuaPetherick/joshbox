@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1pm0teits7vx"]
+
+[ext_resource type="Script" uid="uid://daugvglbr2woi" path="res://scripts/Games/LightSpeeders/trail.gd" id="1_ulem1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_687ma"]
+size = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_ulem1"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cfrbf"]
+gradient = SubResource("Gradient_ulem1")
+width = 1
+use_hdr = true
+
+[node name="Trail" type="Area2D"]
+scale = Vector2(10, 10)
+monitorable = false
+script = ExtResource("1_ulem1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_687ma")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+texture = SubResource("GradientTexture1D_cfrbf")
