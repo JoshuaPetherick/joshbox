@@ -1,7 +1,7 @@
 extends Area2D
 class_name PongBall
 
-const STARTING_SPEED: float = 150
+const STARTING_SPEED: float = 200
 const SPEED_INCREMENT: float = 25
 
 # Game Components
