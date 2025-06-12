@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bt8e2m8mf2ka1"]
+[gd_scene load_steps=23 format=4 uid="uid://bt8e2m8mf2ka1"]
 
 [ext_resource type="Script" uid="uid://b7ign2s5lahg2" path="res://scripts/Games/FallingTower/main.gd" id="1_gkoam"]
 [ext_resource type="Texture2D" uid="uid://umf07knmp4cw" path="res://assets/Visuals/CastleBackground.png" id="1_htfwd"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c3thfyc8qmpcn" path="res://assets/Visuals/FallingTower/Box.png" id="5_eof6t"]
 [ext_resource type="AudioStream" uid="uid://d1p27rn64udp" path="res://assets/SFX/ImpactLow.ogg" id="6_16vte"]
 [ext_resource type="Script" uid="uid://cn7t2n2w7o2n" path="res://scripts/Games/FallingTower/player.gd" id="6_qywbt"]
+[ext_resource type="Texture2D" uid="uid://jd8jr43ohomy" path="res://assets/Visuals/GameIcons.png" id="7_0pih8"]
 [ext_resource type="PackedScene" uid="uid://o6wsqrfjlqbu" path="res://scenes/Games/FallingTower/box.tscn" id="7_qywbt"]
 [ext_resource type="AudioStream" uid="uid://cm2dm0u7lb0kq" path="res://assets/SFX/ImpactHigh.ogg" id="7_twu6b"]
 
@@ -29,6 +30,10 @@ size = Vector2(140, 770)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qywbt"]
 size = Vector2(875, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cefe4"]
+atlas = ExtResource("7_0pih8")
+region = Rect2(1664, 1024, 128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dcvr"]
 size = Vector2(70, 70)
@@ -238,6 +243,24 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Goal_2"]
 shape = SubResource("RectangleShape2D_qywbt")
+
+[node name="Arrow_1" type="Sprite2D" parent="Arena"]
+position = Vector2(-960, -440)
+texture = SubResource("AtlasTexture_cefe4")
+
+[node name="Arrow_2" type="Sprite2D" parent="Arena"]
+position = Vector2(-20, -440)
+rotation = 3.14159
+texture = SubResource("AtlasTexture_cefe4")
+
+[node name="Arrow_3" type="Sprite2D" parent="Arena"]
+position = Vector2(20, -440)
+texture = SubResource("AtlasTexture_cefe4")
+
+[node name="Arrow_4" type="Sprite2D" parent="Arena"]
+position = Vector2(960, -440)
+rotation = 3.14159
+texture = SubResource("AtlasTexture_cefe4")
 
 [node name="Player_1" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("cooldown_timer")]
 unique_name_in_owner = true
