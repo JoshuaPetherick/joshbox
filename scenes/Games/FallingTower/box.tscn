@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://o6wsqrfjlqbu"]
+
+[ext_resource type="Texture2D" uid="uid://c3thfyc8qmpcn" path="res://assets/Visuals/FallingTower/Box.png" id="1_4skwq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2keb2"]
+size = Vector2(70, 70)
+
+[node name="Box" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2keb2")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+texture = ExtResource("1_4skwq")
