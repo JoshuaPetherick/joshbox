@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://yf7x02mb347m"]
+
+[ext_resource type="Script" uid="uid://bdnmgeu4ri38c" path="res://scripts/Games/RhythmGame/note.gd" id="1_ttv1a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4w1kf"]
+
+[node name="Note" type="AnimatableBody2D"]
+script = ExtResource("1_ttv1a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4w1kf")
+
+[node name="Icon" type="Sprite2D" parent="CollisionShape2D"]
+unique_name_in_owner = true
+scale = Vector2(0.75, 0.75)
