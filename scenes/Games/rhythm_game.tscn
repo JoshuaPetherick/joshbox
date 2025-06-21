@@ -1,13 +1,26 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvme5fqxim21i"]
+[gd_scene load_steps=20 format=3 uid="uid://dvme5fqxim21i"]
 
 [ext_resource type="FontFile" uid="uid://dol81bbdnq80f" path="res://assets/Fonts/Default_Game.ttf" id="1_6wgal"]
 [ext_resource type="Script" uid="uid://cdeu2lsecx6rw" path="res://scripts/Games/RhythmGame/main.gd" id="1_83dsf"]
 [ext_resource type="Texture2D" uid="uid://c4wdp7uiri1hl" path="res://assets/Visuals/Circle_Scores.png" id="1_xr2xu"]
-[ext_resource type="PackedScene" uid="uid://yf7x02mb347m" path="res://scenes/Games/rhythm_game/note.tscn" id="2_e24ta"]
+[ext_resource type="PackedScene" uid="uid://yf7x02mb347m" path="res://scenes/Games/RhythmGame/note.tscn" id="2_e24ta"]
 [ext_resource type="Script" uid="uid://tpk3t53pj2ty" path="res://scripts/Games/RhythmGame/player.gd" id="3_1ivrj"]
+[ext_resource type="Script" uid="uid://dvmac4g0knrrw" path="res://scripts/Games/RhythmGame/music_level.gd" id="3_4hver"]
+[ext_resource type="AudioStream" uid="uid://c4r7loycyph6u" path="res://assets/Music/Color Swing.wav" id="4_1shub"]
 [ext_resource type="Script" uid="uid://d2vsamfgi10y" path="res://scripts/Games/RhythmGame/lane.gd" id="5_vu6oy"]
 [ext_resource type="AudioStream" uid="uid://d1p27rn64udp" path="res://assets/SFX/ImpactLow.ogg" id="6_vu6oy"]
 [ext_resource type="AudioStream" uid="uid://cm2dm0u7lb0kq" path="res://assets/SFX/ImpactHigh.ogg" id="7_e24ta"]
+
+[sub_resource type="Resource" id="Resource_1shub"]
+script = ExtResource("3_4hver")
+game_music = ExtResource("4_1shub")
+action_1 = "player_action_5"
+timestamps_1 = Array[float]([0.0, 2.56, 3.44, 8.36, 9.8, 10.52, 11.68, 12.94, 14.18, 15.39, 16.55, 17.8, 19.0, 20.33, 21.49, 22.66, 23.94, 25.19, 26.35, 27.6, 28.8, 29.89, 31.29, 32.54, 33.66, 34.87, 36.16, 37.32, 38.57, 39.87, 41.02, 42.3, 43.59, 44.71, 45.96, 48.45, 50.22, 52.67, 55.17, 57.57])
+action_2 = "player_action_6"
+timestamps_2 = Array[float]([5.0, 10.77, 11.41, 12.29, 13.22, 13.82, 14.74, 15.64, 16.27, 17.17, 18.1, 18.68, 19.61, 20.56, 21.17, 22.09, 23.0, 23.63, 24.53, 25.46, 26.06, 26.87, 27.89, 28.52, 30.36, 30.98, 31.89, 32.82, 33.42, 33.92, 34.35, 34.98, 35.25, 35.88, 36.38, 36.76, 37.71, 38.31, 39.24, 40.15, 40.75, 41.65, 42.58, 43.21, 44.11, 45.04, 45.7, 46.55, 46.88, 47.2, 47.5, 48.99, 49.51, 49.96, 50.57, 51.47, 52.35, 53.03, 53.5, 53.81, 54.86, 56.54, 57.25, 57.87])
+action_3 = "player_action_7"
+timestamps_3 = Array[float]([7.43, 29.0, 38.69, 50.92, 51.07, 55.46, 55.76, 55.94, 56.34, 58.43, 58.73])
+metadata/_custom_type_script = "uid://dvmac4g0knrrw"
 
 [sub_resource type="Gradient" id="Gradient_6wgal"]
 offsets = PackedFloat32Array(0)
@@ -28,9 +41,47 @@ size = Vector2(176, 68)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0vh5"]
 size = Vector2(176, 40)
 
+[sub_resource type="Animation" id="Animation_px1fu"]
+resource_name = "start"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MusicPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-25.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1shub"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MusicPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-50.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_incx4"]
+_data = {
+&"RESET": SubResource("Animation_1shub"),
+&"start": SubResource("Animation_px1fu")
+}
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_83dsf")
 note_scene = ExtResource("2_e24ta")
+music_levels = Array[ExtResource("3_4hver")]([SubResource("Resource_1shub")])
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
@@ -293,6 +344,7 @@ position = Vector2(0, -2000)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
+volume_db = -50.0
 
 [node name="SFX" type="Node" parent="."]
 
@@ -314,3 +366,9 @@ autostart = true
 unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_incx4")
+}

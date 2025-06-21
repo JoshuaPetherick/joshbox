@@ -42,9 +42,9 @@ func _check_lane(lane: RhythmLane, event: InputEvent) -> void:
 		## Note Missed
 		#note_missed.emit()
 	
-		# Destory Note
-		lane.current_note = null
-		note.queue_free()
+	# Destory Note
+	lane.current_note = null
+	note.queue_free()
 
 func get_lane_spawn_position(lane_id: int) -> Vector2:
 	match lane_id:
