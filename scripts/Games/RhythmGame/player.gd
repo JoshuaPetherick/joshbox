@@ -38,7 +38,13 @@ func _check_lane(lane: RhythmLane, event: InputEvent) -> void:
 	if (event.is_action(note.expected_input)):
 		# Note Hit!
 		note_hit.emit(lane.available_points)
-	
+		
+		# Check
+		if (lane.available_points >= 100):
+			lane.animation_player.play("green_flash")
+		else:
+			lane.animation_player.play("blue_flash")
+		
 		# Destory Note
 		lane.current_note = null
 		note.queue_free()

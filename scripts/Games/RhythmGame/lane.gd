@@ -4,6 +4,8 @@ class_name RhythmLane
 @export var top: Area2D
 @export var middle: Area2D
 @export var bottom: Area2D
+
+@export var animation_player: AnimationPlayer
 @export var spawn_marker: Marker2D
 
 var current_note: RhythmNote = null
