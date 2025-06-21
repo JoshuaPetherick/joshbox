@@ -97,3 +97,12 @@ func play_song(stream: AudioStreamWAV):
 		music_1_focus = false
 		_audio_stream_player_2.stream = stream
 		_audio_stream_player_2.play()
+
+func fade_song():
+	if (_audio_stream_player_1.stream == null):
+		transitioning = true
+		music_1_focus = true
+	
+	else:
+		transitioning = true
+		music_1_focus = false
