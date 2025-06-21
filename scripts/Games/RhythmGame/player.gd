@@ -28,11 +28,11 @@ func _input(event: InputEvent) -> void:
 
 func _check_lane(lane: RhythmLane, event: InputEvent) -> void:
 	# Checks
-	if (lane.current_note == null):
+	if (lane.current_notes.size() < 1):
 		return
 	
 	# Setup
-	var note: RhythmNote = lane.current_note
+	var note: RhythmNote = lane.current_notes[0]
 	
 	# Action Check
 	if (event.is_action(note.expected_input)):
@@ -46,8 +46,7 @@ func _check_lane(lane: RhythmLane, event: InputEvent) -> void:
 			lane.animation_player.play("blue_flash")
 		
 		# Destory Note
-		lane.current_note = null
-		note.queue_free()
+		lane.remove_note(note)
 
 func get_lane_spawn_position(lane_id: int) -> Vector2:
 	match lane_id:

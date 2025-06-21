@@ -8,7 +8,7 @@ class_name RhythmLane
 @export var animation_player: AnimationPlayer
 @export var spawn_marker: Marker2D
 
-var current_note: RhythmNote = null
+var current_notes: Array[RhythmNote]
 var available_points: int = 0
 
 func _ready() -> void:
@@ -21,7 +21,7 @@ func _ready() -> void:
 func _on_top_body_entered(body: Node2D):
 	if (body is RhythmNote):
 		available_points = 50
-		current_note = body
+		current_notes.append(body)
 
 func _on_middle_body_entered(body: Node2D):
 	if (body is RhythmNote):
@@ -34,4 +34,8 @@ func _on_middle_body_exited(body: Node2D):
 func _on_bottom_body_exited(body: Node2D):
 	if (body is RhythmNote):
 		available_points = 0
-		current_note = null
+		current_notes.erase(body)
+
+func remove_note(note: RhythmNote):
+	current_notes.erase(note)
+	note.queue_free()
