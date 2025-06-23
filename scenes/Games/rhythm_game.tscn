@@ -1,0 +1,506 @@
+[gd_scene load_steps=24 format=3 uid="uid://dvme5fqxim21i"]
+
+[ext_resource type="FontFile" uid="uid://dol81bbdnq80f" path="res://assets/Fonts/Default_Game.ttf" id="1_6wgal"]
+[ext_resource type="Script" uid="uid://cdeu2lsecx6rw" path="res://scripts/Games/RhythmGame/main.gd" id="1_83dsf"]
+[ext_resource type="Texture2D" uid="uid://c4wdp7uiri1hl" path="res://assets/Visuals/Circle_Scores.png" id="1_xr2xu"]
+[ext_resource type="PackedScene" uid="uid://yf7x02mb347m" path="res://scenes/Games/RhythmGame/note.tscn" id="2_e24ta"]
+[ext_resource type="Script" uid="uid://tpk3t53pj2ty" path="res://scripts/Games/RhythmGame/player.gd" id="3_1ivrj"]
+[ext_resource type="Script" uid="uid://dvmac4g0knrrw" path="res://scripts/Games/RhythmGame/music_level.gd" id="3_4hver"]
+[ext_resource type="AudioStream" uid="uid://c4r7loycyph6u" path="res://assets/Music/Color Swing.wav" id="4_1shub"]
+[ext_resource type="Script" uid="uid://d2vsamfgi10y" path="res://scripts/Games/RhythmGame/lane.gd" id="5_vu6oy"]
+[ext_resource type="AudioStream" uid="uid://d1p27rn64udp" path="res://assets/SFX/ImpactLow.ogg" id="6_vu6oy"]
+[ext_resource type="AudioStream" uid="uid://cm2dm0u7lb0kq" path="res://assets/SFX/ImpactHigh.ogg" id="7_e24ta"]
+
+[sub_resource type="Resource" id="Resource_1shub"]
+script = ExtResource("3_4hver")
+game_music = ExtResource("4_1shub")
+action_1 = "player_action_5"
+timestamps_1 = Array[float]([0.0, 2.56, 3.44, 8.36, 9.8, 10.52, 11.68, 12.94, 14.18, 15.39, 16.55, 17.8, 19.0, 20.33, 21.49, 22.66, 23.94, 25.19, 26.35, 27.6, 28.8, 29.89, 31.29, 32.54, 33.66, 34.87, 36.16, 37.32, 38.57, 39.87, 41.02, 42.3, 43.59, 44.71, 45.96, 48.45, 50.22, 52.67, 55.17, 57.57])
+action_2 = "player_action_6"
+timestamps_2 = Array[float]([5.0, 10.77, 11.41, 12.29, 13.22, 13.82, 14.74, 15.64, 16.27, 17.17, 18.1, 18.68, 19.61, 20.56, 21.17, 22.09, 23.0, 23.63, 24.53, 25.46, 26.06, 26.87, 27.89, 28.52, 30.36, 30.98, 31.89, 32.82, 33.42, 33.92, 34.35, 34.98, 35.25, 35.88, 36.38, 36.76, 37.71, 38.31, 39.24, 40.15, 40.75, 41.65, 42.58, 43.21, 44.11, 45.04, 45.7, 46.55, 46.88, 47.2, 47.5, 48.99, 49.51, 49.96, 50.57, 51.47, 52.35, 53.03, 53.5, 53.81, 54.86, 56.54, 57.25, 57.87])
+action_3 = "player_action_7"
+timestamps_3 = Array[float]([7.43, 29.0, 38.69, 50.92, 51.07, 55.46, 55.76, 55.94, 56.34, 58.43, 58.73])
+metadata/_custom_type_script = "uid://dvmac4g0knrrw"
+
+[sub_resource type="Gradient" id="Gradient_6wgal"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r87yn"]
+gradient = SubResource("Gradient_6wgal")
+width = 1922
+height = 1082
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wgal"]
+atlas = ExtResource("1_xr2xu")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r87yn"]
+size = Vector2(176, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0vh5"]
+size = Vector2(176, 40)
+
+[sub_resource type="Animation" id="Animation_mrour"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lane_Ring:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_f08b8"]
+resource_name = "blue_flash"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lane_Ring:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 1, 1), Color(0, 0, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_incx4"]
+resource_name = "green_flash"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lane_Ring:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 1, 0, 1), Color(0, 1, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f08b8"]
+_data = {
+&"RESET": SubResource("Animation_mrour"),
+&"blue_flash": SubResource("Animation_f08b8"),
+&"green_flash": SubResource("Animation_incx4")
+}
+
+[sub_resource type="Animation" id="Animation_1shub"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MusicPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-50.0]
+}
+
+[sub_resource type="Animation" id="Animation_px1fu"]
+resource_name = "start"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MusicPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-25.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_incx4"]
+_data = {
+&"RESET": SubResource("Animation_1shub"),
+&"start": SubResource("Animation_px1fu")
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_83dsf")
+note_scene = ExtResource("2_e24ta")
+music_levels = Array[ExtResource("3_4hver")]([SubResource("Resource_1shub")])
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="VBoxContainer" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopRow" type="HBoxContainer" parent="UILayer/UI"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Player_1_Score" type="Label" parent="UILayer/UI/TopRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_6wgal")
+theme_override_font_sizes/font_size = 128
+text = "0"
+horizontal_alignment = 2
+
+[node name="Player_2_Score" type="Label" parent="UILayer/UI/TopRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_6wgal")
+theme_override_font_sizes/font_size = 128
+text = "0"
+
+[node name="Buffer" type="Control" parent="UILayer/UI"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Header" type="Label" parent="UILayer/UI/Buffer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_6wgal")
+theme_override_font_sizes/font_size = 128
+text = "TEST"
+horizontal_alignment = 1
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0, 0.0196078, 0, 1)
+texture = SubResource("GradientTexture2D_r87yn")
+
+[node name="Notes" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Player_1" type="Node2D" parent="." node_paths=PackedStringArray("lane_1", "lane_2", "lane_3")]
+unique_name_in_owner = true
+position = Vector2(-500, 400)
+script = ExtResource("3_1ivrj")
+lane_1 = NodePath("Lane_1/Lane")
+lane_2 = NodePath("Lane_2/Lane")
+lane_3 = NodePath("Lane_3/Lane")
+
+[node name="Lane_1" type="Node2D" parent="Player_1"]
+position = Vector2(-200, 0)
+
+[node name="Lane_Ring" type="Sprite2D" parent="Player_1/Lane_1"]
+modulate = Color(0, 0, 0, 0)
+scale = Vector2(0.6, 0.6)
+texture = SubResource("AtlasTexture_6wgal")
+
+[node name="Lane" type="Sprite2D" parent="Player_1/Lane_1" node_paths=PackedStringArray("top", "middle", "bottom", "animation_player", "spawn_marker")]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_6wgal")
+script = ExtResource("5_vu6oy")
+top = NodePath("Top")
+middle = NodePath("Middle")
+bottom = NodePath("Bottom")
+animation_player = NodePath("../AnimationPlayer")
+spawn_marker = NodePath("SpawnPoint")
+
+[node name="Top" type="Area2D" parent="Player_1/Lane_1/Lane"]
+position = Vector2(0, -54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_1/Lane_1/Lane/Top"]
+shape = SubResource("RectangleShape2D_r87yn")
+
+[node name="Middle" type="Area2D" parent="Player_1/Lane_1/Lane"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_1/Lane_1/Lane/Middle"]
+shape = SubResource("RectangleShape2D_c0vh5")
+
+[node name="Bottom" type="Area2D" parent="Player_1/Lane_1/Lane"]
+position = Vector2(0, 54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_1/Lane_1/Lane/Bottom"]
+shape = SubResource("RectangleShape2D_r87yn")
+
+[node name="SpawnPoint" type="Marker2D" parent="Player_1/Lane_1/Lane"]
+position = Vector2(0, -2000)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player_1/Lane_1"]
+libraries = {
+&"": SubResource("AnimationLibrary_f08b8")
+}
+
+[node name="Lane_2" type="Node2D" parent="Player_1"]
+
+[node name="Lane_Ring" type="Sprite2D" parent="Player_1/Lane_2"]
+modulate = Color(0, 0, 0, 0)
+scale = Vector2(0.6, 0.6)
+texture = SubResource("AtlasTexture_6wgal")
+
+[node name="Lane" type="Sprite2D" parent="Player_1/Lane_2" node_paths=PackedStringArray("top", "middle", "bottom", "animation_player", "spawn_marker")]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_6wgal")
+script = ExtResource("5_vu6oy")
+top = NodePath("Top")
+middle = NodePath("Middle")
+bottom = NodePath("Bottom")
+animation_player = NodePath("../AnimationPlayer")
+spawn_marker = NodePath("SpawnPoint")
+
+[node name="Top" type="Area2D" parent="Player_1/Lane_2/Lane"]
+position = Vector2(0, -54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_1/Lane_2/Lane/Top"]
+shape = SubResource("RectangleShape2D_r87yn")
+
+[node name="Middle" type="Area2D" parent="Player_1/Lane_2/Lane"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_1/Lane_2/Lane/Middle"]
+shape = SubResource("RectangleShape2D_c0vh5")
+
+[node name="Bottom" type="Area2D" parent="Player_1/Lane_2/Lane"]
+position = Vector2(0, 54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_1/Lane_2/Lane/Bottom"]
+shape = SubResource("RectangleShape2D_r87yn")
+
+[node name="SpawnPoint" type="Marker2D" parent="Player_1/Lane_2/Lane"]
+position = Vector2(0, -2000)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player_1/Lane_2"]
+libraries = {
+&"": SubResource("AnimationLibrary_f08b8")
+}
+
+[node name="Lane_3" type="Node2D" parent="Player_1"]
+position = Vector2(200, 0)
+
+[node name="Lane_Ring" type="Sprite2D" parent="Player_1/Lane_3"]
+modulate = Color(0, 0, 0, 0)
+scale = Vector2(0.6, 0.6)
+texture = SubResource("AtlasTexture_6wgal")
+
+[node name="Lane" type="Sprite2D" parent="Player_1/Lane_3" node_paths=PackedStringArray("top", "middle", "bottom", "animation_player", "spawn_marker")]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_6wgal")
+script = ExtResource("5_vu6oy")
+top = NodePath("Top")
+middle = NodePath("Middle")
+bottom = NodePath("Bottom")
+animation_player = NodePath("../AnimationPlayer")
+spawn_marker = NodePath("SpawnPoint")
+
+[node name="Top" type="Area2D" parent="Player_1/Lane_3/Lane"]
+position = Vector2(0, -54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_1/Lane_3/Lane/Top"]
+shape = SubResource("RectangleShape2D_r87yn")
+
+[node name="Middle" type="Area2D" parent="Player_1/Lane_3/Lane"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_1/Lane_3/Lane/Middle"]
+shape = SubResource("RectangleShape2D_c0vh5")
+
+[node name="Bottom" type="Area2D" parent="Player_1/Lane_3/Lane"]
+position = Vector2(0, 54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_1/Lane_3/Lane/Bottom"]
+shape = SubResource("RectangleShape2D_r87yn")
+
+[node name="SpawnPoint" type="Marker2D" parent="Player_1/Lane_3/Lane"]
+position = Vector2(0, -2000)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player_1/Lane_3"]
+libraries = {
+&"": SubResource("AnimationLibrary_f08b8")
+}
+
+[node name="Player_2" type="Node2D" parent="." node_paths=PackedStringArray("lane_1", "lane_2", "lane_3")]
+unique_name_in_owner = true
+position = Vector2(500, 400)
+script = ExtResource("3_1ivrj")
+player_id = 2
+lane_1 = NodePath("Lane_1/Lane")
+lane_2 = NodePath("Lane_2/Lane")
+lane_3 = NodePath("Lane_3/Lane")
+
+[node name="Lane_1" type="Node2D" parent="Player_2"]
+position = Vector2(-200, 0)
+
+[node name="Lane_Ring" type="Sprite2D" parent="Player_2/Lane_1"]
+modulate = Color(0, 0, 0, 0)
+scale = Vector2(0.6, 0.6)
+texture = SubResource("AtlasTexture_6wgal")
+
+[node name="Lane" type="Sprite2D" parent="Player_2/Lane_1" node_paths=PackedStringArray("top", "middle", "bottom", "animation_player", "spawn_marker")]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_6wgal")
+script = ExtResource("5_vu6oy")
+top = NodePath("Top")
+middle = NodePath("Middle")
+bottom = NodePath("Bottom")
+animation_player = NodePath("../AnimationPlayer")
+spawn_marker = NodePath("SpawnPoint")
+
+[node name="Top" type="Area2D" parent="Player_2/Lane_1/Lane"]
+position = Vector2(0, -54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_2/Lane_1/Lane/Top"]
+shape = SubResource("RectangleShape2D_r87yn")
+
+[node name="Middle" type="Area2D" parent="Player_2/Lane_1/Lane"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_2/Lane_1/Lane/Middle"]
+shape = SubResource("RectangleShape2D_c0vh5")
+
+[node name="Bottom" type="Area2D" parent="Player_2/Lane_1/Lane"]
+position = Vector2(0, 54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_2/Lane_1/Lane/Bottom"]
+shape = SubResource("RectangleShape2D_r87yn")
+
+[node name="SpawnPoint" type="Marker2D" parent="Player_2/Lane_1/Lane"]
+position = Vector2(0, -2000)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player_2/Lane_1"]
+libraries = {
+&"": SubResource("AnimationLibrary_f08b8")
+}
+
+[node name="Lane_2" type="Node2D" parent="Player_2"]
+
+[node name="Lane_Ring" type="Sprite2D" parent="Player_2/Lane_2"]
+modulate = Color(0, 0, 0, 0)
+scale = Vector2(0.6, 0.6)
+texture = SubResource("AtlasTexture_6wgal")
+
+[node name="Lane" type="Sprite2D" parent="Player_2/Lane_2" node_paths=PackedStringArray("top", "middle", "bottom", "animation_player", "spawn_marker")]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_6wgal")
+script = ExtResource("5_vu6oy")
+top = NodePath("Top")
+middle = NodePath("Middle")
+bottom = NodePath("Bottom")
+animation_player = NodePath("../AnimationPlayer")
+spawn_marker = NodePath("SpawnPoint")
+
+[node name="Top" type="Area2D" parent="Player_2/Lane_2/Lane"]
+position = Vector2(0, -54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_2/Lane_2/Lane/Top"]
+shape = SubResource("RectangleShape2D_r87yn")
+
+[node name="Middle" type="Area2D" parent="Player_2/Lane_2/Lane"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_2/Lane_2/Lane/Middle"]
+shape = SubResource("RectangleShape2D_c0vh5")
+
+[node name="Bottom" type="Area2D" parent="Player_2/Lane_2/Lane"]
+position = Vector2(0, 54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_2/Lane_2/Lane/Bottom"]
+shape = SubResource("RectangleShape2D_r87yn")
+
+[node name="SpawnPoint" type="Marker2D" parent="Player_2/Lane_2/Lane"]
+position = Vector2(0, -2000)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player_2/Lane_2"]
+libraries = {
+&"": SubResource("AnimationLibrary_f08b8")
+}
+
+[node name="Lane_3" type="Node2D" parent="Player_2"]
+position = Vector2(200, 0)
+
+[node name="Lane_Ring" type="Sprite2D" parent="Player_2/Lane_3"]
+modulate = Color(0, 0, 0, 0)
+scale = Vector2(0.6, 0.6)
+texture = SubResource("AtlasTexture_6wgal")
+
+[node name="Lane" type="Sprite2D" parent="Player_2/Lane_3" node_paths=PackedStringArray("top", "middle", "bottom", "animation_player", "spawn_marker")]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_6wgal")
+script = ExtResource("5_vu6oy")
+top = NodePath("Top")
+middle = NodePath("Middle")
+bottom = NodePath("Bottom")
+animation_player = NodePath("../AnimationPlayer")
+spawn_marker = NodePath("SpawnPoint")
+
+[node name="Top" type="Area2D" parent="Player_2/Lane_3/Lane"]
+position = Vector2(0, -54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_2/Lane_3/Lane/Top"]
+shape = SubResource("RectangleShape2D_r87yn")
+
+[node name="Middle" type="Area2D" parent="Player_2/Lane_3/Lane"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_2/Lane_3/Lane/Middle"]
+shape = SubResource("RectangleShape2D_c0vh5")
+
+[node name="Bottom" type="Area2D" parent="Player_2/Lane_3/Lane"]
+position = Vector2(0, 54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_2/Lane_3/Lane/Bottom"]
+shape = SubResource("RectangleShape2D_r87yn")
+
+[node name="SpawnPoint" type="Marker2D" parent="Player_2/Lane_3/Lane"]
+position = Vector2(0, -2000)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player_2/Lane_3"]
+libraries = {
+&"": SubResource("AnimationLibrary_f08b8")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -50.0
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="ImpactLow" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("6_vu6oy")
+bus = &"SFX"
+
+[node name="ImpactHigh" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("7_e24ta")
+bus = &"SFX"
+
+[node name="GameStartTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="GameEndTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_incx4")
+}
