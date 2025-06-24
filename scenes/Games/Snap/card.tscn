@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0u46aq4jyx20"]
+
+[ext_resource type="Script" uid="uid://6ibp3jmfn47w" path="res://scripts/Games/Snap/card.gd" id="1_bhcar"]
+[ext_resource type="Texture2D" uid="uid://cv10ts7yhwbe6" path="res://assets/Visuals/PlayingCards.png" id="1_x5nv1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bhcar"]
+size = Vector3(2.25, 3.53, 0.1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34qtp"]
+atlas = ExtResource("1_x5nv1")
+region = Rect2(16, 16, 224, 352)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g00k6"]
+atlas = ExtResource("1_x5nv1")
+region = Rect2(1040, 1568, 224, 352)
+
+[node name="Card" type="RigidBody3D" node_paths=PackedStringArray("card_front")]
+mass = 0.001
+lock_rotation = true
+script = ExtResource("1_bhcar")
+card_front = NodePath("CollisionShape3D/Front")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_bhcar")
+
+[node name="Front" type="Sprite3D" parent="CollisionShape3D"]
+unique_name_in_owner = true
+transparent = false
+double_sided = false
+texture = SubResource("AtlasTexture_34qtp")
+
+[node name="Back" type="Sprite3D" parent="CollisionShape3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transparent = false
+double_sided = false
+texture = SubResource("AtlasTexture_g00k6")
