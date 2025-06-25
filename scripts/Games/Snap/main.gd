@@ -89,6 +89,7 @@ func _input(event: InputEvent) -> void:
 		elif (player == 2):
 			player_2_delayed = true
 			player_2_delay_timer.start()
+		return
 	
 	# Set Winner
 	winner = player
