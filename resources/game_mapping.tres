@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameMapping" load_steps=7 format=3 uid="uid://0eq6flshm4p5"]
+[gd_resource type="Resource" script_class="GameMapping" load_steps=8 format=3 uid="uid://0eq6flshm4p5"]
 
 [ext_resource type="PackedScene" uid="uid://cbf0hmtootka" path="res://scenes/Games/rock_paper_scissors.tscn" id="1_4nv4g"]
 [ext_resource type="Script" uid="uid://4px07wotgw2g" path="res://scripts/Resources/game_mapping.gd" id="1_slobu"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://0c2lrd2o1jqj" path="res://scenes/Games/pong.tscn" id="3_dlcsq"]
 [ext_resource type="PackedScene" uid="uid://cd81eu8ttqwfy" path="res://scenes/Games/light_speeders.tscn" id="4_57n7j"]
 [ext_resource type="PackedScene" uid="uid://bt8e2m8mf2ka1" path="res://scenes/Games/falling_tower.tscn" id="5_c0a5d"]
+[ext_resource type="PackedScene" uid="uid://dvme5fqxim21i" path="res://scenes/Games/rhythm_game.tscn" id="6_mt6de"]
 
 [resource]
 script = ExtResource("1_slobu")
@@ -14,6 +15,7 @@ minigames = Dictionary[String, PackedScene]({
 "Falling Tower": ExtResource("5_c0a5d"),
 "Light Speeders": ExtResource("4_57n7j"),
 "Pong": ExtResource("3_dlcsq"),
+"Rhythm Notes": ExtResource("6_mt6de"),
 "Rock, Paper, Scissors": ExtResource("1_4nv4g")
 })
 metadata/_custom_type_script = "uid://4px07wotgw2g"
