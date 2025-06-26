@@ -311,6 +311,27 @@ offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="PlayerLabels" type="HBoxContainer" parent="UILayer/UI"]
+layout_mode = 2
+
+[node name="Player1Label" type="Label" parent="UILayer/UI/PlayerLabels"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("9_h04gj")
+theme_override_font_sizes/font_size = 96
+horizontal_alignment = 1
+
+[node name="Player2Label" type="Label" parent="UILayer/UI/PlayerLabels"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("9_h04gj")
+theme_override_font_sizes/font_size = 96
+horizontal_alignment = 1
+
 [node name="Buffer" type="Control" parent="UILayer/UI"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -425,10 +446,6 @@ wait_time = 2.0
 
 [node name="Player1DelayTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 2.5
-one_shot = true
 
 [node name="Player2DelayTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 2.5
-one_shot = true

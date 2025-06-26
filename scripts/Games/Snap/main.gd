@@ -1,12 +1,15 @@
 extends Node3D
 
 const GAME_START_TICK = 4
+const PLAYER_DELAY = 5
 
 @export var game_music: AudioStreamWAV
 @export var cards: Dictionary[Texture, int]
 @export var card_scene: PackedScene
 
 @onready var header: Label = %Header
+@onready var player_1_label: Label = %Player1Label
+@onready var player_2_label: Label = %Player2Label
 @onready var deck: Node3D = %CardDeck
 
 @onready var game_tick_sfx: AudioStreamPlayer = %ImpactLow
@@ -24,8 +27,8 @@ var game_tick: int = 0
 var game_started: bool = false
 var rng = RandomNumberGenerator.new()
 
-var player_1_delayed: bool = false
-var player_2_delayed: bool = false
+var player_1_delayed: int = 0
+var player_2_delayed: int = 0
 
 var awaiting_snap: bool = false
 var current_card: int = 0
@@ -66,8 +69,14 @@ func _physics_process(delta: float) -> void:
 #region Events
 
 func _input(event: InputEvent) -> void:	
-	# Action Check
+	# Checks
+	if (current_card == 0):
+		return
+	
 	if (not event.is_action("player_action_8")):
+		return
+	
+	if (winner > 0):
 		return
 	
 	# Setup
@@ -76,19 +85,21 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	# If Player is delayed
-	if (player == 1 && player_1_delayed):
+	if (player == 1 && player_1_delayed > 0):
 		return
-	elif (player == 2 && player_2_delayed):
+	elif (player == 2 && player_2_delayed > 0):
 		return
 	
 	# No Snap! Add small delay
 	if (not awaiting_snap):
 		if (player == 1):
-			player_1_delayed = true
+			player_1_delayed = PLAYER_DELAY
 			player_1_delay_timer.start()
+			player_1_label.text = "Whoops!\n" + str(player_1_delayed)
 		elif (player == 2):
-			player_2_delayed = true
+			player_2_delayed = PLAYER_DELAY
 			player_2_delay_timer.start()
+			player_2_label.text = "Whoops!\n" + str(player_2_delayed)
 		return
 	
 	# Set Winner
@@ -163,10 +174,26 @@ func _on_carddrop_timer_timeout() -> void:
 	carddrop_timer.wait_time = 2 - (0.025 * current_card)
 
 func _on_player_1_delay_timer_timeout() -> void:
-	player_1_delayed = false
+	# Update Param
+	player_1_delayed -= 1
+	
+	# Check
+	if (player_1_delayed == 0):
+		player_1_label.text = ""
+		player_1_delay_timer.stop()
+	else:
+		player_1_label.text = "Whoops!\n" + str(player_1_delayed)
 
 func _on_player_2_delay_timer_timeout() -> void:
-	player_2_delayed = false
+	# Update Param
+	player_2_delayed -= 1
+	
+	# Check
+	if (player_2_delayed == 0):
+		player_2_label.text = ""
+		player_2_delay_timer.stop()
+	else:
+		player_2_label.text = "Whoops!\n" + str(player_2_delayed)
 
 #endregion
 
